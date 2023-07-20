@@ -12,10 +12,6 @@ export default {
       return dummyArtikel.find((value) => value.id === this.id)
     },
   },
-  mounted() {
-    console.log(dummyArtikel)
-    console.log(this.artikel)
-  },
 }
 </script>
 

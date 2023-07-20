@@ -73,6 +73,7 @@ export default {
           >
         </div>
       </section>
+      <!-- <Modal />      -->
     </Container>
   </div>
 </template>
