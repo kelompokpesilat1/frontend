@@ -1,5 +1,12 @@
-<script setup>
-const { value } = defineProps(['value'])
+<script>
+export default {
+  data() {
+    return {
+      kategori: this.$route.params.kategori,
+      id: this.$route.params.id,
+    }
+  },
+}
 </script>
 
 <template>
@@ -10,7 +17,8 @@ const { value } = defineProps(['value'])
           <span class="material-icons text-red-600"> arrow_back </span>
           <button class="text-red-600">Kembali</button></nuxt-link
         >
-        <h3 class="font-semibold" v-if="value">Kategori {{ value }}</h3>
+        <h3 class="font-semibold" v-if="kategori">Kategori {{ kategori }}</h3>
+        <h3 class="font-semibold" v-else-if="id">Detail Artikel</h3>
         <h3 class="font-semibold" v-else>Artikel Terbaru</h3>
       </div>
     </Container>

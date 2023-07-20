@@ -1,5 +1,26 @@
-<script setup>
-import { dummyArtikel } from '../utils/dummyData'
+<script>
+import { dummyArtikel } from '@/utils/dummyData'
+
+export default {
+  data() {
+    return {
+      artikelData: dummyArtikel,
+    }
+  },
+  computed: {
+    artikelTerbaru() {
+      const copiedData = this.artikelData.map((artikel) => ({
+        ...artikel,
+        date: new Date(artikel.date),
+      }))
+
+      // Lakukan sorting berdasarkan tanggal terbaru
+      const sortedData = copiedData.sort((a, b) => b.date - a.date)
+
+      return sortedData
+    },
+  },
+}
 </script>
 
 <template>
@@ -11,7 +32,7 @@ import { dummyArtikel } from '../utils/dummyData'
           class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
         >
           <ArtikelCard
-            v-for="artikel in dummyArtikel"
+            v-for="artikel in artikelTerbaru"
             :key="artikel.id"
             a
             :artikel="artikel"
@@ -22,4 +43,4 @@ import { dummyArtikel } from '../utils/dummyData'
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
