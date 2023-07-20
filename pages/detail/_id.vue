@@ -54,6 +54,34 @@ export default {
         <p>{{ artikel.content }}</p>
         <p>{{ artikel.content }}</p>
       </div>
+      <div class="card py-3 px-6 shadow-lg w-full lg:w-[800px]">
+        <div class="flex items-center gap-4 mb-4">
+          <p class="flex items-center gap-2">
+            <span class="material-icons"> visibility </span>10 Dilihat
+          </p>
+          <p class="flex items-center gap-2">
+            <span class="material-icons"> question_answer </span>10 Komentar
+          </p>
+        </div>
+        <input
+          type="text"
+          placeholder="Tulis komentar..."
+          class="w-full py-2 px-4 mb-5 border-gray-500"
+        />
+        <div class="flex items-center justify-end">
+          <button class="flex items-center gap-3">
+            Kirim <span class="material-icons"> send </span>
+          </button>
+        </div>
+      </div>
+      <div class="card py-3 px-6 shadow-lg w-full lg:w-[800px]">
+        <div class="flex flex-col gap-4">
+          <CommentCard :artikel="artikel" />
+          <CommentCard :artikel="artikel" />
+          <CommentCard :artikel="artikel" />
+          <CommentCard :artikel="artikel" />
+        </div>
+      </div>
     </Container>
   </div>
 </template>

@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex items-center justify-between h-[75px]">
+  <div class="flex items-center justify-between h-[75px] shadow-sm">
     <Container>
       <div class="flex items-center justify-between h-full">
         <nuxt-link to="/" class="flex items-center gap-3">
