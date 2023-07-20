@@ -3,23 +3,13 @@ import { dummyArtikel } from '../utils/dummyData'
 </script>
 
 <template>
-  <div class="flex flex-col gap-10 container mx-auto my-10">
-    <section>
-      <h1 class="text-xl font-bold">Informasi Penting</h1>
-      <div
-        class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
+  <div class="container mx-auto my-10">
+    <section class="flex items-center justify-between h-[75px]">
+      <nuxt-link to="/artikel-terbaru"
+        ><button class="text-red-600">Kembali</button></nuxt-link
       >
-        <ArtikelCard
-          v-for="artikel in dummyArtikel"
-          :key="artikel.id"
-          a
-          :artikel="artikel"
-        />
-      </div>
     </section>
-
     <section>
-      <h1 class="text-xl font-bold">Artikel Terbaru</h1>
       <div
         class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
       >
@@ -29,12 +19,21 @@ import { dummyArtikel } from '../utils/dummyData'
           a
           :artikel="artikel"
         />
-      </div>
-      <div class="text-end">
-        <nuxt-link to="/artikel-terbaru"
-          ><button class="text-red-600">Lebih banyak</button></nuxt-link
-        >
+        <ArtikelCard
+          v-for="artikel in dummyArtikel"
+          :key="artikel.id"
+          a
+          :artikel="artikel"
+        />
+        <ArtikelCard
+          v-for="artikel in dummyArtikel"
+          :key="artikel.id"
+          a
+          :artikel="artikel"
+        />
       </div>
     </section>
   </div>
 </template>
+
+<style lang="scss" scoped></style>
