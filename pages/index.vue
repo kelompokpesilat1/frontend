@@ -38,31 +38,27 @@ export default {
   <div>
     <Container class="flex flex-col gap-10 my-10">
       <section>
-        <h1 class="text-xl font-bold">Informasi Penting</h1>
-        <div
-          class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
-        >
+        <FontHeading>Informasi Penting</FontHeading>
+        <ArtikelWrapper>
           <ArtikelCard
             v-for="artikel in artikelPenting"
             :key="artikel.id"
             a
             :artikel="artikel"
           />
-        </div>
+        </ArtikelWrapper>
       </section>
 
       <section>
-        <h1 class="text-xl font-bold">Artikel Terbaru</h1>
-        <div
-          class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
-        >
+        <FontHeading>Artikel Terbaru</FontHeading>
+        <ArtikelWrapper>
           <ArtikelCard
             v-for="artikel in artikelTerbaru"
             :key="artikel.id"
             a
             :artikel="artikel"
           />
-        </div>
+        </ArtikelWrapper>
         <div class="text-end">
           <nuxt-link to="/artikel-terbaru"
             ><button

@@ -54,7 +54,7 @@ export default {
         <p>{{ artikel.content }}</p>
         <p>{{ artikel.content }}</p>
       </div>
-      <div class="card py-3 px-6 shadow-lg w-full lg:w-[800px]">
+      <div class="card py-3 px-6 shadow-lg w-full lg:w-[800px] mt-5">
         <div class="flex items-center gap-4 mb-4">
           <p class="flex items-center gap-2">
             <span class="material-icons"> visibility </span>10 Dilihat
@@ -76,10 +76,10 @@ export default {
       </div>
       <div class="card py-3 px-6 shadow-lg w-full lg:w-[800px]">
         <div class="flex flex-col gap-4">
-          <CommentCard :artikel="artikel" />
-          <CommentCard :artikel="artikel" />
-          <CommentCard :artikel="artikel" />
-          <CommentCard :artikel="artikel" />
+          <CommentCard :artikel="artikel" :avatarName="avatarName" />
+          <CommentCard :artikel="artikel" :avatarName="avatarName" />
+          <CommentCard :artikel="artikel" :avatarName="avatarName" />
+          <CommentCard :artikel="artikel" :avatarName="avatarName" />
         </div>
       </div>
     </Container>

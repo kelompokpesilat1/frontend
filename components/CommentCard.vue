@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['artikel'],
+  props: ['artikel', 'avatarName'],
 }
 </script>
 
