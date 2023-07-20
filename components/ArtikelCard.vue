@@ -23,7 +23,7 @@ const { artikel } = defineProps(['artikel'])
         <h1 class="mt-1 mb-3 group-hover:text-red-600 transition-all">
           {{ artikel.title }}
         </h1>
-        <p class="max-h-20 overflow-hidden">{{ artikel.content }}</p>
+        <!-- <p class="max-h-20 overflow-hidden">{{ artikel.content }}</p> -->
       </div></nuxt-link
     >
   </div>
