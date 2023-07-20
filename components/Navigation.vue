@@ -10,7 +10,8 @@ const { value } = defineProps(['value'])
           <span class="material-icons text-red-600"> arrow_back </span>
           <button class="text-red-600">Kembali</button></nuxt-link
         >
-        <h3 class="font-semibold">Kategori {{ value }}</h3>
+        <h3 class="font-semibold" v-if="value">Kategori {{ value }}</h3>
+        <h3 class="font-semibold" v-else>Artikel Terbaru</h3>
       </div>
     </Container>
   </div>
