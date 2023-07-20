@@ -3,8 +3,8 @@ import { dummyArtikel } from '../utils/dummyData'
 </script>
 
 <template>
-  <div class="flex flex-col gap-10 my-10">
-    <Container>
+  <div>
+    <Container class="flex flex-col gap-10 my-10">
       <section>
         <h1 class="text-xl font-bold">Informasi Penting</h1>
         <div
