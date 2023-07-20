@@ -42,6 +42,7 @@ import { dummyArtikel } from '../utils/dummyData'
         </div>
       </section>
       <!-- <Modal />      -->
+      <section></section>
     </Container>
   </div>
 </template>

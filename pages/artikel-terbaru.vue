@@ -8,7 +8,9 @@ import { dummyArtikel } from '../utils/dummyData'
       <nuxt-link to="/artikel-terbaru"
         ><button class="text-red-600">Kembali</button></nuxt-link
       >
-      <button class="text-gray-800">Detail Artikel</button>
+      <nuxt-link to="/detail-artikel"
+        ><button class="text-gray-800">Detail Artikel</button></nuxt-link
+      >
     </section>
 
     <section>
