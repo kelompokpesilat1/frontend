@@ -36,39 +36,36 @@ export default {
 
 <template>
   <div>
-    <Container class="flex flex-col gap-10 my-10">
-      <section>
-        <FontHeading>Informasi Penting</FontHeading>
-        <ArtikelWrapper>
-          <ArtikelCard
-            v-for="artikel in artikelPenting"
-            :key="artikel.id"
-            a
-            :artikel="artikel"
-          />
-        </ArtikelWrapper>
-      </section>
+    <Container>
+      <LayoutFlexCol class="gap-10 my-10">
+        <section>
+          <FontHeading>Informasi Penting</FontHeading>
+          <ArtikelWrapper>
+            <ArtikelCard
+              v-for="artikel in artikelPenting"
+              :key="artikel.id"
+              :artikel="artikel"
+            />
+          </ArtikelWrapper>
+        </section>
 
-      <section>
-        <FontHeading>Artikel Terbaru</FontHeading>
-        <ArtikelWrapper>
-          <ArtikelCard
-            v-for="artikel in artikelTerbaru"
-            :key="artikel.id"
-            a
-            :artikel="artikel"
-          />
-        </ArtikelWrapper>
-        <div class="text-end">
-          <nuxt-link to="/artikel-terbaru"
-            ><button
-              class="text-red-600 font-semibold hover:underline transition-all"
-            >
-              Lebih banyak
-            </button></nuxt-link
-          >
-        </div>
-      </section>
+        <section>
+          <FontHeading>Artikel Terbaru</FontHeading>
+          <ArtikelWrapper>
+            <ArtikelCard
+              v-for="artikel in artikelTerbaru"
+              :key="artikel.id"
+              :artikel="artikel"
+            />
+          </ArtikelWrapper>
+          <div class="text-end">
+            <nuxt-link to="/artikel-terbaru"
+              ><ButtonBlue>Lebih banyak</ButtonBlue>
+            </nuxt-link>
+          </div>
+        </section></LayoutFlexCol
+      >
+
       <!-- <Modal />      -->
     </Container>
   </div>

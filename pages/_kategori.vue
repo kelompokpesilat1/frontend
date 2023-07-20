@@ -20,16 +20,13 @@ export default {
     <Navigation />
 
     <Container>
-      <div
-        class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
-      >
+      <ArtikelWrapper>
         <ArtikelCard
           v-for="artikel in filteredArtikel"
           :key="artikel.id"
-          a
           :artikel="artikel"
         />
-      </div>
+      </ArtikelWrapper>
     </Container>
   </div>
 </template>
