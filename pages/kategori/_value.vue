@@ -4,12 +4,12 @@ import { dummyArtikel } from '@/utils/dummyData'
 export default {
   data() {
     return {
-      kategori: this.$route.params.kategori,
+      value: this.$route.params.value,
     }
   },
   computed: {
     filteredArtikel() {
-      return dummyArtikel.filter((value) => value.kategori === this.kategori)
+      return dummyArtikel.filter((data) => data.kategori === this.value)
     },
   },
 }

@@ -27,7 +27,7 @@ const category = ['olahraga', 'seni', 'gaming', 'edukasi']
               :key="value"
               class="text-white capitalize hover:text-red-600"
             >
-              <nuxt-link :to="`/${value}`">{{ value }}</nuxt-link>
+              <nuxt-link :to="`/kategori/${value}`">{{ value }}</nuxt-link>
             </li>
           </ul>
           <span class="material-icons md-48 text-white"> account_circle </span>
