@@ -25,7 +25,7 @@ const category = ['olahraga', 'seni', 'gaming', 'edukasi']
             <li
               v-for="value in category"
               :key="value"
-              class="text-white capitalize"
+              class="text-white capitalize hover:text-red-600"
             >
               <nuxt-link :to="`/${value}`">{{ value }}</nuxt-link>
             </li>
