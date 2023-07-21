@@ -1,3 +1,12 @@
+export const headingArtikel = [
+  'No',
+  'Nama',
+  'Kategori',
+  'Penulis',
+  'Tgl Publis',
+  'Action',
+]
+
 export const dummyArtikel = [
   {
     id: 'B5230815-F485-53FA-6010-BAECCAE167F5',

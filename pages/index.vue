@@ -4,7 +4,7 @@ import { dummyArtikel } from '@/utils/dummyData'
 export default {
   data() {
     return {
-      artikelData: dummyArtikel,
+      artikelData: dummyArtikel
     }
   },
   computed: {
@@ -63,11 +63,11 @@ export default {
               ><ButtonBlue>Lebih banyak</ButtonBlue>
             </nuxt-link>
           </div>
-        </section></LayoutFlexCol
-      >
+        </section>
+        </LayoutFlexCol>
 
-      <!-- 
-      <ModalLogin /> -->
+      
+      <!-- <ModalLogin /> -->
     </Container>
   </div>
 </template>
