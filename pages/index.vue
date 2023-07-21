@@ -67,6 +67,7 @@ export default {
       >
 
       <ModalLogin />
+      <!-- <ModalRegister /> -->
     </Container>
   </div>
 </template>
