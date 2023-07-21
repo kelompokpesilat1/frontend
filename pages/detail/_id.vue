@@ -63,12 +63,7 @@ export default {
               <span class="material-icons"> question_answer </span>10 Komentar
             </LayoutFlexRow>
           </LayoutFlexRow>
-
-          <input
-            type="text"
-            placeholder="Tulis komentar..."
-            class="w-full py-2 px-4 mb-5 border-gray-500"
-          />
+          <InputField placeholder="Tulis komentar..." />
           <div class="text-end">
             <ButtonBlue>
               <button class="flex items-center gap-3">
@@ -78,14 +73,14 @@ export default {
           </div>
         </Card>
 
-        <div class="card py-3 px-6 shadow-lg w-full lg:w-[800px]">
+        <Card class="w-full lg:w-[800px]">
           <LayoutFlexCol class="gap-4">
             <CommentCard :artikel="artikel" :avatarName="avatarName" />
             <CommentCard :artikel="artikel" :avatarName="avatarName" />
             <CommentCard :artikel="artikel" :avatarName="avatarName" />
             <CommentCard :artikel="artikel" :avatarName="avatarName" />
           </LayoutFlexCol>
-        </div>
+        </Card>
       </LayoutFlexCol>
     </Container>
   </div>
