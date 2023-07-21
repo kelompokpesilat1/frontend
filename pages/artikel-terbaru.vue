@@ -28,16 +28,13 @@ export default {
     <Navigation />
     <Container>
       <section>
-        <div
-          class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
-        >
+        <ArtikelWrapper>
           <ArtikelCard
             v-for="artikel in artikelTerbaru"
             :key="artikel.id"
-            a
             :artikel="artikel"
           />
-        </div>
+        </ArtikelWrapper>
       </section>
     </Container>
   </div>

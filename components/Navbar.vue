@@ -5,7 +5,7 @@ const category = ['olahraga', 'seni', 'gaming', 'edukasi']
 <template>
   <nav class="bg-[#26282A] h-[75px]">
     <Container>
-      <div class="nav-inner flex items-center justify-between h-full">
+      <LayoutFlexRow class="justify-between h-full">
         <h1 class="logo text-2xl text-red-600 font-bold">
           <nuxt-link to="/">RagamArtikel</nuxt-link>
         </h1>
@@ -18,7 +18,7 @@ const category = ['olahraga', 'seni', 'gaming', 'edukasi']
             <nuxt-link :to="`/${value}`">{{ value }}</nuxt-link>
           </li>
         </ul>
-      </div>
+      </LayoutFlexRow>
     </Container>
   </nav>
 </template>
