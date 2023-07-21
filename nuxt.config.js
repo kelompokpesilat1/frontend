@@ -33,6 +33,10 @@ export default {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
       },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Two+Tone',
+      },
     ],
 
     //     <link rel="preconnect" href="https://fonts.googleapis.com">

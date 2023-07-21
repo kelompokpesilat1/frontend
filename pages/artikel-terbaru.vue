@@ -37,6 +37,7 @@ export default {
         </ArtikelWrapper>
       </section>
     </Container>
+    >>>>>>> cbb957742820b776b9549a4a3c417ad734bdcfc4
   </div>
 </template>
 

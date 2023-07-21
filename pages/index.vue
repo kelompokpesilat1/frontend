@@ -65,6 +65,12 @@ export default {
           </div>
         </section></LayoutFlexCol
       >
+<<<<<<< HEAD
+=======
+
+      <!-- 
+      <ModalLogin /> -->
+>>>>>>> 49241e2a4aa78d69d1223e9e92cd3a1acce8693c
     </Container>
   </div>
 </template>

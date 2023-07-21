@@ -1,3 +1,4 @@
+=======
 <script></script>
 <template>
   <div class="flex min-h-screen">
@@ -43,3 +44,4 @@
   @apply text-red-600 bg-white;
 }
 </style>
+>>>>>>> bfd2b784bedfa97362194008906906593f1310c6

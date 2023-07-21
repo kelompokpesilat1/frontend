@@ -82,9 +82,13 @@ export default {
           </LayoutFlexCol>
         </Card>
       </LayoutFlexCol>
+<<<<<<< HEAD
       <div v-else>
         <h1>Artikel tidak ditemukan</h1>
       </div>
+=======
+      >>>>>>> cbb957742820b776b9549a4a3c417ad734bdcfc4
+>>>>>>> 49241e2a4aa78d69d1223e9e92cd3a1acce8693c
     </Container>
   </div>
 </template>
