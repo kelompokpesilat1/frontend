@@ -15,7 +15,7 @@ const category = ['olahraga', 'seni', 'gaming', 'edukasi']
             :key="value"
             class="text-white capitalize"
           >
-            <nuxt-link :to="`/` + value">{{ value }}</nuxt-link>
+            <nuxt-link :to="`/${value}`">{{ value }}</nuxt-link>
           </li>
         </ul>
       </div>

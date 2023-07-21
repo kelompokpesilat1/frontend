@@ -1,5 +1,26 @@
-<script setup>
-import { dummyArtikel } from '../utils/dummyData'
+<script>
+import { dummyArtikel } from '@/utils/dummyData'
+
+export default {
+  data() {
+    return {
+      artikelData: dummyArtikel,
+    }
+  },
+  computed: {
+    artikelTerbaru() {
+      const copiedData = this.artikelData.map((artikel) => ({
+        ...artikel,
+        date: new Date(artikel.date),
+      }))
+
+      // Lakukan sorting berdasarkan tanggal terbaru
+      const sortedData = copiedData.sort((a, b) => b.date - a.date)
+
+      return sortedData
+    },
+  },
+}
 </script>
 
 <template>
@@ -8,9 +29,7 @@ import { dummyArtikel } from '../utils/dummyData'
       <nuxt-link to="/artikel-terbaru"
         ><button class="text-red-600">Kembali</button></nuxt-link
       >
-      <nuxt-link to="/detail-artikel"
-        ><button class="text-gray-800">Detail Artikel</button></nuxt-link
-      >
+      <button class="text-gray-800">Detail Artikel</button>
     </section>
 
     <section>
@@ -58,4 +77,4 @@ import { dummyArtikel } from '../utils/dummyData'
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
