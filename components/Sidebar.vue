@@ -1,7 +1,7 @@
 =======
 <script></script>
 <template>
-  <div class="relative flex min-h-screen">
+  <div class="flex min-h-screen">
     <!-- sidebar -->
     <div class="bg-red-500 text-white w-64 px-4 py-4 space-y-6">
       <h1 class="text-2xl font-bold">Admin</h1>
