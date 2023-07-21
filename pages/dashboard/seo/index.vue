@@ -6,6 +6,6 @@ export default {
 
 <template>
   <div>
-    <h1>Dashboard</h1>
+    <h1>Seo</h1>
   </div>
 </template>
