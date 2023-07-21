@@ -9,7 +9,8 @@ export default {
   },
   computed: {
     filteredArtikel() {
-      return dummyArtikel.filter((data) => data.kategori === this.value)
+      const result = dummyArtikel.filter((data) => data.kategori === this.value)
+      if (result.length > 0) return result
     },
   },
 }
@@ -20,13 +21,16 @@ export default {
     <Navigation />
 
     <Container>
-      <ArtikelWrapper>
+      <ArtikelWrapper v-if="filteredArtikel">
         <ArtikelCard
           v-for="artikel in filteredArtikel"
           :key="artikel.id"
           :artikel="artikel"
         />
       </ArtikelWrapper>
+      <div class="h-[80vh] flex items-center justify-center">
+        <h1>Tidak ada artikel pada kategori ini</h1>
+      </div>
     </Container>
   </div>
 </template>
