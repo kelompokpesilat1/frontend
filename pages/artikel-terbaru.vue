@@ -24,56 +24,20 @@ export default {
 </script>
 
 <template>
-  <div class="container mx-auto my-10">
-    <section class="flex items-center justify-between h-[75px]">
-      <nuxt-link to="/artikel-terbaru"
-        ><button class="text-red-600">Kembali</button></nuxt-link
-      >
-      <button class="text-gray-800">Detail Artikel</button>
-    </section>
-
-    <section>
-      <div
-        class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
-      >
-        <ArtikelCard
-          v-for="artikel in dummyArtikel"
-          :key="artikel.id"
-          a
-          :artikel="artikel"
-        />
-        <ArtikelCard
-          v-for="artikel in dummyArtikel"
-          :key="artikel.id"
-          a
-          :artikel="artikel"
-        />
-        <ArtikelCard
-          v-for="artikel in dummyArtikel"
-          :key="artikel.id"
-          a
-          :artikel="artikel"
-        />
-      </div>
-    </section>
-
-    <div>
-      <Navigation />
-      <Container>
-        <section>
-          <div
-            class="artikel-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5"
-          >
-            <ArtikelCard
-              v-for="artikel in dummyArtikel"
-              :key="artikel.id"
-              a
-              :artikel="artikel"
-            />
-          </div>
-        </section>
-      </Container>
-    </div>
+  <div>
+    <Navigation />
+    <Container>
+      <section>
+        <ArtikelWrapper>
+          <ArtikelCard
+            v-for="artikel in artikelTerbaru"
+            :key="artikel.id"
+            :artikel="artikel"
+          />
+        </ArtikelWrapper>
+      </section>
+    </Container>
+    >>>>>>> cbb957742820b776b9549a4a3c417ad734bdcfc4
   </div>
 </template>
 
