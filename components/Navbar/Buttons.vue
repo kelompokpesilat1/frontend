@@ -2,7 +2,7 @@
 export default {
   data() {
     return {
-      auth: false,
+      auth: true,
     }
   },
 }
@@ -12,12 +12,12 @@ export default {
   <div>
     <ul v-if="!auth" class="flex item-center gap-3">
       <li>
-        <nuxt-link to="/auth/register" @click="toggleDropdown">
+        <nuxt-link to="/auth/register">
           <Button label="Register" variant="primary" />
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/auth/login" @click="toggleDropdown">
+        <nuxt-link to="/auth/login">
           <Button label="Login" variant="success" />
         </nuxt-link>
       </li>
@@ -25,8 +25,8 @@ export default {
 
     <ul v-else class="flex item-center gap-3">
       <li>
-        <nuxt-link to="/auth/register" @click="toggleDropdown">
-          <Button label="Dashboard" variant="secondary" />
+        <nuxt-link to="/dashboard">
+          <Button label="Dashboard" variant="secondary" icon="dashboard" />
         </nuxt-link>
       </li>
     </ul>

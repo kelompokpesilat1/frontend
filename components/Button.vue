@@ -20,7 +20,7 @@ export default {
 
 <template>
   <button
-    class="flex items-center justify-center text-white gap-3 p-3 rounded-lg hover:opacity-90"
+    class="flex items-center justify-center text-white gap-3 py-2 px-4 font-semibold rounded-lg hover:opacity-90"
     :class="color"
   >
     {{ label }}

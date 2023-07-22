@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <ul class="flex item-center gap-3">
+  <ul class="flex item-center gap-5">
     <li
       v-for="value in category"
       :key="value"
