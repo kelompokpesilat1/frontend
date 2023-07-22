@@ -9,9 +9,3 @@
     </Container>
   </nav>
 </template>
-
-<style scoped>
-.nuxt-link-active {
-  @apply text-red-600;
-}
-</style>
