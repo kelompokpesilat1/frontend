@@ -6,6 +6,6 @@ export default {
 
 <template>
   <div>
-    <ListArtikel/>
+    <ListArtikel />
   </div>
 </template>
