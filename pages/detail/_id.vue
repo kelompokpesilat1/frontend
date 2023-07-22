@@ -82,7 +82,6 @@ export default {
           </LayoutFlexCol>
         </Card>
       </LayoutFlexCol>
-      >>>>>>> cbb957742820b776b9549a4a3c417ad734bdcfc4
     </Container>
   </div>
 </template>

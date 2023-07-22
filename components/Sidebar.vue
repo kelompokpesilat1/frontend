@@ -4,7 +4,8 @@
   <div class="relative flex min-h-screen">
     <!-- sidebar -->
     <div class="bg-red-500 text-white w-64 px-4 py-4 space-y-6">
-      <h1 class="text-2xl font-bold">Admin</h1>
+      <!-- <h1 class="text-2xl font-bold">Admin</h1> -->
+      <FontHeading>ADMIN</FontHeading>
       <nav class="mt-5">
         <ul>
           <li>
@@ -44,4 +45,3 @@
   @apply text-red-600 bg-white;
 }
 </style>
->>>>>>> bfd2b784bedfa97362194008906906593f1310c6

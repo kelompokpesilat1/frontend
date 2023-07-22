@@ -6,15 +6,14 @@
   >
     <div class="modal-content bg-white p-9 w-[700px] rounded-md shadow-lg">
       <div class="flex justify-end">
-        <span class="material-icons">close</span>
+        <a href="#"><span class="material-icons">close</span></a>
       </div>
       <h2 class="text-[32px] font-bold mb-4">Masuk dulu gais</h2>
       <form @submit.prevent="login">
         <div class="mb-4">
           <input
             type="email"
-            id="email"
-            class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            class="w-full px-3 py-2 border rounded focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-400"
             required
             placeholder="Email"
           />
@@ -22,7 +21,7 @@
         <div class="mb-4">
           <input
             type="password"
-            class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            class="w-full px-3 py-2 border rounded focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-400"
             required
             placeholder="Password"
           />
