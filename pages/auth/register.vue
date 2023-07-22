@@ -39,7 +39,7 @@
             type="password"
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
-            placeholder="Konfigurasi Password"
+            placeholder="Konfirmasi Password"
           />
         </div>
         <div class="flex justify-between">

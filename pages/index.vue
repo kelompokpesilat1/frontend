@@ -4,7 +4,7 @@ import { dummyArtikel } from '@/utils/dummyData'
 export default {
   data() {
     return {
-      artikelData: dummyArtikel
+      artikelData: dummyArtikel,
     }
   },
   computed: {
@@ -39,7 +39,7 @@ export default {
     <Container>
       <LayoutFlexCol class="gap-10 my-10">
         <section>
-          <FontHeading>Informasi Penting</FontHeading>
+          <h1 class="text-xl font-bold">Informasi Penting</h1>
           <ArtikelWrapper>
             <ArtikelCard
               v-for="artikel in artikelPenting"
@@ -50,7 +50,7 @@ export default {
         </section>
 
         <section>
-          <FontHeading>Artikel Terbaru</FontHeading>
+          <h1 class="text-xl font-bold">Artikel Terbaru</h1>
           <ArtikelWrapper>
             <ArtikelCard
               v-for="artikel in artikelTerbaru"
@@ -59,15 +59,10 @@ export default {
             />
           </ArtikelWrapper>
           <div class="text-end">
-            <nuxt-link to="/artikel-terbaru"
-              ><ButtonBlue>Lebih banyak</ButtonBlue>
-            </nuxt-link>
+            <nuxt-link to="/artikel-terbaru">Lebih banyak </nuxt-link>
           </div>
         </section></LayoutFlexCol
       >
-
-      <!-- 
-      <ModalLogin /> -->
     </Container>
   </div>
 </template>

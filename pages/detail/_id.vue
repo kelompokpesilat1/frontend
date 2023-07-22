@@ -11,9 +11,9 @@ export default {
     artikel() {
       return dummyArtikel.find((value) => value.id === this.id)
     },
-    avatarName() {
-      return this.artikel.author.split('')[0]
-    },
+  },
+  mounted() {
+    console.log(this.artikel.author)
   },
 }
 </script>
@@ -24,35 +24,15 @@ export default {
 
     <Container>
       <LayoutFlexCol v-if="artikel" class="gap-10 items-center my-10">
-        <header class="max-w-[800px]">
-          <DetailKategori>
-            {{ artikel.kategori }}
-          </DetailKategori>
-          <DetailTitle>
-            {{ artikel.title }}
-          </DetailTitle>
+        <DetailHeader
+          :title="artikel.title"
+          :kategori="artikel.kategori"
+          :author="artikel.author"
+          :date="artikel.date"
+        />
+        <DetailCover :cover="artikel.cover" />
 
-          <LayoutFlexRow class="gap-4 mt-5">
-            <AvatarName :avatarName="avatarName" />
-            <div>
-              <h1>{{ artikel.author }}</h1>
-              <p class="text-gray-400">{{ artikel.date }}</p>
-            </div>
-          </LayoutFlexRow>
-        </header>
-        <div class="max-w-[1000px]">
-          <img :src="artikel.cover" alt="cover artikel" width="100%" />
-        </div>
-
-        <LayoutFlexCol class="gap-4 max-w-[800px]">
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-        </LayoutFlexCol>
+        <DetailContent :content="artikel.content" />
 
         <Card class="w-full lg:w-[800px] mt-5">
           <LayoutFlexRow class="gap-4 mb-4">
