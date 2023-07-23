@@ -6,6 +6,7 @@ export default {
 
 <template>
   <div>
-    <ListArtikel/>
-  </div>
+      <ListArtikel/>
+      <!-- <ModalCreateArticle/> -->
+</div>
 </template>

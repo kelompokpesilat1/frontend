@@ -7,5 +7,6 @@ export default {
 <template>
   <div>
     <h1>User Management</h1>
+    <ListUser/>
   </div>
 </template>
