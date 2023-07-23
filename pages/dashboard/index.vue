@@ -1,6 +1,18 @@
 <script>
+import { dummyVisitors } from '@/utils/dummyData'
+import CartsLine from '@/components/Carts/Line.vue'
+
 export default {
   layout: 'dashboard',
+  components: {
+    CartsLine,
+  },
+  data() {
+    return {
+      dataCartLine: dummyVisitors,
+    }
+  },
+  created() {},
 }
 </script>
 
@@ -11,11 +23,13 @@ export default {
       <div class="col-span-2">
         <CardsDashbord>
           <h1>Statistik Pengunjung Artikel</h1>
+          <CartsLine :DataCarts="dataCartLine" />
         </CardsDashbord>
       </div>
       <div>
         <CardsDashbord>
-          <h1 class="text-2xl">Artikel Populer</h1>
+          <h1 class="text-2xl font-bold">Artikel Populer</h1>
+          <hr />
           <ArtikelPopuler class="mt-5" />
         </CardsDashbord>
       </div>

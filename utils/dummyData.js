@@ -1,7 +1,25 @@
+export const months = [
+  'Januari',
+  'Februari',
+  'Maret',
+  'April',
+  'Mei',
+  'Juni',
+  'Juli',
+  'Agustus',
+  'September',
+  'Oktober',
+  'November',
+  'Desember',
+]
+
 export const dummyVisitors = [
   { month: 'Januari', visitors: 1500 },
   { month: 'Februari', visitors: 1200 },
   { month: 'Maret', visitors: 1800 },
+  { month: 'April', visitors: 100 },
+  { month: 'Mei', visitors: 0 },
+  { month: 'Juni', visitors: 2000 },
 ]
 export const dummyArticles = [
   { title: 'Artikel 1', favoriteCount: 300 },
