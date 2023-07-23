@@ -1,6 +1,10 @@
 <template>
   <div class="flex">
     <Sidebar />
-    <Nuxt />
+
+    <div class="w-full h-[3000px]">
+      <Topbar />
+      <Nuxt />
+    </div>
   </div>
 </template>

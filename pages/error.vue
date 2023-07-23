@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
-    <Nuxt />
+    <h1>Error euuy</h1>
   </div>
 </template>

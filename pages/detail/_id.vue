@@ -23,7 +23,7 @@ export default {
     <Navigation />
 
     <Container>
-      <LayoutFlexCol class="gap-10 items-center my-10">
+      <LayoutFlexCol v-if="artikel" class="gap-10 items-center my-10">
         <header class="max-w-[800px]">
           <DetailKategori>
             {{ artikel.kategori }}
@@ -82,6 +82,10 @@ export default {
           </LayoutFlexCol>
         </Card>
       </LayoutFlexCol>
+
+      <div>
+        <h1>Artikel tidak ditemukan</h1>
+      </div>
     </Container>
   </div>
 </template>

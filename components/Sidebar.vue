@@ -1,11 +1,14 @@
 =======
 <script></script>
 <template>
-  <div class="relative flex min-h-screen">
+  <div class="flex min-h-screen">
     <!-- sidebar -->
     <div class="bg-red-500 text-white w-64 px-4 py-4 space-y-6">
-      <!-- <h1 class="text-2xl font-bold">Admin</h1> -->
-      <FontHeading>ADMIN</FontHeading>
+      <div class="flex justify-between">
+        <FontHeading>ADMIN</FontHeading>
+        <span class="material-icons">dehaze</span>
+      </div>
+
       <nav class="mt-5">
         <ul>
           <li>

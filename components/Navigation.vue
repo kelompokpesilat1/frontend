@@ -2,7 +2,7 @@
 export default {
   data() {
     return {
-      kategori: this.$route.params.kategori,
+      value: this.$route.params.value,
       id: this.$route.params.id,
     }
   },
@@ -19,7 +19,7 @@ export default {
             Kembali</ButtonRed
           >
         </nuxt-link>
-        <h3 class="font-semibold" v-if="kategori">Kategori {{ kategori }}</h3>
+        <h3 class="font-semibold" v-if="value">Kategori {{ value }}</h3>
         <h3 class="font-semibold" v-else-if="id">Detail Artikel</h3>
         <h3 class="font-semibold" v-else>Artikel Terbaru</h3>
       </LayoutFlexRow>

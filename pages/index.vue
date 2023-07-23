@@ -65,7 +65,6 @@ export default {
           </div>
         </section></LayoutFlexCol
       >
-      <ModalLogin />
     </Container>
   </div>
 </template>

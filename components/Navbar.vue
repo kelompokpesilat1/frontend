@@ -1,5 +1,15 @@
-<script setup>
-const category = ['olahraga', 'seni', 'gaming', 'edukasi']
+<script>
+export default {
+  data() {
+    return {
+      category: ['olahraga', 'seni', 'gaming', 'edukasi'],
+      dropdownActive: false,
+    }
+  },
+  mounted() {
+    console.log($nuxt)
+  },
+}
 </script>
 
 <template>
@@ -27,11 +37,31 @@ const category = ['olahraga', 'seni', 'gaming', 'edukasi']
               :key="value"
               class="text-white capitalize hover:text-red-600"
             >
-              <nuxt-link :to="`/${value}`">{{ value }}</nuxt-link>
+              <nuxt-link :to="`/kategori/${value}`">{{ value }}</nuxt-link>
             </li>
           </ul>
-          <span class="material-icons md-48 text-white"> account_circle </span>
+          <span
+            class="material-icons md-48 text-white cursor-pointer"
+            @click="dropdownActive = !dropdownActive"
+          >
+            account_circle
+          </span>
         </LayoutFlexRow>
+        <ul
+          class="bg-[#26282A] absolute right-0 top-full scale-0 overflow-hidden transition-transform"
+          :class="{ 'scale-100': dropdownActive }"
+        >
+          <li class="py-2 px-8 hover:bg-gray-800 cursor-pointer">
+            <nuxt-link to="/auth/login">
+              <ButtonGreen>Login</ButtonGreen>
+            </nuxt-link>
+          </li>
+          <li class="py-2 px-4 hover:bg-gray-800 cursor-pointer">
+            <nuxt-link to="/auth/register">
+              <ButtonBlue>Register</ButtonBlue>
+            </nuxt-link>
+          </li>
+        </ul>
       </LayoutFlexRow>
     </Container>
   </nav>
