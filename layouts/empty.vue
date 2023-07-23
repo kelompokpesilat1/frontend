@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>Error euuy</h1>
+    <Nuxt />
   </div>
 </template>

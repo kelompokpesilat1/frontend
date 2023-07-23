@@ -11,81 +11,75 @@ export default {
     artikel() {
       return dummyArtikel.find((value) => value.id === this.id)
     },
-    avatarName() {
-      return this.artikel.author.split('')[0]
-    },
   },
 }
 </script>
 
 <template>
   <div>
-    <Navigation />
+    <!-- <Navigation /> -->
 
-    <Container>
-      <LayoutFlexCol v-if="artikel" class="gap-10 items-center my-10">
-        <header class="max-w-[800px]">
-          <DetailKategori>
-            {{ artikel.kategori }}
-          </DetailKategori>
-          <DetailTitle>
-            {{ artikel.title }}
-          </DetailTitle>
-
-          <LayoutFlexRow class="gap-4 mt-5">
-            <AvatarName :avatarName="avatarName" />
-            <div>
-              <h1>{{ artikel.author }}</h1>
-              <p class="text-gray-400">{{ artikel.date }}</p>
-            </div>
-          </LayoutFlexRow>
-        </header>
-        <div class="max-w-[1000px]">
-          <img :src="artikel.cover" alt="cover artikel" width="100%" />
+    <div class="max-w-3xl mx-auto flex flex-col gap-10 my-10">
+      <div>
+        <p class="uppercase font-semibold text-red-600">
+          {{ artikel.kategori }}
+        </p>
+        <h1 class="text-4xl font-bold mb-4 mt-2">{{ artikel.title }}</h1>
+        <div>
+          <h3 class="font-semibold">{{ artikel.author }}</h3>
+          <p>{{ artikel.date }}</p>
         </div>
-
-        <LayoutFlexCol class="gap-4 max-w-[800px]">
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-          <p>{{ artikel.content }}</p>
-        </LayoutFlexCol>
-
-        <Card class="w-full lg:w-[800px] mt-5">
-          <LayoutFlexRow class="gap-4 mb-4">
-            <LayoutFlexRow class="gap-2"
-              ><span class="material-icons"> visibility </span>10 Dilihat
-            </LayoutFlexRow>
-            <LayoutFlexRow class="gap-2">
-              <span class="material-icons"> question_answer </span>10 Komentar
-            </LayoutFlexRow>
-          </LayoutFlexRow>
-          <InputField placeholder="Tulis komentar..." />
-          <div class="text-end">
-            <ButtonBlue>
-              <button class="flex items-center gap-3">
-                Kirim <span class="material-icons"> send </span>
-              </button>
-            </ButtonBlue>
-          </div>
-        </Card>
-
-        <Card class="w-full lg:w-[800px]">
-          <LayoutFlexCol class="gap-4">
-            <CommentCard :artikel="artikel" :avatarName="avatarName" />
-            <CommentCard :artikel="artikel" :avatarName="avatarName" />
-            <CommentCard :artikel="artikel" :avatarName="avatarName" />
-            <CommentCard :artikel="artikel" :avatarName="avatarName" />
-          </LayoutFlexCol>
-        </Card>
-      </LayoutFlexCol>
-      <div v-else>
-        <h1>Artikel tidak ditemukan</h1>
       </div>
-    </Container>
+
+      <img
+        :src="artikel.cover"
+        alt="Deskripsi Gambar"
+        class="w-full object-cover shadow-md"
+      />
+      <div class="flex flex-col gap-6">
+        <p class="text-lg text-gray-700 leading-[32px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
+          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
+          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
+          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
+          est eget odio convallis fermentum. Integer lacinia lacus nec leo
+          feugiat, quis hendrerit quam finibus.
+        </p>
+        <p class="text-lg text-gray-700 leading-[32px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
+          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
+          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
+          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
+          est eget odio convallis fermentum. Integer lacinia lacus nec leo
+          feugiat, quis hendrerit quam finibus.
+        </p>
+        <p class="text-lg text-gray-700 leading-[32px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
+          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
+          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
+          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
+          est eget odio convallis fermentum. Integer lacinia lacus nec leo
+          feugiat, quis hendrerit quam finibus.
+        </p>
+
+        <p class="text-lg text-gray-700 leading-[32px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
+          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
+          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
+          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
+          est eget odio convallis fermentum. Integer lacinia lacus nec leo
+          feugiat, quis hendrerit quam finibus.
+        </p>
+        <p class="text-lg text-gray-700 leading-[32px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
+          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
+          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
+          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
+          est eget odio convallis fermentum. Integer lacinia lacus nec leo
+          feugiat, quis hendrerit quam finibus.
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 

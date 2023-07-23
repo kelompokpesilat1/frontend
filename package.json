@@ -13,10 +13,17 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+<<<<<<< HEAD
     "chart.js": "^2.8.0",
+=======
+    "aos": "^2.3.4",
+    "chart.js": "^3.8.0",
+>>>>>>> 1cb6f65df563fee19acd3631f521b0cd1791b148
     "core-js": "^3.25.3",
+    "hchs-vue-charts": "^1.2.8",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
+    "vue-chartjs": "^4.1.1",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },

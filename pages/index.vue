@@ -4,7 +4,7 @@ import { dummyArtikel } from '@/utils/dummyData'
 export default {
   data() {
     return {
-      artikelData: dummyArtikel
+      artikelData: dummyArtikel,
     }
   },
   computed: {
@@ -35,39 +35,17 @@ export default {
 </script>
 
 <template>
-  <div>
-    <Container>
-      <LayoutFlexCol class="gap-10 my-10">
-        <section>
-          <FontHeading>Informasi Penting</FontHeading>
-          <ArtikelWrapper>
-            <ArtikelCard
-              v-for="artikel in artikelPenting"
-              :key="artikel.id"
-              :artikel="artikel"
-            />
-          </ArtikelWrapper>
-        </section>
+  <div class="bg-gray-100">
+    <HeroSection />
 
-        <section>
-          <FontHeading>Artikel Terbaru</FontHeading>
-          <ArtikelWrapper>
-            <ArtikelCard
-              v-for="artikel in artikelTerbaru"
-              :key="artikel.id"
-              :artikel="artikel"
-            />
-          </ArtikelWrapper>
-          <div class="text-end">
-            <nuxt-link to="/artikel-terbaru"
-              ><ButtonBlue>Lebih banyak</ButtonBlue>
-            </nuxt-link>
-          </div>
-        </section></LayoutFlexCol
-      >
-
-      <!-- 
-      <ModalLogin /> -->
-    </Container>
+    <section class="py-12 px-8 md:px-16">
+      <ArticleWrapper>
+        <ArticleCard
+          v-for="article in artikelTerbaru"
+          :article="article"
+          :key="article.id"
+        />
+      </ArticleWrapper>
+    </section>
   </div>
 </template>

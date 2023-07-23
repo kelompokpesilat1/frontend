@@ -37,18 +37,23 @@ export default {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Two+Tone',
       },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+      },
     ],
-
-    //     <link rel="preconnect" href="https://fonts.googleapis.com">
-    // <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    // <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
   },
+
+  target: 'static',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/chart.js', mode: 'client' },
+    { src: '~/plugins/aos', mode: 'client' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

@@ -1,3 +1,9 @@
+<script>
+export default {
+  layout: 'empty',
+}
+</script>
+
 <template>
   <div
     class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
@@ -39,7 +45,7 @@
             type="password"
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
-            placeholder="Konfigurasi Password"
+            placeholder="Konfirmasi Password"
           />
         </div>
         <div class="flex justify-between">

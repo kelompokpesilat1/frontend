@@ -125,7 +125,6 @@ export default {
 }
 </script>
 
-
 <template>
   <div class="min-h-screen w-screen mt-5">
     <div class="mx-10 px-2 py-2">
@@ -146,15 +145,26 @@ export default {
         <table class="table-auto w-3/4 mt-5 text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th v-for="item in headingColomn" :key="item.index" scope="col" class="px-6 py-3">
+              <th
+                v-for="item in headingColomn"
+                :key="item.index"
+                scope="col"
+                class="px-6 py-3"
+              >
                 {{ item }}
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in artikelData" :key="index"
-              class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr
+              v-for="(item, index) in artikelData"
+              :key="index"
+              class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+            >
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
                 {{ index + 1 }}
               </th>
               <td class="px-6 py-4">
@@ -174,11 +184,9 @@ export default {
                 <button class="bg-red-500 text-white p-2" @click="handleRemove(item.id)">Delete</button>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>
-
     </div>
   </div>
 </template>
