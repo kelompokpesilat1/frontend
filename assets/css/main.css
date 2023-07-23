@@ -1,15 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-* {
+
+/* * {
   outline: solid red 1px;
 } */
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-h1 {
-  font-family: 'Montserrat Alternates', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: 'Montserrat', sans-serif;
 }

@@ -1,54 +1,14 @@
-export const dummyVisitorArticleData = {
-  labels: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ],
-  datasets: [
-    {
-      label: 'Visitors',
-      backgroundColor: 'rgba(75, 192, 192, 0.5)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-      data: [100, 150, 200, 180, 250, 300, 280, 320, 270, 230, 190, 220],
-    },
-  ],
-}
-
-// Data Dummy untuk Artikel yang Paling Trend
-export const dummyTrendingArticles = [
-  {
-    id: 1,
-    title: 'Tips for Productivity',
-    views: 5000,
-    likes: 350,
-    comments: 45,
-  },
-  {
-    id: 2,
-    title: 'The Power of Mindfulness',
-    views: 4500,
-    likes: 400,
-    comments: 30,
-  },
-  {
-    id: 3,
-    title: 'Introduction to Machine Learning',
-    views: 6000,
-    likes: 420,
-    comments: 55,
-  },
-  // Tambahkan data artikel lainnya sesuai kebutuhan Anda
+export const dummyVisitors = [
+  { month: 'Januari', visitors: 1500 },
+  { month: 'Februari', visitors: 1200 },
+  { month: 'Maret', visitors: 1800 },
 ]
+export const dummyArticles = [
+  { title: 'Artikel 1', favoriteCount: 300 },
+  { title: 'Artikel 2', favoriteCount: 250 },
+  { title: 'Artikel 3', favoriteCount: 400 },
+]
+
 export const headingArtikel = [
   'No',
   'Nama',

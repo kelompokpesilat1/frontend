@@ -6,7 +6,7 @@
   >
     <div class="modal-content bg-white p-9 w-[700px] rounded-md shadow-lg">
       <div class="flex justify-end">
-        <a href="#"><span class="material-icons">close</span></a>
+        <span class="material-icons">close</span>
       </div>
       <h2 class="text-[32px] font-bold mb-4">Masuk dulu gais</h2>
       <form @submit.prevent="login">

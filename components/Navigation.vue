@@ -14,10 +14,8 @@ export default {
     <Container>
       <LayoutFlexRow class="justify-between h-full">
         <nuxt-link to="/" class="flex items-center gap-3">
-          <ButtonRed
-            ><span class="material-icons text-red-600"> arrow_back </span>
-            Kembali</ButtonRed
-          >
+          <span class="material-icons"> arrow_back </span>
+          Kembali
         </nuxt-link>
         <h3 class="font-semibold" v-if="value">Kategori {{ value }}</h3>
         <h3 class="font-semibold" v-else-if="id">Detail Artikel</h3>

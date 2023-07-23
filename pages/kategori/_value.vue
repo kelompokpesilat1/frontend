@@ -28,7 +28,7 @@ export default {
           :artikel="artikel"
         />
       </ArtikelWrapper>
-      <div class="h-[80vh] flex items-center justify-center">
+      <div v-else class="h-[80vh] flex items-center justify-center">
         <h1>Tidak ada artikel pada kategori ini</h1>
       </div>
     </Container>

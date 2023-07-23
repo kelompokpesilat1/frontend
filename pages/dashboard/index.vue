@@ -1,16 +1,6 @@
 <script>
-import {
-  dummyTrendingArticles,
-  dummyVisitorArticleData,
-} from '~/utils/dummyData'
 export default {
   layout: 'dashboard',
-  data() {
-    return {
-      pengunjungArtikel: dummyVisitorArticleData,
-      populerArtikel: dummyTrendingArticles,
-    }
-  },
 }
 </script>
 
@@ -21,15 +11,12 @@ export default {
       <div class="col-span-2">
         <CardsDashbord>
           <h1>Statistik Pengunjung Artikel</h1>
-          <ChartPengunjung
-            :chartData="dummyVisitorArticleData"
-            :chartOption="chartOption"
-          />
         </CardsDashbord>
       </div>
       <div>
         <CardsDashbord>
-          <h1>Artikel Populer</h1>
+          <h1 class="text-2xl">Artikel Populer</h1>
+          <ArtikelPopuler class="mt-5" />
         </CardsDashbord>
       </div>
 
