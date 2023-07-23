@@ -20,6 +20,12 @@ export const dummyVisitors = [
   { month: 'April', visitors: 100 },
   { month: 'Mei', visitors: 0 },
   { month: 'Juni', visitors: 2000 },
+  { month: 'Juli', visitors: 2000 },
+  { month: 'Agustus', visitors: 4000 },
+  { month: 'September', visitors: 3000 },
+  { month: 'Oktober', visitors: 2500 },
+  { month: 'November', visitors: 800 },
+  { month: 'Desember', visitors: 200 },
 ]
 export const dummyArticles = [
   { title: 'Artikel 1', favoriteCount: 300 },
