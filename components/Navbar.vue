@@ -15,17 +15,17 @@ export default {
 </script>
 
 <template>
-  <nav class="bg-[#26282A] p-4 sticky w-full top-0 z-10">
+  <nav class="bg-white border p-4 sticky w-full top-0 z-10 shadow-lg">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Logo -->
       <a href="/" class="text-red-600 text-2xl font-bold">RagamArtikel</a>
 
       <!-- Menu Tampilan Desktop -->
       <div class="hidden md:flex space-x-4">
-        <a href="#" class="text-white">Home</a>
-        <a href="#" class="text-white">About</a>
-        <a href="#" class="text-white">Blog</a>
-        <a href="#" class="text-white">Contact</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
       </div>
 
       <!-- Tombol Login/Register Tampilan Desktop -->

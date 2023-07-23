@@ -15,35 +15,31 @@ export default {
 </script>
 
 <template>
-  <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="bg-white shadow-lg overflow-hidden" data-aos="fade-right">
     <img
       class="artikel-image w-full h-48 object-cover"
       :src="article.cover"
       alt="Article Cover"
     />
 
-    <div class="article-body p-4 h-[300px] flex flex-col justify-between">
-      <div class="article-content">
-        <p class="text-red-600 font-semibold capitalize">
-          {{ article.kategori }}
-        </p>
+    <div class="article-body p-8 h-[220px]">
+      <p class="text-sm font-bold mb-1 uppercase text-red-600">
+        {{ article.kategori }}
+      </p>
+      <h1 class="text-xl font-bold mb-4">
+        {{ article.title | truncateContent(60) }}
+      </h1>
+      <p>{{ article.content | truncateContent(120) }}</p>
+    </div>
 
-        <nuxt-link :to="`/detail/${article.id}`">
-          <h3 class="text-xl font-bold mt-2">
-            {{ article.title | truncateContent(70) }}
-          </h3>
-          <p class="text-gray-600 mt-2">
-            {{ article.content | truncateContent(100) }}
-          </p>
-        </nuxt-link>
-      </div>
-
-      <div class="article-author mt-4 flex items-center justify-between">
-        <div class="flex items-center">
-          <p class="text-sm text-gray-600">{{ article.author }}</p>
-        </div>
-        <p class="text-sm text-gray-400">July 15, 2023</p>
-      </div>
+    <div class="p-8 w-full hover:scale-105 hover:text-red-600 transition-all">
+      <nuxt-link
+        :to="`/detail/${article.id}`"
+        class="flex items-center justify-between"
+      >
+        Lihat selengkapnya
+        <span class="material-icons"> arrow_right_alt </span></nuxt-link
+      >
     </div>
   </div>
 </template>
