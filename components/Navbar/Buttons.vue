@@ -18,7 +18,7 @@ export default {
       </li>
       <li>
         <nuxt-link to="/auth/login">
-          <Button label="Login" variant="success" />
+          <Button label="Login" variant="success" text="white" />
         </nuxt-link>
       </li>
     </ul>
@@ -26,7 +26,12 @@ export default {
     <ul v-else class="flex item-center gap-3">
       <li>
         <nuxt-link to="/dashboard">
-          <Button label="Dashboard" variant="secondary" icon="dashboard" />
+          <Button
+            label="Dashboard"
+            variant="secondary"
+            icon="dashboard"
+            text="white"
+          />
         </nuxt-link>
       </li>
     </ul>
