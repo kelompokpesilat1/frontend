@@ -20,3 +20,10 @@ h3 {
   background: url('../bg-hero.jpg');
   background-size: cover;
 }
+
+.canvas-carts {
+  height: 300px;
+}
+.cart-bar {
+  height: 250px;
+}

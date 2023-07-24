@@ -4,45 +4,47 @@ export default {
     return {
       showSidebar: true,
       isSmallScreen: false,
-    };
+    }
   },
   mounted() {
     // Check if the initial screen width is smaller than a certain value (e.g., 768px)
-    this.checkScreenSize();
+    this.checkScreenSize()
     // Add a listener to check the screen size whenever the window is resized
-    window.addEventListener('resize', this.checkScreenSize);
+    window.addEventListener('resize', this.checkScreenSize)
   },
   beforeUnmount() {
     // Remove the resize event listener when the component is about to be destroyed
-    window.removeEventListener('resize', this.checkScreenSize);
+    window.removeEventListener('resize', this.checkScreenSize)
   },
   methods: {
     toggleSidebar() {
-      this.showSidebar = !this.showSidebar;
+      this.showSidebar = !this.showSidebar
     },
     checkScreenSize() {
-      this.isSmallScreen = window.innerWidth < 768;
+      this.isSmallScreen = window.innerWidth < 768
       // If the screen size becomes larger, always show the sidebar
       if (!this.isSmallScreen) {
-        this.showSidebar = true;
+        this.showSidebar = true
       }
     },
   },
-};
+}
 </script>
 <template>
   <div class="flex min-h-screen">
     <!-- sidebar -->
-    <div class="bg-red-500 text-white w-64 px-4 py-4 space-y-6">
+    <div class="bg-[#cd1867] text-white w-64 px-4 py-4 space-y-6">
       <div class="flex justify-between">
-        <FontHeading>ADMIN</FontHeading>
+        <h1>ADMIN</h1>
         <span class="material-icons">dehaze</span>
       </div>
 
       <nav class="mt-5">
-        <ul >
+        <ul>
           <li>
-            <nuxt-link class="flex items-center gap-3 p-4 rounded-lg" to="/dashboard"
+            <nuxt-link
+              class="flex items-center gap-3 p-4 rounded-lg"
+              to="/dashboard"
               ><span class="material-icons"> home </span> Home</nuxt-link
             >
           </li>
@@ -54,7 +56,9 @@ export default {
             >
           </li>
           <li>
-            <nuxt-link class="flex items-center gap-3 p-4 rounded-lg" to="/dashboard/seo"
+            <nuxt-link
+              class="flex items-center gap-3 p-4 rounded-lg"
+              to="/dashboard/seo"
               ><span class="material-icons"> text_fields </span>Seo
               Settings</nuxt-link
             >
@@ -75,6 +79,6 @@ export default {
 
 <style scoped>
 .nuxt-link-exact-active {
-  @apply text-teal-600 bg-white;
+  @apply text-black bg-white;
 }
 </style>
