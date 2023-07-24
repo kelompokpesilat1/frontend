@@ -13,12 +13,19 @@ export const dummyVisitors = [
   { month: 'Desember', visitors: 200 },
 ]
 export const dummyArticles = [
-  { title: 'Artikel 1', favoriteCount: 300 },
-  { title: 'Artikel 2', favoriteCount: 250 },
-  { title: 'Artikel 3', favoriteCount: 20 },
-  { title: 'Artikel 4', favoriteCount: 400 },
-  { title: 'Artikel 5', favoriteCount: 200 },
-  { title: 'Artikel 6', favoriteCount: 150 },
+  { title: 'Olahraga', favoriteCount: 300 },
+  { title: 'Politik', favoriteCount: 250 },
+  { title: 'Seni', favoriteCount: 20 },
+]
+export const newArticles = [
+  {
+    name: 'Pesilat',
+    disukai: 3000,
+  },
+  {
+    name: 'Pesilat2',
+    disukai: 4000,
+  },
 ]
 
 export const headingArtikel = [
@@ -688,7 +695,7 @@ export const headingUsers = []
 
 export const userLogin = {
   email: 'admin@gmail.com',
-  username: 'admin',
   password: '12345678',
+  username: 'admin',
   role: 'admin',
 }

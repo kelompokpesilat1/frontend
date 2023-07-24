@@ -14,8 +14,8 @@ export default {
           {
             label: 'Visualization',
             data: [],
-            backgroundColor: ['rgba(20, 255, 0, 0.85)'],
-            borderColor: 'rgba(100, 155, 0, 1)',
+            backgroundColor: ['red'],
+            borderColor: 'red',
             borderWidth: 1,
           },
         ],

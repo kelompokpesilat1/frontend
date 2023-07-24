@@ -44,6 +44,6 @@ export default {
         <Nuxt />
       </div>
     </div>
-    <div v-else><p>Loadin ...</p></div>
+    <div v-else><p>Loading ...</p></div>
   </div>
 </template>
