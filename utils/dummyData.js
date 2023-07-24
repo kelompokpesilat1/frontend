@@ -1,3 +1,5 @@
+
+
 export const dummyVisitors = [
   { month: 'Januari', visitors: 1500 },
   { month: 'Februari', visitors: 1200 },
@@ -5,20 +7,88 @@ export const dummyVisitors = [
   { month: 'April', visitors: 100 },
   { month: 'Mei', visitors: 0 },
   { month: 'Juni', visitors: 2000 },
-  { month: 'Juli', visitors: 2000 },
-  { month: 'Agustus', visitors: 4000 },
-  { month: 'September', visitors: 3000 },
-  { month: 'Oktober', visitors: 2500 },
-  { month: 'November', visitors: 800 },
-  { month: 'Desember', visitors: 200 },
+  // { month: 'Juli', visitors: 2000 },
+  // { month: 'Agustus', visitors: 4000 },
+  // { month: 'September', visitors: 3000 },
+  // { month: 'Oktober', visitors: 2500 },
+  // { month: 'November', visitors: 800 },
+  // { month: 'Desember', visitors: 200 },
 ]
 export const dummyArticles = [
   { title: 'Artikel 1', favoriteCount: 300 },
   { title: 'Artikel 2', favoriteCount: 250 },
-  { title: 'Artikel 3', favoriteCount: 20 },
-  { title: 'Artikel 4', favoriteCount: 400 },
-  { title: 'Artikel 5', favoriteCount: 200 },
-  { title: 'Artikel 6', favoriteCount: 150 },
+  { title: 'Artikel 3', favoriteCount: 400 },
+]
+
+export const dummyUsers = [
+  {
+    id: 1,
+    name: "jajang",
+    email: "jajangskm@gmail.com",
+    roles: "admin"
+  },
+  {
+    id: 2,
+    name: "john",
+    email: "john@example.com",
+    roles: "editor"
+  },
+  {
+    id: 3,
+    name: "jane",
+    email: "jane@example.com",
+    roles: "viewer"
+  },
+  {
+    id: 4,
+    name: "alice",
+    email: "alice@example.com",
+    roles: "admin"
+  },
+  {
+    id: 5,
+    name: "bob",
+    email: "bob@example.com",
+    roles: "viewer"
+  },
+  {
+    id: 6,
+    name: "david",
+    email: "david@example.com",
+    roles: "editor"
+  },
+  {
+    id: 7,
+    name: "emma",
+    email: "emma@example.com",
+    roles: "admin"
+  },
+  {
+    id: 8,
+    name: "frank",
+    email: "frank@example.com",
+    roles: "viewer"
+  },
+  {
+    id: 9,
+    name: "grace",
+    email: "grace@example.com",
+    roles: "editor"
+  },
+  {
+    id: 10,
+    name: "harry",
+    email: "harry@example.com",
+    roles: "admin"
+  },
+]
+
+export const headingUsers = [
+  'No',
+  'Nama',
+  'Email',
+  "Roles",
+  "Action"
 ]
 
 export const headingArtikel = [
@@ -28,6 +98,14 @@ export const headingArtikel = [
   'Penulis',
   'Tgl Publis',
   'Action',
+]
+
+export const kategoriOptions = [
+  "Gaming",
+  "Olahraga",
+  "Seni",
+  "Politik",
+  "Teknologi"
 ]
 
 export const dummyArtikel = [
@@ -161,292 +239,292 @@ export const dummyArtikel = [
     kategori: 'teknologi',
     penting: true,
   },
-  // {
-  //   id: '6D778C68-17BB-3148-BE58-55D8514A5976',
-  //   title:
-  //     'libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat,',
-  //   content:
-  //     'egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu',
-  //   date: 'Feb 25, 2023',
-  //   author: 'Xantha Dale',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'olahraga',
-  //   penting: true,
-  // },
-  // {
-  //   id: '03CD2596-58DD-8ADB-32D7-3110CD675959',
-  //   title:
-  //     'dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis',
-  //   content:
-  //     'dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor',
-  //   date: 'Sep 20, 2023',
-  //   author: 'Pandora Massey',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'edukasi',
-  //   penting: true,
-  // },
-  // {
-  //   id: '551066A3-4157-E3AC-C6AB-8183C3B41E5E',
-  //   title:
-  //     'ultrices posuere cubilia Curae Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque',
-  //   content:
-  //     'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at,',
-  //   date: 'Jul 21, 2022',
-  //   author: 'Quinn Mccoy',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'seni',
-  //   penting: true,
-  // },
-  // {
-  //   id: '12D6EA23-8DE7-C7F6-14CD-2DEF4665C90E',
-  //   title:
-  //     'egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis',
-  //   content:
-  //     'tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim.',
-  //   date: 'Jan 20, 2024',
-  //   author: 'Oscar Ashley',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: '3EEA9997-194C-D7D3-6EA5-638656DAC935',
-  //   title:
-  //     'blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies',
-  //   content:
-  //     'justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce',
-  //   date: 'Apr 23, 2023',
-  //   author: 'Kaseem Gardner',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: '4FEBCF4A-589C-8C38-41CA-2280308A9051',
-  //   title:
-  //     'libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit.',
-  //   content:
-  //     'vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est.',
-  //   date: 'Jul 28, 2022',
-  //   author: 'Clark Blackburn',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: '598DDDD1-421C-A331-4E6D-F7A8B1B265C8',
-  //   title:
-  //     'fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel,',
-  //   content:
-  //     'nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris',
-  //   date: 'Sep 20, 2022',
-  //   author: 'Lane Valencia',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'olahraga',
-  //   penting: false,
-  // },
-  // {
-  //   id: 'C513BC3F-E57D-A959-3758-95D1C82587B2',
-  //   title:
-  //     'lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis',
-  //   content:
-  //     'mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo.',
-  //   date: 'Apr 22, 2023',
-  //   author: 'Demetrius Bailey',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'olahraga',
-  //   penting: false,
-  // },
-  // {
-  //   id: 'DB13C71C-3D7F-AEE6-7853-995BC88C33E7',
-  //   title:
-  //     'dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec',
-  //   content:
-  //     'facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis.',
-  //   date: 'Oct 28, 2023',
-  //   author: 'Harlan Colon',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: 'B47EA22B-F425-A3D4-629E-928B77E11826',
-  //   title:
-  //     'in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna.',
-  //   content:
-  //     'pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac',
-  //   date: 'Jun 10, 2023',
-  //   author: 'Chancellor Wells',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'seni',
-  //   penting: true,
-  // },
-  // {
-  //   id: 'A334FA58-FC86-8CA7-9894-75194E232182',
-  //   title:
-  //     'tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus.',
-  //   content:
-  //     'pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris',
-  //   date: 'Aug 4, 2022',
-  //   author: 'Francis Witt',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'seni',
-  //   penting: false,
-  // },
-  // {
-  //   id: '22E8D047-3E7C-83D0-4F85-2BA6A57428A1',
-  //   title:
-  //     'tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero.',
-  //   content:
-  //     'enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet',
-  //   date: 'Feb 2, 2023',
-  //   author: 'Mohammad Butler',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'teknologi',
-  //   penting: true,
-  // },
-  // {
-  //   id: '520C7B92-D2F3-55B6-C39D-44ECC60664DA',
-  //   title:
-  //     'amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus.',
-  //   content:
-  //     'montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem',
-  //   date: 'Nov 24, 2023',
-  //   author: 'Amos Livingston',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'olahraga',
-  //   penting: true,
-  // },
-  // {
-  //   id: 'E6FBAD04-74A6-C727-A849-AA32C31CE854',
-  //   title:
-  //     'euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus',
-  //   content:
-  //     'vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam',
-  //   date: 'Mar 30, 2024',
-  //   author: 'Armando Cherry',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: '6BEE65E8-4150-A5F4-537A-3C13F77F6349',
-  //   title:
-  //     'Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat.',
-  //   content:
-  //     'id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc',
-  //   date: 'Mar 31, 2024',
-  //   author: 'Jocelyn Jennings',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'olahraga',
-  //   penting: true,
-  // },
-  // {
-  //   id: 'B4190E68-6624-CBE4-AA82-7C1C4ECE3C2A',
-  //   title:
-  //     'et magnis dis parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim.',
-  //   content:
-  //     'libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis',
-  //   date: 'Oct 28, 2023',
-  //   author: 'Lenore Romero',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'teknologi',
-  //   penting: false,
-  // },
-  // {
-  //   id: '94218B93-2833-5A27-A43D-D57A4227A8C2',
-  //   title:
-  //     'malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede',
-  //   content:
-  //     'lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis',
-  //   date: 'Jan 25, 2024',
-  //   author: 'Bell Moody',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: '38FBB441-C538-7448-3027-73DCB6A6B732',
-  //   title:
-  //     'euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus',
-  //   content:
-  //     'Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis',
-  //   date: 'Jul 29, 2023',
-  //   author: 'Illiana Mcdaniel',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: 'A639E4E2-245C-49E9-828D-62ECCE3D5967',
-  //   title:
-  //     'arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam',
-  //   content:
-  //     'non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae',
-  //   date: 'Jul 1, 2024',
-  //   author: 'Alec Jensen',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'edukasi',
-  //   penting: false,
-  // },
-  // {
-  //   id: '16872A9E-F6FD-B434-2968-DC48C6DE1776',
-  //   title:
-  //     'mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum',
-  //   content:
-  //     'luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut',
-  //   date: 'Jul 13, 2023',
-  //   author: 'Yoshio Russell',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'gaming',
-  //   penting: false,
-  // },
-  // {
-  //   id: '475EE7B5-7A22-979F-2E8C-C28B92125C27',
-  //   title:
-  //     'erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas',
-  //   content:
-  //     'pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor',
-  //   date: 'Feb 25, 2024',
-  //   author: 'Stone Garrison',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'teknologi',
-  //   penting: false,
-  // },
-  // {
-  //   id: 'C6460188-977D-DEFB-33ED-4E253062CFE0',
-  //   title:
-  //     'Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque',
-  //   content:
-  //     'arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum',
-  //   date: 'May 15, 2024',
-  //   author: 'Rafael Pitts',
-  //   cover:
-  //     'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //   kategori: 'olahraga',
-  //   penting: false,
-  // },
+  {
+    id: '6D778C68-17BB-3148-BE58-55D8514A5976',
+    title:
+      'libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat,',
+    content:
+      'egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu',
+    date: 'Feb 25, 2023',
+    author: 'Xantha Dale',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'olahraga',
+    penting: true,
+  },
+  {
+    id: '03CD2596-58DD-8ADB-32D7-3110CD675959',
+    title:
+      'dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis',
+    content:
+      'dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor',
+    date: 'Sep 20, 2023',
+    author: 'Pandora Massey',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'edukasi',
+    penting: true,
+  },
+  {
+    id: '551066A3-4157-E3AC-C6AB-8183C3B41E5E',
+    title:
+      'ultrices posuere cubilia Curae Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque',
+    content:
+      'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at,',
+    date: 'Jul 21, 2022',
+    author: 'Quinn Mccoy',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'seni',
+    penting: true,
+  },
+  {
+    id: '12D6EA23-8DE7-C7F6-14CD-2DEF4665C90E',
+    title:
+      'egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis',
+    content:
+      'tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim.',
+    date: 'Jan 20, 2024',
+    author: 'Oscar Ashley',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: '3EEA9997-194C-D7D3-6EA5-638656DAC935',
+    title:
+      'blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies',
+    content:
+      'justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce',
+    date: 'Apr 23, 2023',
+    author: 'Kaseem Gardner',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: '4FEBCF4A-589C-8C38-41CA-2280308A9051',
+    title:
+      'libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit.',
+    content:
+      'vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est.',
+    date: 'Jul 28, 2022',
+    author: 'Clark Blackburn',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: '598DDDD1-421C-A331-4E6D-F7A8B1B265C8',
+    title:
+      'fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel,',
+    content:
+      'nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris',
+    date: 'Sep 20, 2022',
+    author: 'Lane Valencia',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'olahraga',
+    penting: false,
+  },
+  {
+    id: 'C513BC3F-E57D-A959-3758-95D1C82587B2',
+    title:
+      'lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis',
+    content:
+      'mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo.',
+    date: 'Apr 22, 2023',
+    author: 'Demetrius Bailey',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'olahraga',
+    penting: false,
+  },
+  {
+    id: 'DB13C71C-3D7F-AEE6-7853-995BC88C33E7',
+    title:
+      'dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec',
+    content:
+      'facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis.',
+    date: 'Oct 28, 2023',
+    author: 'Harlan Colon',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: 'B47EA22B-F425-A3D4-629E-928B77E11826',
+    title:
+      'in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna.',
+    content:
+      'pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac',
+    date: 'Jun 10, 2023',
+    author: 'Chancellor Wells',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'seni',
+    penting: true,
+  },
+  {
+    id: 'A334FA58-FC86-8CA7-9894-75194E232182',
+    title:
+      'tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus.',
+    content:
+      'pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris',
+    date: 'Aug 4, 2022',
+    author: 'Francis Witt',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'seni',
+    penting: false,
+  },
+  {
+    id: '22E8D047-3E7C-83D0-4F85-2BA6A57428A1',
+    title:
+      'tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero.',
+    content:
+      'enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet',
+    date: 'Feb 2, 2023',
+    author: 'Mohammad Butler',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'teknologi',
+    penting: true,
+  },
+  {
+    id: '520C7B92-D2F3-55B6-C39D-44ECC60664DA',
+    title:
+      'amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus.',
+    content:
+      'montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem',
+    date: 'Nov 24, 2023',
+    author: 'Amos Livingston',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'olahraga',
+    penting: true,
+  },
+  {
+    id: 'E6FBAD04-74A6-C727-A849-AA32C31CE854',
+    title:
+      'euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus',
+    content:
+      'vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam',
+    date: 'Mar 30, 2024',
+    author: 'Armando Cherry',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: '6BEE65E8-4150-A5F4-537A-3C13F77F6349',
+    title:
+      'Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat.',
+    content:
+      'id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc',
+    date: 'Mar 31, 2024',
+    author: 'Jocelyn Jennings',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'olahraga',
+    penting: true,
+  },
+  {
+    id: 'B4190E68-6624-CBE4-AA82-7C1C4ECE3C2A',
+    title:
+      'et magnis dis parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim.',
+    content:
+      'libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis',
+    date: 'Oct 28, 2023',
+    author: 'Lenore Romero',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'teknologi',
+    penting: false,
+  },
+  {
+    id: '94218B93-2833-5A27-A43D-D57A4227A8C2',
+    title:
+      'malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede',
+    content:
+      'lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis',
+    date: 'Jan 25, 2024',
+    author: 'Bell Moody',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: '38FBB441-C538-7448-3027-73DCB6A6B732',
+    title:
+      'euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus',
+    content:
+      'Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis',
+    date: 'Jul 29, 2023',
+    author: 'Illiana Mcdaniel',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: 'A639E4E2-245C-49E9-828D-62ECCE3D5967',
+    title:
+      'arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam',
+    content:
+      'non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae',
+    date: 'Jul 1, 2024',
+    author: 'Alec Jensen',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'edukasi',
+    penting: false,
+  },
+  {
+    id: '16872A9E-F6FD-B434-2968-DC48C6DE1776',
+    title:
+      'mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum',
+    content:
+      'luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut',
+    date: 'Jul 13, 2023',
+    author: 'Yoshio Russell',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'gaming',
+    penting: false,
+  },
+  {
+    id: '475EE7B5-7A22-979F-2E8C-C28B92125C27',
+    title:
+      'erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas',
+    content:
+      'pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor',
+    date: 'Feb 25, 2024',
+    author: 'Stone Garrison',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'teknologi',
+    penting: false,
+  },
+  {
+    id: 'C6460188-977D-DEFB-33ED-4E253062CFE0',
+    title:
+      'Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque',
+    content:
+      'arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum',
+    date: 'May 15, 2024',
+    author: 'Rafael Pitts',
+    cover:
+      'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    kategori: 'olahraga',
+    penting: false,
+  },
   // {
   //   id: '4A092D54-F9C9-8EB1-7DB3-6EFCA22F0C46',
   //   title:

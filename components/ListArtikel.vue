@@ -5,6 +5,9 @@ import UpdateArtikel from './Modal/UpdateArtikel.vue';
 export default {
     data() {
         return {
+            currentPage: 1,
+            itemsPerPage: 10, // Adjust this value as needed
+
             artikelData: dummyArtikel,
             headingColomn: headingArtikel,
             artikelEdit: {
@@ -17,13 +20,28 @@ export default {
                 title: "",
                 kategori: ""
             },
-            kategoriOptions: []
+            kategoriOptions: [],
+            showModal: false, 
         };
     },
     computed: {
+      totalPages() {
+      return Math.ceil(this.artikelData.length / this.itemsPerPage);
+    },
+      displayedData() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.artikelData.slice(startIndex, endIndex);
+    },
+    increment() {
+      return this.totalPages >= 1;
+    },
     //add this function.
   },
   methods: {
+    changePage(page) {
+      this.currentPage = page;
+    },  
     sliceString(str, maxLength) {
       if (str.length > maxLength) {
         return str.slice(0, maxLength) + '...' // Add ellipsis if the string is longer than 10 characters
@@ -130,6 +148,7 @@ export default {
       this.artikelData = this.artikelData.filter((item) => item.id !== id)
     },
   },
+  
   components: { UpdateArtikel },
 }
 </script>
@@ -152,13 +171,9 @@ export default {
           :handleSave="handleSave"
         />
       </div>
-      <div class="overflow-x-hidden shadow-md sm:rounded-lg">
-        <table
-          class="table-auto w-3/4 mt-5 text-sm text-left text-gray-500 dark:text-gray-400"
-        >
-          <thead
-            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-          >
+      <div class="overflow-hidden shadow-md sm:rounded-lg">
+        <table class="table-auto w-full mt-5 text-sm text-left text-gray-900 dark:text-gray-900">
+          <thead class="text-xs text-gray-100 uppercase border-gray-300 dark:bg-red-500 dark:text-white">
             <tr>
               <th
                 v-for="item in headingColomn"
@@ -172,7 +187,7 @@ export default {
           </thead>
           <tbody>
             <tr
-              v-for="(item, index) in artikelData"
+              v-for="(item, index) in displayedData"
               :key="index"
               class="bg-white border-b dark:bg-gray-100 dark:border-gray-100 transition duration-300 ease-in-out hover:bg-gray-300"
             >
@@ -201,8 +216,16 @@ export default {
 </span></button>
               </td>
             </tr>
+            
           </tbody>
+
         </table>
+        <Pagination
+      v-if="increment"
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @page-change="changePage"
+    />
       </div>
     </div>
   </div>
