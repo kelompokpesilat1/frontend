@@ -19,7 +19,11 @@ export default {
   <div>
     <!-- <Navigation /> -->
 
-    <div class="max-w-3xl mx-auto flex flex-col gap-10 my-10">
+    <div
+      class="max-w-3xl mx-auto flex flex-col gap-10 my-10"
+      data-aos="flip-right"
+      data-aos-duration="1000"
+    >
       <div>
         <p class="uppercase font-semibold text-red-600">
           {{ artikel.kategori }}

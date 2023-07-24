@@ -18,20 +18,30 @@ export default {
 
 <template>
   <div>
-    <Navigation />
-
-    <Container>
-      <ArtikelWrapper v-if="filteredArtikel">
-        <ArtikelCard
-          v-for="artikel in filteredArtikel"
-          :key="artikel.id"
-          :artikel="artikel"
-        />
-      </ArtikelWrapper>
-      <div v-else class="h-[80vh] flex items-center justify-center">
-        <h1>Tidak ada artikel pada kategori ini</h1>
+    <section
+      class="bg-gradient-to-r bg-slate-100 py-24 px-8 md:px-16 h-[80vh] grid place-items-center"
+    >
+      <div
+        class="container mx-auto"
+        data-aos="fade-up"
+        data-aos-anchor-placement="top-bottom"
+      >
+        <h1
+          class="text-4xl md:text-8xl font-bold mb-4 text-red-600 capitalize text-center"
+        >
+          {{ value }}
+        </h1>
       </div>
-    </Container>
+    </section>
+    <section class="py-12 px-8 md:px-16">
+      <ArticleWrapper>
+        <ArticleCard
+          v-for="article in filteredArtikel"
+          :article="article"
+          :key="article.id"
+        />
+      </ArticleWrapper>
+    </section>
   </div>
 </template>
 

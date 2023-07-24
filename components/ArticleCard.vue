@@ -22,7 +22,7 @@ export default {
       alt="Article Cover"
     />
 
-    <div class="article-body p-8 h-[220px]">
+    <div class="article-body p-8 h-[240px]">
       <p class="text-sm font-bold mb-1 uppercase text-red-600">
         {{ article.kategori }}
       </p>
@@ -35,7 +35,7 @@ export default {
     <div class="p-8 w-full hover:scale-105 hover:text-red-600 transition-all">
       <nuxt-link
         :to="`/detail/${article.id}`"
-        class="flex items-center justify-between"
+        class="flex items-center justify-between font-medium"
       >
         Lihat selengkapnya
         <span class="material-icons"> arrow_right_alt </span></nuxt-link
