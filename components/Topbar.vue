@@ -1,5 +1,10 @@
 <script>
+import Avatar from '@/components/Avatar.vue'
+
 export default {
+  components: {
+    Avatar,
+  },
   props: {
     userProps: {
       type: Object,
@@ -24,21 +29,22 @@ export default {
 </script>
 
 <template>
-  <section
-    class="flex py-2 px-4 bg-[#cd1867] text-white justify-between items-center"
-  >
-    <div class="flex gap-4 items-center">
-      <h1>Selamat Datang {{ dataUser.username }}</h1>
-    </div>
-    <div class="flex gap-4 items-center justify-end">
-      <span class="material-icons-round">notifications_active</span>
+  <nav class="bg-white border p-4 sticky w-full top-0 z-10">
+    <div class="flex items-center justify-between">
+      <a href="/" class="text-red-600 text-2xl font-bold">RagamArtikel</a>
 
-      <div
-        class="bg-white shadow-md rounded-lg p-2 text-black flex gap-2 items-center cursor-pointer"
-        @click="onLogout"
-      >
-        Logout
+      <div class="flex gap-3">
+        <div class="hidden md:flex space-x-4">
+          <Avatar :name="dataUser.username" />
+        </div>
+
+        <div
+          class="bg-white shadow-md rounded-lg p-2 text-black cursor-pointer"
+          @click="onLogout"
+        >
+          Logout
+        </div>
       </div>
     </div>
-  </section>
+  </nav>
 </template>

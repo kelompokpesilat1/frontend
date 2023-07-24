@@ -22,8 +22,7 @@ export default {
 </script>
 
 <template>
-  <div class="bg-[white]">
-    <h1 class="p-5 text-4xl">Dashboard</h1>
+  <div>
     <section class="grid grid-cols-3 gap-4 m-4">
       <div class="col-span-2">
         <CardsDashbord>
