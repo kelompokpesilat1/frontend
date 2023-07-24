@@ -1,7 +1,18 @@
 <script>
 import { dummyArtikel } from '@/utils/dummyData'
+import { state } from '@/store/index.js'
 
 export default {
+  head: {
+    title: state.title,
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: state.description,
+      },
+    ],
+  },
   data() {
     return {
       artikelData: dummyArtikel,
@@ -35,7 +46,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col gap-36 pb-10">
+  <div class="flex flex-col gap-20 pb-10">
     <HeroSection />
 
     <section class="px-8 md:px-16">

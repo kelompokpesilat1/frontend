@@ -15,3 +15,8 @@ h2,
 h3 {
   font-family: 'Montserrat', sans-serif;
 }
+
+.hero {
+  background: url('../bg-hero.jpg');
+  background-size: cover;
+}

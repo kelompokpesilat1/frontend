@@ -19,7 +19,7 @@ export default {
 <template>
   <div>
     <section
-      class="hero relative py-24 px-8 md:px-16 min-h-screen grid place-items-center"
+      class="hero py-24 px-8 md:px-16 min-h-screen grid place-items-center"
     >
       <div
         class="container mx-auto"
@@ -44,10 +44,3 @@ export default {
     </section>
   </div>
 </template>
-
-<style scoped>
-.hero {
-  background: url('../../assets/bg-hero.jpg');
-  background-size: cover;
-}
-</style>
