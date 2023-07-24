@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <nav class="bg-white border p-4 sticky w-full top-0 z-10 shadow-lg">
+  <nav class="bg-white border p-4 sticky w-full top-0 z-10 shadow-sm">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Logo -->
       <a href="/" class="text-red-600 text-2xl font-bold">RagamArtikel</a>
@@ -43,7 +43,7 @@ export default {
         </nuxt-link>
       </div>
       <div v-if="auth" class="hidden md:flex space-x-4">
-        <nuxt-link to="/dashboard">
+        <nuxt-link to="/dashboard-remake">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
       </div>
@@ -75,7 +75,7 @@ export default {
         </nuxt-link>
       </div>
       <div v-else="auth" class="flex flex-col space-y-4 p-4">
-        <nuxt-link to="/dashboard">
+        <nuxt-link to="/dashboard-remake">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
       </div>
