@@ -1,28 +1,47 @@
 <script>
-import { dummyArtikel, headingArtikel } from '@/utils/dummyData'
-import UpdateArtikel from './Modal/UpdateArtikel.vue'
+import { dummyArtikel, headingArtikel, kategoriOptions } from '@/utils/dummyData'
+import UpdateArtikel from './Modal/UpdateArtikel.vue';
 
 export default {
-  data() {
-    return {
-      artikelData: dummyArtikel,
-      headingColomn: headingArtikel,
-      artikelEdit: {
-        data: {},
-        index: 0,
-      },
-      isEdit: false,
-      isCreate: false,
-      inputValue: {
-        title: '',
-        kategori: '',
-      },
-    }
-  },
-  computed: {
+    data() {
+        return {
+            currentPage: 1,
+            itemsPerPage: 10, // Adjust this value as needed
+
+            artikelData: dummyArtikel,
+            headingColomn: headingArtikel,
+            artikelEdit: {
+                data: {},
+                index: 0
+            },
+            isEdit: false,
+            isCreate: false,
+            inputValue: {
+                title: "",
+                kategori: ""
+            },
+            kategoriOptions: [],
+            showModal: false, 
+        };
+    },
+    computed: {
+      totalPages() {
+      return Math.ceil(this.artikelData.length / this.itemsPerPage);
+    },
+      displayedData() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.artikelData.slice(startIndex, endIndex);
+    },
+    increment() {
+      return this.totalPages >= 1;
+    },
     //add this function.
   },
   methods: {
+    changePage(page) {
+      this.currentPage = page;
+    },  
     sliceString(str, maxLength) {
       if (str.length > maxLength) {
         return str.slice(0, maxLength) + '...' // Add ellipsis if the string is longer than 10 characters
@@ -129,86 +148,85 @@ export default {
       this.artikelData = this.artikelData.filter((item) => item.id !== id)
     },
   },
+  
   components: { UpdateArtikel },
 }
 </script>
 
 <template>
-  <div class="min-h-screen">
-    <div class="flex">
-      <h1 class="text-xl font-bold">List Artikel</h1>
-      <button @click="handleCreate" class="mx-5 bg-green-500 text-white p-2">
-        Tambah Data
-      </button>
-    </div>
-    <div v-if="isEdit || isCreate">
-      <UpdateArtikel
-        :artikelEdit="artikelEdit"
-        :handleInputChange="handleInputChange"
-        :inputValue="inputValue"
-        :handleClose="handleClose"
-        :handleSave="handleSave"
-      />
-    </div>
-    <div class="overflow-x-hidden shadow-md sm:rounded-lg">
-      <table
-        class="table-auto w-3/4 mt-5 text-sm text-left text-gray-500 dark:text-gray-400"
-      >
-        <thead
-          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-        >
-          <tr>
-            <th
-              v-for="item in headingColomn"
-              :key="item.index"
-              scope="col"
-              class="px-6 py-3"
-            >
-              {{ item }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(item, index) in artikelData"
-            :key="index"
-            class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
-          >
-            <th
-              scope="row"
-              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {{ index + 1 }}
-            </th>
-            <td class="px-6 py-4">
-              {{ sliceString(item.title, 10) }}
-            </td>
-            <td class="px-6 py-4">
-              {{ item.kategori }}
-            </td>
-            <td class="px-6 py-4">
-              {{ item.author }}
-            </td>
-            <td class="px-6 py-4">
-              {{ item.date }}
-            </td>
-            <td class="px-6 py-4">
-              <button
-                class="bg-blue-500 text-white p-2"
-                @click="handleEdit(item, index)"
+  <div class="min-h-screen mt-5">
+    <div class="mx-10 px-2 py-2">
+      <div class="flex justify-between items-center">
+        <h1 class="text-xl font-bold flex items-center">List Artikel</h1>
+        <button @click="handleCreate" class=" bg-red-700 text-white p-2 text-sm flex items-center gap-2 rounded-lg"> Tambah Data <span class="material-icons justify-center items-center">
+          add_circle
+</span></button>
+      </div>
+      <div v-if="isEdit || isCreate">
+        <UpdateArtikel
+          :artikelEdit="artikelEdit"
+          :handleInputChange="handleInputChange"
+          :inputValue="inputValue"
+          :handleClose="handleClose"
+          :handleSave="handleSave"
+        />
+      </div>
+      <div class="overflow-hidden shadow-md sm:rounded-lg">
+        <table class="table-auto w-full mt-5 text-sm text-left text-gray-900 dark:text-gray-900">
+          <thead class="text-xs text-gray-100 uppercase border-gray-300 dark:bg-red-500 dark:text-white">
+            <tr>
+              <th
+                v-for="item in headingColomn"
+                :key="item.index"
+                scope="col"
+                class="px-6 py-3"
               >
-                Edit
-              </button>
-              <button
-                class="bg-red-500 text-white p-2"
-                @click="handleRemove(item.id)"
+                {{ item }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in displayedData"
+              :key="index"
+              class="bg-white border-b dark:bg-gray-100 dark:border-gray-100 transition duration-300 ease-in-out hover:bg-gray-300"
+            >
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900"
               >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                {{ index + 1 }}
+              </th>
+              <td class="px-6 py-4">
+                {{ sliceString(item.title, 10) }}
+              </td>
+              <td class="px-6 py-4">
+                {{ item.kategori }}
+              </td>
+              <td class="px-6 py-4">
+                {{ item.author }}
+              </td>
+              <td class="px-6 py-4">
+                {{ item.date }}
+              </td>
+              <td class="px-6 py-4">
+                <button @click="handleEdit(item, index)"> <span class="material-icons">edit
+</span></button>
+                <button  @click="handleRemove(item.id)" > <span class="material-icons">delete
+</span></button>
+              </td>
+            </tr>
+            
+          </tbody>
+
+        </table>
+        <Pagination
+      v-if="increment"
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @page-change="changePage"
+    />
+      </div>
     </div>
   </div>
 </template>

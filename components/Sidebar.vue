@@ -33,9 +33,9 @@ export default {
 <template>
   <div class="flex min-h-screen">
     <!-- sidebar -->
-    <div class="bg-[#cd1867] text-white w-64 px-4 py-4 space-y-6">
+    <div class="bg-red-500 text-white w-64 px-4 py-4 space-y-6">
       <div class="flex justify-between">
-        <h1>ADMIN</h1>
+        <FontHeading>ADMIN</FontHeading>
         <span class="material-icons">dehaze</span>
       </div>
 
@@ -45,7 +45,8 @@ export default {
             <nuxt-link
               class="flex items-center gap-3 p-4 rounded-lg"
               to="/dashboard"
-              ><span class="material-icons"> home </span> Home</nuxt-link
+              ><span class="material-icons"> analytics </span>
+              Analytics</nuxt-link
             >
           </li>
           <li>
@@ -79,6 +80,6 @@ export default {
 
 <style scoped>
 .nuxt-link-exact-active {
-  @apply text-black bg-white;
+  @apply text-red-500 bg-white;
 }
 </style>

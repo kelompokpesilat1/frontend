@@ -1,5 +1,10 @@
 <script>
-import { dummyArticles, dummyVisitors, newArticles } from '@/utils/dummyData'
+import {
+  dummyArticles,
+  dummyNewArticles,
+  dummyVisitors,
+  newArticles,
+} from '@/utils/dummyData'
 import CartsLine from '@/components/Carts/Line.vue'
 import CartsBar from '@/components/Carts/Bar.vue'
 import DoughnutChart from '@/components/Carts/Dought.vue'
@@ -14,7 +19,7 @@ export default {
     return {
       dataCartLine: dummyVisitors,
       dataCartBar: dummyArticles,
-      dataCartsDought: newArticles,
+      dataCartsDought: dummyNewArticles,
     }
   },
   created() {},
