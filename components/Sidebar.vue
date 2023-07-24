@@ -43,7 +43,9 @@ export default {
         <ul >
           <li>
             <nuxt-link class="flex items-center gap-3 p-4 rounded-lg" to="/dashboard"
-              ><span class="material-icons"> home </span> Home</nuxt-link
+              ><span class="material-icons">
+analytics
+</span> Analytics</nuxt-link
             >
           </li>
           <li>

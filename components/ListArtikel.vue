@@ -130,7 +130,9 @@ export default {
     <div class="mx-10 px-2 py-2">
       <div class="flex">
         <h1 class="text-xl font-bold">List Artikel</h1>
-        <button @click="handleCreate" class="mx-5 bg-green-500 text-white p-2">Tambah Data</button>
+        <button @click="handleCreate" class="mx-5 bg-green-500 text-white p-2"> Tambah Data <span class="material-symbols-outlined">
+add_circle
+</span></button>
       </div>
       <div v-if="isEdit || isCreate">
         <UpdateArtikel 
@@ -142,8 +144,8 @@ export default {
         />
       </div>
       <div class="overflow-x-hidden shadow-md sm:rounded-lg">
-        <table class="table-auto w-3/4 mt-5 text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="table-auto w-3/4 mt-5 text-sm text-left text-gray-900 dark:text-gray-900">
+          <thead class="text-xs text-gray-900 uppercase border-gray-300 dark:bg-gray-200 dark:text-gray-400">
             <tr>
               <th
                 v-for="item in headingColomn"
@@ -159,11 +161,11 @@ export default {
             <tr
               v-for="(item, index) in artikelData"
               :key="index"
-              class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+              class="bg-white border-b dark:bg-gray-100 dark:border-gray-100 transition duration-300 ease-in-out hover:bg-gray-300"
             >
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900"
               >
                 {{ index + 1 }}
               </th>
@@ -180,8 +182,10 @@ export default {
                 {{ item.date }}
               </td>
               <td class="px-6 py-4">
-                <button class="bg-blue-500 text-white p-2" @click="handleEdit(item, index)">Edit</button>
-                <button class="bg-red-500 text-white p-2" @click="handleRemove(item.id)">Delete</button>
+                <button @click="handleEdit(item, index)"> <span class="material-icons">edit
+</span></button>
+                <button  @click="handleRemove(item.id)" > <span class="material-icons">delete
+</span></button>
               </td>
             </tr>
           </tbody>
