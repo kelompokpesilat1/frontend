@@ -9,12 +9,8 @@
         <label class="block text-gray-700 font-semibold mb-2">Email</label>
         <input type="text" placeholder="kategori" @change="event => handleInputChange(event, 'kategori')" v-model="inputValue.email"/>
         <label class="block text-gray-700 font-semibold mb-2">Roles</label>
-        <select class="p-1 border rounded" v-model="role.name">
-              <option v-for="option in roleOptions" :key="option.value" :value="option.value">{{ option.label }}</option>
-            </select>
-        <input type="text" placeholder="Penulis" @change="event => handleInputChange(event, 'author')" v-model="inputValue.author"/>
-        <label class="block text-gray-700 font-semibold mb-2">Tanggal Publish</label>
-        <input type="text" placeholder="27 juni 2022" @change="event => handleInputChange(event, 'date')" v-model="inputValue.date"/>
+        <input type="text" placeholder="Roles" @change="event => handleInputChange(event, 'roles')" v-model="inputValue.roles"/>
+        
       <div class="mt-6 flex justify-end">
         <button @click="handleClose" class="px-4 py-2 mr-2 rounded text-white bg-gray-500">Cancel</button>
         <button @click="handleSave" class="px-4 py-2 rounded text-white bg-blue-500">Save</button>

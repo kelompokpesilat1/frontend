@@ -1,5 +1,5 @@
 <template>
-  <section class="py-2 px-4 bg-[#26282A] text-white justify-between">
+  <section class="py-2 px-4 bg-red-600 text-white justify-between">
     <div class="gap-4">
       <h1>Selamat Datang Bambang</h1>
     </div>
