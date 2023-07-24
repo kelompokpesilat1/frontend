@@ -2,7 +2,7 @@
 <template>
   <div class="flex min-h-screen">
     <!-- sidebar -->
-    <div class="bg-red-500 text-white w-64 px-4 py-4 space-y-6">
+    <div class="bg-black text-white w-64 px-4 py-4 space-y-6">
       <div class="flex justify-between">
         <FontHeading>ADMIN</FontHeading>
         <span class="material-icons">dehaze</span>
@@ -44,6 +44,6 @@
 
 <style scoped>
 .nuxt-link-exact-active {
-  @apply text-red-600 bg-white;
+  @apply text-teal-600 bg-white;
 }
 </style>
