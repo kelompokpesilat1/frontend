@@ -19,7 +19,7 @@ export default {
 <template>
   <div>
     <section
-      class="hero bg-gradient-to-r bg-slate-100 py-24 px-8 md:px-16 h-[80vh] grid place-items-center"
+      class="hero relative py-24 px-8 md:px-16 min-h-screen grid place-items-center"
     >
       <div
         class="container mx-auto"
@@ -47,6 +47,7 @@ export default {
 
 <style scoped>
 .hero {
-  background: url('https://unsplash.com/photos/SeO7jn9mnRk');
+  background: url('../../assets/bg-hero.jpg');
+  background-size: cover;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="bg-gradient-to-b from-red-600 from-40% via-red-400 to-white text-white py-24 px-8 md:px-16 h-[80vh] grid place-items-center"
+    class="bg-gradient-to-b from-black from-40% to-white text-white py-24 px-8 md:px-16 h-[80vh] grid place-items-center"
   >
     <div
       class="container mx-auto"
