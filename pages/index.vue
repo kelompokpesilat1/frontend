@@ -35,10 +35,21 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col gap-36 pb-10">
     <HeroSection />
 
-    <section class="py-12 px-8 md:px-16">
+    <section class="px-8 md:px-16">
+      <h1 class="font-bold text-red-600 text-2xl mb-10">Informasi Penting</h1>
+      <ArticleWrapperTwo>
+        <ArticleCardTwo
+          v-for="article in artikelTerbaru"
+          :article="article"
+          :key="article.id"
+        />
+      </ArticleWrapperTwo>
+    </section>
+    <section class="px-8 md:px-16">
+      <h1 class="font-bold text-red-600 text-2xl mb-10">Artikel Terbaru</h1>
       <ArticleWrapper>
         <ArticleCard
           v-for="article in artikelTerbaru"

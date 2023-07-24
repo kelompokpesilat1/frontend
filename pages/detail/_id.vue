@@ -40,6 +40,7 @@ export default {
         alt="Deskripsi Gambar"
         class="w-full object-cover shadow-md"
       />
+
       <div class="flex flex-col gap-6">
         <p class="text-lg text-gray-700 leading-[32px]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
@@ -82,6 +83,41 @@ export default {
           est eget odio convallis fermentum. Integer lacinia lacus nec leo
           feugiat, quis hendrerit quam finibus.
         </p>
+      </div>
+
+      <form class="mt-20">
+        <textarea
+          class="w-full py-4 px-2 border-b"
+          placeholder="Tulis Komentar..."
+        ></textarea>
+        <div class="flex justify-end">
+          <button class="flex items-center gap-3">
+            Kirim <span class="material-icons"> send </span>
+          </button>
+        </div>
+      </form>
+
+      <div class="my-2">
+        <div class="flex items-center mb-2">
+          <!-- <div class="h-8 w-8 rounded-full overflow-hidden">
+          <img
+            :src="comment.userAvatar"
+            alt="User Avatar"
+            class="object-cover h-full w-full"
+          />
+        </div> -->
+          <div>
+            <p class="font-semibold">Zulfikar Muhamad</p>
+            <p class="text-gray-500 text-sm">{{ artikel.date }}</p>
+          </div>
+        </div>
+        <p class="text-gray-700">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum obcaecati
+          perspiciatis nihil vero beatae? Ea distinctio error facilis. Omnis
+          aspernatur deserunt, nesciunt at velit saepe rem. Laborum ipsum rem
+          facilis!
+        </p>
+        <hr class="mt-4" />
       </div>
     </div>
   </div>
