@@ -1,5 +1,3 @@
-
-
 export const dummyVisitors = [
   { month: 'Januari', visitors: 1500 },
   { month: 'Februari', visitors: 1200 },
@@ -7,88 +5,20 @@ export const dummyVisitors = [
   { month: 'April', visitors: 100 },
   { month: 'Mei', visitors: 0 },
   { month: 'Juni', visitors: 2000 },
-  // { month: 'Juli', visitors: 2000 },
-  // { month: 'Agustus', visitors: 4000 },
-  // { month: 'September', visitors: 3000 },
-  // { month: 'Oktober', visitors: 2500 },
-  // { month: 'November', visitors: 800 },
-  // { month: 'Desember', visitors: 200 },
+  { month: 'Juli', visitors: 2000 },
+  { month: 'Agustus', visitors: 4000 },
+  { month: 'September', visitors: 3000 },
+  { month: 'Oktober', visitors: 2500 },
+  { month: 'November', visitors: 800 },
+  { month: 'Desember', visitors: 200 },
 ]
 export const dummyArticles = [
   { title: 'Artikel 1', favoriteCount: 300 },
   { title: 'Artikel 2', favoriteCount: 250 },
-  { title: 'Artikel 3', favoriteCount: 400 },
-]
-
-export const dummyUsers = [
-  {
-    id: 1,
-    name: "jajang",
-    email: "jajangskm@gmail.com",
-    roles: "admin"
-  },
-  {
-    id: 2,
-    name: "john",
-    email: "john@example.com",
-    roles: "editor"
-  },
-  {
-    id: 3,
-    name: "jane",
-    email: "jane@example.com",
-    roles: "viewer"
-  },
-  {
-    id: 4,
-    name: "alice",
-    email: "alice@example.com",
-    roles: "admin"
-  },
-  {
-    id: 5,
-    name: "bob",
-    email: "bob@example.com",
-    roles: "viewer"
-  },
-  {
-    id: 6,
-    name: "david",
-    email: "david@example.com",
-    roles: "editor"
-  },
-  {
-    id: 7,
-    name: "emma",
-    email: "emma@example.com",
-    roles: "admin"
-  },
-  {
-    id: 8,
-    name: "frank",
-    email: "frank@example.com",
-    roles: "viewer"
-  },
-  {
-    id: 9,
-    name: "grace",
-    email: "grace@example.com",
-    roles: "editor"
-  },
-  {
-    id: 10,
-    name: "harry",
-    email: "harry@example.com",
-    roles: "admin"
-  },
-]
-
-export const headingUsers = [
-  'No',
-  'Nama',
-  'Email',
-  "Roles",
-  "Action"
+  { title: 'Artikel 3', favoriteCount: 20 },
+  { title: 'Artikel 4', favoriteCount: 400 },
+  { title: 'Artikel 5', favoriteCount: 200 },
+  { title: 'Artikel 6', favoriteCount: 150 },
 ]
 
 export const headingArtikel = [

@@ -1,17 +1,15 @@
 <script>
-import { dummyArticles, dummyVisitors } from '@/utils/dummyData'
+import { dummyVisitors } from '@/utils/dummyData'
 import CartsLine from '@/components/Carts/Line.vue'
-import CartsBar from '@/components/Carts/Bar.vue'
+
 export default {
-  layout: 'dashboard',
+  layout: 'dashboard-remake',
   components: {
     CartsLine,
-    CartsBar,
   },
   data() {
     return {
       dataCartLine: dummyVisitors,
-      dataCartBar: dummyArticles,
     }
   },
   created() {},
@@ -29,22 +27,23 @@ export default {
       </div>
       <div>
         <CardsDashbord>
-          <h5>Artikel Populer</h5>
-          <CartsBar :BarData="dataCartBar" />
+          <h1 class="text-2xl font-bold">Artikel Populer</h1>
+          <hr />
+          <ArtikelPopuler class="mt-5" />
         </CardsDashbord>
       </div>
 
       <div class="col-span-2">
-        <CardsDashbord>COMINGSOOON</CardsDashbord>
+        <CardsDashbord>03</CardsDashbord>
       </div>
       <div>
         <CardsDashbord>
           <h1>Grafik Artikel Perkategori</h1>
         </CardsDashbord>
       </div>
-      <div><CardsDashbord>COMINGSOON</CardsDashbord></div>
-      <div><CardsDashbord>COMINGSOON</CardsDashbord></div>
-      <div><CardsDashbord>COMINGSOON</CardsDashbord></div>
+      <div><CardsDashbord>05</CardsDashbord></div>
+      <div><CardsDashbord>06</CardsDashbord></div>
+      <div><CardsDashbord>07</CardsDashbord></div>
     </section>
   </div>
 </template>
