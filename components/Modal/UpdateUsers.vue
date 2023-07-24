@@ -8,6 +8,7 @@
       <div class="mt-4">
         <label class="block text-gray-700 font-semibold mb-2">Email</label>
         <input type="text" placeholder="kategori" @change="event => handleInputChange(event, 'kategori')" v-model="inputValue.email"/>
+        <select> <option v-for="kategori of kategoriOptions" :key="kategori" value="kategori">kategori</option></select>
         <label class="block text-gray-700 font-semibold mb-2">Roles</label>
         <input type="text" placeholder="Roles" @change="event => handleInputChange(event, 'roles')" v-model="inputValue.roles"/>
         

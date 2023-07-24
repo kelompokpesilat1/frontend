@@ -1,5 +1,5 @@
 <script>
-import { dummyArtikel, headingArtikel } from '@/utils/dummyData'
+import { dummyArtikel, headingArtikel, kategoriOptions } from '@/utils/dummyData'
 import UpdateArtikel from './Modal/UpdateArtikel.vue';
 
 export default {
@@ -16,7 +16,8 @@ export default {
             inputValue: {
                 title: "",
                 kategori: ""
-            }
+            },
+            kategoriOptions: []
         };
     },
     computed: {
@@ -126,12 +127,12 @@ export default {
 </script>
 
 <template>
-  <div class="min-h-screen w-screen mt-5">
+  <div class="min-h-screen mt-5">
     <div class="mx-10 px-2 py-2">
-      <div class="flex">
-        <h1 class="text-xl font-bold">List Artikel</h1>
-        <button @click="handleCreate" class="mx-5 bg-green-500 text-white p-2"> Tambah Data <span class="material-symbols-outlined">
-add_circle
+      <div class="flex justify-between items-center">
+        <h1 class="text-xl font-bold flex items-center">List Artikel</h1>
+        <button @click="handleCreate" class=" bg-red-700 text-white p-2 text-sm flex items-center gap-2 rounded-lg"> Tambah Data <span class="material-icons justify-center items-center">
+          add_circle
 </span></button>
       </div>
       <div v-if="isEdit || isCreate">
@@ -143,9 +144,9 @@ add_circle
         :handleSave="handleSave"
         />
       </div>
-      <div class="overflow-x-hidden shadow-md sm:rounded-lg">
-        <table class="table-auto w-3/4 mt-5 text-sm text-left text-gray-900 dark:text-gray-900">
-          <thead class="text-xs text-gray-900 uppercase border-gray-300 dark:bg-gray-200 dark:text-gray-400">
+      <div class="overflow-hidden shadow-md sm:rounded-lg">
+        <table class="table-auto w-full mt-5 text-sm text-left text-gray-900 dark:text-gray-900">
+          <thead class="text-xs text-gray-100 uppercase border-gray-300 dark:bg-red-500 dark:text-white">
             <tr>
               <th
                 v-for="item in headingColomn"

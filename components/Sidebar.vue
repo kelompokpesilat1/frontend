@@ -31,7 +31,7 @@ export default {
 };
 </script>
 <template>
-  <div class="flex min-h-screen">
+  <div class="flex min-h-screen ">
     <!-- sidebar -->
     <div class="bg-red-500 text-white w-64 px-4 py-4 space-y-6">
       <div class="flex justify-between">
@@ -77,6 +77,6 @@ analytics
 
 <style scoped>
 .nuxt-link-exact-active {
-  @apply text-teal-600 bg-white;
+  @apply text-red-500 bg-white;
 }
 </style>
