@@ -2,16 +2,19 @@
 import { dummyArticles, dummyVisitors } from '@/utils/dummyData'
 import CartsLine from '@/components/Carts/Line.vue'
 import CartsBar from '@/components/Carts/Bar.vue'
+import DoughnutChart from '@/components/Carts/Dought.vue'
 export default {
   layout: 'dashboard',
   components: {
     CartsLine,
     CartsBar,
+    DoughnutChart,
   },
   data() {
     return {
       dataCartLine: dummyVisitors,
       dataCartBar: dummyArticles,
+      dataCartsDought: dummyArticles,
     }
   },
   created() {},
@@ -41,6 +44,7 @@ export default {
       <div>
         <CardsDashbord>
           <h1>Grafik Artikel Perkategori</h1>
+          <!-- <DoughnutChart :DoughtCarts="dataCartsDought" /> -->
         </CardsDashbord>
       </div>
       <div><CardsDashbord>COMINGSOON</CardsDashbord></div>
