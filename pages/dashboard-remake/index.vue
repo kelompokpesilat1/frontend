@@ -3,7 +3,7 @@ import { dummyVisitors } from '@/utils/dummyData'
 import CartsLine from '@/components/Carts/Line.vue'
 
 export default {
-  layout: 'dashboard',
+  layout: 'dashboard-remake',
   components: {
     CartsLine,
   },

@@ -1,16 +1,11 @@
 <template>
-  <section class="py-2 px-4 bg-red-600 text-white justify-between">
-    <div class="gap-4">
-      <h1>Selamat Datang Bambang</h1>
-    </div>
-    <div class="flex gap-4 justify-end">
-      <span class="material-icons-round">notifications_active</span>
+  <nav class="bg-white border p-4 sticky w-full top-0 z-10">
+    <div class="container mx-auto flex items-center justify-between">
+      <a href="/" class="text-red-600 text-2xl font-bold">RagamArtikel</a>
 
-      <div
-        class="bg-[#D9D9D9] shadow-md rounded-lg p-2 text-black font-medium flex gap-2 items-center"
-      >
-        Bambang
+      <div class="hidden md:flex space-x-4">
+        <Avatar />
       </div>
     </div>
-  </section>
+  </nav>
 </template>
