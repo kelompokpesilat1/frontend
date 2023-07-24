@@ -760,3 +760,9 @@ export const dummyArtikel = [
   //   penting: false,
   // },
 ]
+export const userLogin = {
+  email: 'admin@gmail.com',
+  username: 'admin',
+  password: '12345678',
+  role: 'admin',
+}

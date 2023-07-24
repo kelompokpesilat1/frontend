@@ -18,7 +18,7 @@ export default {
 
 <template>
   <div>
-    <section class="grid grid-cols-3 gap-4 m-4">
+    <section class="grid grid-cols-3 gap-4">
       <div class="col-span-2">
         <CardsDashbord>
           <h1>Statistik Pengunjung Artikel</h1>

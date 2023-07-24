@@ -1,14 +1,14 @@
 <script>
 export default {
   props: {
-    BarData: {
+    DoughtData: {
       type: Array,
       required: true,
     },
   },
   data() {
     return {
-      BarCarts: {
+      DoughtCarts: {
         labels: [],
         datasets: [
           {
@@ -20,7 +20,7 @@ export default {
           },
         ],
       },
-      BarChartOptions: {
+      DoughtChartOptions: {
         responsive: true,
         maintainAspectRatio: false,
         offset: 20,
@@ -34,12 +34,12 @@ export default {
   },
   computed: {},
   created() {
-    const datas = this.BarData
+    const datas = this.DoughtData
     for (let i = 0; i <= datas.length; i++) {
       if (datas[i]) {
-        this.BarCarts.labels.push(datas[i].title)
+        this.DoughCarts.labels.push(datas[i].title)
         console.log(datas[i])
-        this.BarCarts.datasets[0].data.push(datas[i].favoriteCount)
+        this.DoughtChartOptions.datasets[0].data.push(datas[i].favoriteCount)
       }
     }
   },
@@ -47,11 +47,11 @@ export default {
 </script>
 <template>
   <div>
-    <client-only placeholder="Loading...">
-      <BarChart
+    <client-only>
+      <DoughnutChart
         class="cart-bar"
-        :chart-data="BarCarts"
-        :chart-options="BarChartOptions"
+        :chart-data="DoughtCarts"
+        :chart-options="DoughtChartOptions"
       />
     </client-only>
   </div>
