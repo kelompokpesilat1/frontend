@@ -2,7 +2,7 @@
   <div class="flex">
     <Sidebar />
 
-    <div class="w-full h-[3000px]">
+    <div class="w-full">
       <Topbar />
       <Nuxt />
     </div>

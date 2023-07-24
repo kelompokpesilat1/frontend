@@ -1,5 +1,3 @@
-
-
 export const dummyVisitors = [
   { month: 'Januari', visitors: 1500 },
   { month: 'Februari', visitors: 1200 },
@@ -17,7 +15,10 @@ export const dummyVisitors = [
 export const dummyArticles = [
   { title: 'Artikel 1', favoriteCount: 300 },
   { title: 'Artikel 2', favoriteCount: 250 },
-  { title: 'Artikel 3', favoriteCount: 400 },
+  { title: 'Artikel 3', favoriteCount: 20 },
+  { title: 'Artikel 4', favoriteCount: 400 },
+  { title: 'Artikel 5', favoriteCount: 200 },
+  { title: 'Artikel 6', favoriteCount: 150 },
 ]
 
 export const headingArtikel = [

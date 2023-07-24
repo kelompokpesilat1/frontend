@@ -41,10 +41,11 @@ export default {
   },
   computed: {},
   created() {
-    const datas = this.BarCarts
+    const datas = this.BarData
     for (let i = 0; i <= datas.length; i++) {
       if (datas[i]) {
         this.BarCarts.labels.push(datas[i].title)
+        console.log(datas[i])
         this.BarCarts.datasets[0].data.push(datas[i].favoriteCount)
       }
     }
@@ -54,7 +55,11 @@ export default {
 <template>
   <div>
     <client-only placeholder="Loading...">
-      <BarChart :chart-data="BarCarts" :chart-options="BarChartOptions" />
+      <BarChart
+        class="cart-bar"
+        :chart-data="BarCarts"
+        :chart-options="BarChartOptions"
+      />
     </client-only>
   </div>
 </template>

@@ -1,201 +1,178 @@
-<template>
-  <div>
-    
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <div class="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
-        <div>
-            <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
-                <span class="sr-only">Action button</span>
-                Action
-                <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div id="dropdownAction" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownActionButton">
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate account</a>
-                    </li>
-                </ul>
-                <div class="py-1">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete User</a>
-                </div>
-            </div>
-        </div>
-        <label for="table-search" class="sr-only">Search</label>
-        <div class="relative">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                </svg>
-            </div>
-            <input type="text" id="table-search-users" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
-        </div>
-    </div>
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Position
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Status
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                    </div>
-                </td>
-                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">
-                    <div class="pl-3">
-                        <div class="text-base font-semibold">Neil Sims</div>
-                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
-                    </div>  
-                </th>
-                <td class="px-6 py-4">
-                    React Developer
-                </td>
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Online
-                    </div>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-search-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-                    </div>
-                </td>
-                <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image">
-                    <div class="pl-3">
-                        <div class="text-base font-semibold">Bonnie Green</div>
-                        <div class="font-normal text-gray-500">bonnie@flowbite.com</div>
-                    </div>
-                </th>
-                <td class="px-6 py-4">
-                    Designer
-                </td>
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Online
-                    </div>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-search-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-                    </div>
-                </td>
-                <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-2.jpg" alt="Jese image">
-                    <div class="pl-3">
-                        <div class="text-base font-semibold">Jese Leos</div>
-                        <div class="font-normal text-gray-500">jese@flowbite.com</div>
-                    </div>
-                </th>
-                <td class="px-6 py-4">
-                    Vue JS Developer
-                </td>
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Online
-                    </div>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-search-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-                    </div>
-                </td>
-                <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="Jese image">
-                    <div class="pl-3">
-                        <div class="text-base font-semibold">Thomas Lean</div>
-                        <div class="font-normal text-gray-500">thomes@flowbite.com</div>
-                    </div>
-                </th>
-                <td class="px-6 py-4">
-                    UI/UX Engineer
-                </td>
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Online
-                    </div>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-search-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
-                    </div>
-                </td>
-                <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Jese image">
-                    <div class="pl-3">
-                        <div class="text-base font-semibold">Leslie Livingston</div>
-                        <div class="font-normal text-gray-500">leslie@flowbite.com</div>
-                    </div>
-                </th>
-                <td class="px-6 py-4">
-                    SEO Specialist
-                </td>
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Offline
-                    </div>
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<script>
+import { dummyUsers, headingUsers } from '@/utils/dummyData'
+import UpdateUsers from './Modal/UpdateUsers.vue';
 
-  </div>
-</template>
+export default {
+    data() {
+        return {    
+            usersData: dummyUsers,
+            headingColomn: headingUsers,
+            usersEdit: {
+                data: {},
+                index: 0
+            },
+            isEdit: false,
+            isCreate: false,
+            inputValue: {
+                name: "",
+                email: "",
+                roles: "",
+            }
+        };
+    },
+    computed: {
+    //add this function.
+    },
+    methods: {
+        handleCreate() {
+            this.usersEdit = {};
+            this.inputValue = {name: "", email: "", roles: "", action: ""  };
+            this.isCreate = true
+            
+            // this.artikelData.push({
+            //   id: this.artikelData.length + 1,
+            //   title: this.newArticle.title,
+            //   kategori: this. newArticle.kategori,
+            //   author: this. newArticle.author,
+            //   date: new Date().toISOString().slice(0, 10),
+            // })
+        },
+        handleEdit(data, index) {
+            this.usersEdit = { data, index };
+            this.isEdit = true;
+            this.inputValue = { name: data.name, email: data.email, roles: data.roles, action: data.action };
+        },
+        handleClose() {
+            this.isEdit = false;
+            this.isCreate= false;
+
+        },
+        handleInputChange(event, type) {
+            // A lógica para lidar com a alteração do valor do input vai aqui.
+            console.log("Novo valor:", event.target.value, type);
+            switch (type) {
+                case "name":
+                    this.inputValue.name = event.target.value;
+                    break;
+                case "email":
+                    this.inputValue.email = event.target.value;
+                    break;
+                case "roles":
+                    this.inputValue.roles = event.target.value;
+                    break;
+                
+                default:
+                    break;
+            }
+            this.inputValue.name = event.target.value;
+        },
+        handleSave() {
+          if(this.isEdit){
+            const { name, email, roles,  } = this.inputValue;
+            const newData = {
+              ...this.usersEdit.data,
+              name: name === "" ? this.usersEdit.data.name : name,
+              email: email === "" ? this.usersEdit.data.email : email,
+              roles: roles === ""? this.usersEdit.roles: roles,
+            };
+            this.$set(this.usersData, this.usersEdit.index, newData);
+            this.inputValue = { name: "", email: "" };
+          } else if (this.isCreate) {
+      // Handle create mode
+      const { name, email, roles,} = this.inputValue;
+      if (name.trim() === "" || email.trim() === "" || roles.trim() === "" ) {
+        // Validation: Make sure title and email are not empty
+        alert("name and email cannot be empty.");
+        return;
+      }
+
+      // Create a new data object for the new article
+      const newUsers = {
+        id: this.usersData.length + 1,
+        name,
+        email,
+        roles,
+        // Add other properties for the new article
+      };
+
+      // Push the new data to the artikelData array
+      this.usersData.push(newUsers);
+
+      // Reset the input values and flags
+      this.inputValue = { name: "", email: "", roles: "" };
+      this.isCreate = false;
+      this.isEdit = false;
+    } 
+          this.isEdit = false;
+          this.isCreate= false;
+        },
+        handleRemove(id) {
+            this.usersData = this.usersData.filter((item) => item.id !== id);
+        }
+    },
+    components: { UpdateUsers }
+}
+</script>
+<template>
+    <div class="min-h-screen w-screen mt-5">
+      <div class="mx-10 px-2 py-2">
+        <div class="flex">
+          <h1 class="text-xl font-bold">User Management</h1>
+          <button @click="handleCreate" class="mx-5 bg-green-500 text-white p-2">Tambah Data</button>
+        </div>
+        <div v-if="isEdit || isCreate">
+          <UpdateUsers 
+          :usersEdit="usersEdit"
+          :handleInputChange="handleInputChange"
+          :inputValue="inputValue"
+          :handleClose="handleClose"
+          :handleSave="handleSave"
+          />
+        </div>
+        <div class="overflow-x-hidden shadow-md sm:rounded-lg">
+          <table class="table-auto w-3/4 mt-5 text-sm text-left text-slate-800 dark:text-slate-900">
+            <thead class="text-xs text-slate-800 uppercase bg-gray-100 dark:bg-red-700 dark:text-slate-100">
+              <tr>
+                <th
+                  v-for="item in headingColomn"
+                  :key="item.index"
+                  scope="col"
+                  class="px-6 py-3"
+                >
+                  {{ item }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(item, index) in usersData"
+                :key="index"
+                class="bg-white border-b dark:bg-gray-200 dark:border-gray-900"
+              >
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap dark:text-slate-900"
+                >
+                  {{ index + 1 }}
+                </th>
+                <td class="px-6 py-4">
+                  {{ item.name }}
+                </td>
+                <td class="px-6 py-4">
+                  {{ item.email }}
+                </td>
+                <td class="px-6 py-4">
+                  {{ item.roles }}
+                </td>
+                
+                <td class="px-6 py-4">
+                  <button class="bg-blue-500 text-white p-2 rounded-lg" @click="handleEdit(item, index)">Edit</button>
+                  <button class="bg-red-500 text-white p-2 rounded-lg" @click="handleRemove(item.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </template>

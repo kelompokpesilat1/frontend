@@ -1,13 +1,15 @@
 <template>
-  <section class="py-2 px-4 bg-black text-white justify-between">
-    <div class="gap-4">
+  <section
+    class="flex py-2 px-4 bg-[#cd1867] text-white justify-between items-center"
+  >
+    <div class="flex gap-4 items-center">
       <h1>Selamat Datang Bambang</h1>
     </div>
-    <div class="flex gap-4 justify-end">
+    <div class="flex gap-4 items-center justify-end">
       <span class="material-icons-round">notifications_active</span>
 
       <div
-        class="bg-white shadow-md rounded-lg p-2 text-teal-500 font-medium flex gap-2 items-center"
+        class="bg-white shadow-md rounded-lg p-2 text-black font-medium flex gap-2 items-center"
       >
         Bambang
       </div>

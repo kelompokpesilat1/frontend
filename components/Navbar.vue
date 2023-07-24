@@ -4,6 +4,7 @@ export default {
     return {
       showMenu: false,
       categories: ['olahraga', 'teknologi', 'edukasi', 'hiburan', 'gaya hidup'],
+      auth: true,
     }
   },
   methods: {
@@ -33,7 +34,7 @@ export default {
       </div>
 
       <!-- Tombol Login/Register Tampilan Desktop -->
-      <div class="hidden md:flex space-x-4">
+      <div v-if="!auth" class="hidden md:flex space-x-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>
@@ -41,28 +42,41 @@ export default {
           <Button label="Register" variant="primary" text="white" />
         </nuxt-link>
       </div>
+      <div v-if="auth" class="hidden md:flex space-x-4">
+        <nuxt-link to="/dashboard">
+          <Button label="Dashboard" icon="dashboard" text="blue-500" />
+        </nuxt-link>
+      </div>
 
       <!-- Tombol Menu Hamburger untuk Tampilan Mobile -->
       <div class="md:hidden flex items-center" @click="toggleMenu">
-        <Button icon="menu" text="white" />
+        <Button icon="menu" text="red-600" />
       </div>
     </div>
 
     <!-- Menu Dropdown untuk Tampilan Mobile -->
     <div v-show="showMenu" class="md:hidden text-center">
       <div class="flex flex-col space-y-4 p-4">
-        <a href="#" class="text-white">Home</a>
-        <a href="#" class="text-white">About</a>
-        <a href="#" class="text-white">Blog</a>
-        <a href="#" class="text-white">Contact</a>
+        <nuxt-link
+          v-for="category in categories"
+          class="capitalize hover:text-red-600 transition-all"
+          :key="category"
+          :to="`/kategori/${category}`"
+          >{{ category }}</nuxt-link
+        >
       </div>
 
-      <div class="flex flex-col space-y-4 p-4">
+      <div v-if="!auth" class="flex flex-col space-y-4 p-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>
         <nuxt-link to="/auth/register">
           <Button label="Register" variant="primary" text="white" />
+        </nuxt-link>
+      </div>
+      <div v-else="auth" class="flex flex-col space-y-4 p-4">
+        <nuxt-link to="/dashboard">
+          <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
       </div>
     </div>

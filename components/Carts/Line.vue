@@ -14,8 +14,8 @@ export default {
           {
             label: 'Statistic',
             data: [],
-            backgroundColor: ['blue'],
-            borderColor: 'blue',
+            backgroundColor: ['green'],
+            borderColor: 'rgba(100, 155, 0, 1)',
             borderWidth: '2',
           },
         ],
@@ -23,7 +23,7 @@ export default {
       LineChartOptions: {
         responsive: true,
         maintainAspectRatio: false,
-        offset: 2,
+        offset: 30,
         radius: 1,
         spacing: 2,
         hoverOffset: 32,
@@ -51,9 +51,9 @@ export default {
 <template>
   <client-only placeholder="Loading...">
     <LineChart
+      class="canvas-carts"
       :chart-data="LineChartData"
       :chart-options="LineChartOptions"
-      :height="430"
     />
   </client-only>
 </template>
