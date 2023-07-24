@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-  <div class="bg-gray-100">
+  <div>
     <HeroSection />
 
     <section class="py-12 px-8 md:px-16">

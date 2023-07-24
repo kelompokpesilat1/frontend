@@ -3,6 +3,7 @@ export default {
   data() {
     return {
       showMenu: false,
+      categories: ['olahraga', 'teknologi', 'edukasi', 'hiburan', 'gaya hidup'],
     }
   },
   methods: {
@@ -21,11 +22,14 @@ export default {
       <a href="/" class="text-red-600 text-2xl font-bold">RagamArtikel</a>
 
       <!-- Menu Tampilan Desktop -->
-      <div class="hidden md:flex space-x-4">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Blog</a>
-        <a href="#">Contact</a>
+      <div class="hidden md:flex space-x-8">
+        <nuxt-link
+          v-for="category in categories"
+          class="capitalize hover:text-red-600 transition-all"
+          :key="category"
+          :to="`/kategori/${category}`"
+          >{{ category }}</nuxt-link
+        >
       </div>
 
       <!-- Tombol Login/Register Tampilan Desktop -->
@@ -64,3 +68,9 @@ export default {
     </div>
   </nav>
 </template>
+
+<style scoped>
+.nuxt-link-exact-active {
+  @apply text-red-600;
+}
+</style>
