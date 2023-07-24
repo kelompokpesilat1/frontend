@@ -32,7 +32,9 @@ export default {
       <p>{{ article.content | truncateContent(120) }}</p>
     </div>
 
-    <div class="p-8 w-full hover:scale-105 hover:text-red-600 transition-all">
+    <div
+      class="p-8 w-full hover:translate-x-5 hover:text-red-600 transition-all"
+    >
       <nuxt-link
         :to="`/detail/${article.id}`"
         class="flex items-center justify-between font-medium"

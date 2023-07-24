@@ -13,17 +13,15 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
-<<<<<<< HEAD
-    "chart.js": "^2.8.0",
-=======
     "aos": "^2.3.4",
     "chart.js": "^3.8.0",
->>>>>>> 1cb6f65df563fee19acd3631f521b0cd1791b148
     "core-js": "^3.25.3",
     "hchs-vue-charts": "^1.2.8",
     "nuxt": "^2.15.8",
+    "quill": "^1.3.6",
     "vue": "^2.7.10",
     "vue-chartjs": "^4.1.1",
+    "vue-quill-editor": "^3.0.6",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },
@@ -32,6 +30,7 @@
     "eslint-config-prettier": "^8.5.0",
     "postcss": "^8.4.26",
     "prettier": "^2.7.1",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "webpack": "^4.46.0"
   }
 }

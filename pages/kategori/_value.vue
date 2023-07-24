@@ -19,7 +19,7 @@ export default {
 <template>
   <div>
     <section
-      class="bg-gradient-to-r bg-slate-100 py-24 px-8 md:px-16 h-[80vh] grid place-items-center"
+      class="hero bg-gradient-to-r bg-slate-100 py-24 px-8 md:px-16 h-[80vh] grid place-items-center"
     >
       <div
         class="container mx-auto"
@@ -33,7 +33,7 @@ export default {
         </h1>
       </div>
     </section>
-    <section class="py-12 px-8 md:px-16">
+    <section v-if="filteredArtikel" class="py-12 px-8 md:px-16">
       <ArticleWrapper>
         <ArticleCard
           v-for="article in filteredArtikel"
@@ -45,4 +45,8 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.hero {
+  background: url('https://unsplash.com/photos/SeO7jn9mnRk');
+}
+</style>

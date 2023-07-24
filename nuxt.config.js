@@ -41,6 +41,15 @@ export default {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
       },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.quilljs.com/1.3.6/quill.snow.css',
+      },
+    ],
+    script: [
+      {
+        src: 'https://cdn.quilljs.com/1.3.6/quill.js',
+      },
     ],
   },
 
@@ -53,6 +62,7 @@ export default {
   plugins: [
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/aos', mode: 'client' },
+    { src: '~/plugins/quill.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -72,7 +82,6 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
   },
-  
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
