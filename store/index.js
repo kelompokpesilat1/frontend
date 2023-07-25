@@ -1,7 +1,7 @@
 // store/index.js
 export const state = () => ({
   user: {
-    auth: false,
+    auth: true,
     role: 'admin',
   },
   title: 'cms-artikel',
