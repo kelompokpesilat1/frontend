@@ -37,7 +37,7 @@ export default {
       </div>
 
       <!-- Tombol Login/Register Tampilan Desktop -->
-      <div v-if="!user.auth" class="hidden md:flex space-x-4">
+      <div class="hidden md:flex space-x-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>
@@ -45,7 +45,7 @@ export default {
           <Button label="Register" variant="primary" text="white" />
         </nuxt-link>
       </div>
-      <div v-if="user.auth" class="hidden md:flex space-x-4">
+      <div class="hidden md:flex space-x-4">
         <nuxt-link to="/dashboard">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
@@ -69,12 +69,12 @@ export default {
         >
       </div>
 
-      <div v-if="user.auth" class="flex flex-col space-y-4 p-4">
+      <div class="flex flex-col space-y-4 p-4">
         <nuxt-link to="/dashboard">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
       </div>
-      <div v-if="!user.auth" class="flex flex-col space-y-4 p-4">
+      <div class="flex flex-col space-y-4 p-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>

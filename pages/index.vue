@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       artikelData: dummyArtikel,
+      users: null,
     }
   },
   computed: {

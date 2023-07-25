@@ -75,13 +75,35 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'http://localhost:8080',
   },
+
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       scheme: 'local',
+  //       token: {
+  //         property: 'accessToken', // Ganti sesuai dengan nama properti accessToken di respons API Anda
+  //         required: true,
+  //         type: 'Bearer',
+  //       },
+  //       user: {
+  //         property: false, // Jika API Anda mengembalikan data user dalam respons login, sesuaikan properti ini
+  //       },
+  //       endpoints: {
+  //         login: { url: '/auth/login', method: 'post' }, // Ganti URL sesuai dengan endpoint login API Anda
+  //         logout: { url: '/api/auth/logout', method: 'post' },
+  //         user: false, // Jika Anda ingin mengambil data user setelah login, sesuaikan dengan endpoint user API Anda
+  //       },
+  //     },
+  //   },
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

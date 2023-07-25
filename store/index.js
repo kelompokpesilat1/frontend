@@ -1,14 +1,13 @@
 // store/index.js
 export const state = () => ({
-  user: {
-    auth: true,
-    role: 'admin',
-  },
   title: 'cms-artikel',
   description: '',
 })
 
 export const mutations = {
+  SET_USERS(state, payload) {
+    state.user = payload
+  },
   SET_TITLE(state, title) {
     state.title = title
   },
