@@ -91,6 +91,7 @@ export const headingUsers = ['No', 'Nama', 'Email', 'Roles', 'Action']
 export const headingArtikel = [
   'No',
   'Nama',
+  'Konten',
   'Kategori',
   'Penulis',
   'Tgl Publis',

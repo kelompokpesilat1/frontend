@@ -24,6 +24,10 @@ export default {
     //add this function.
   },
   methods: {
+    onSubmit() {
+      this.isCreate = !this.isCreate
+      console.log('-->', this.isCreate)
+    },
     handleCreate() {
       this.usersEdit = {}
       this.inputValue = { name: '', email: '', roles: '', action: '' }
@@ -121,68 +125,72 @@ export default {
   <div class="min-h-screen mt-5">
     <div class="mx-10 px-2 py-2">
       <div class="flex justify-between items-center">
-          <h1 class="text-xl font-bold">User Management</h1>
-          <button @click="handleCreate" class=" bg-red-700 text-white p-2 text-sm flex items-center gap-2 rounded-lg"> Tambah Data <span class="material-icons justify-center items-center">
-          add_circle
-</span></button>
-          
-        </div>
-        <div v-if="isEdit || isCreate">
-          <UpdateUsers 
-          :usersEdit="usersEdit"
-          :handleInputChange="handleInputChange"
-          :inputValue="inputValue"
-          :handleClose="handleClose"
-          :handleSave="handleSave"
-          />
-        </div>
-        <div class="overflow-hidden shadow-md sm:rounded-lg">
-        <table class="table-auto w-full mt-5 text-sm text-left text-gray-900 dark:text-gray-900">
-          <thead class="text-xs text-gray-100 uppercase border-gray-300 dark:bg-red-500 dark:text-white">
-              <tr>
-                <th
-                  v-for="item in headingColomn"
-                  :key="item.index"
-                  scope="col"
-                  class="px-6 py-3"
-                >
-                  {{ item }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(item, index) in usersData"
-                :key="index"
-              class="bg-white border-b dark:bg-gray-100 dark:border-gray-100 transition duration-300 ease-in-out hover:bg-gray-300"
-                
+        <h1 class="text-xl font-bold">User Management</h1>
+        <button
+          @click="handleCreate"
+          class="bg-red-700 text-white p-2 text-sm flex items-center gap-2 rounded-lg"
+        >
+          Tambah Data
+          <span class="material-icons justify-center items-center">
+            add_circle
+          </span>
+        </button>
+      </div>
+      <div v-if="isCreate">
+        <NewUsers @onSubmit="onSubmit" />
+      </div>
+      <div v-else class="overflow-hidden shadow-md sm:rounded-lg">
+        <table
+          class="table-auto w-full mt-5 text-sm text-left text-gray-900 dark:text-gray-900"
+        >
+          <thead
+            class="text-xs text-gray-100 uppercase border-gray-300 dark:bg-red-500 dark:text-white"
+          >
+            <tr>
+              <th
+                v-for="item in headingColomn"
+                :key="item.index"
+                scope="col"
+                class="px-6 py-3"
               >
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900"
-                >
-                  {{ index + 1 }}
-                </th>
-                <td class="px-6 py-4">
-                  {{ item.name }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ item.email }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ item.roles }}
-                </td>
-                
-                <td class="px-6 py-4">
-                  <button @click="handleEdit(item, index)"> <span class="material-icons">edit
-</span></button>
-                <button  @click="handleRemove(item.id)" > <span class="material-icons">delete
-</span></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                {{ item }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in usersData"
+              :key="index"
+              class="bg-white border-b dark:bg-gray-100 dark:border-gray-100 transition duration-300 ease-in-out hover:bg-gray-300"
+            >
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900"
+              >
+                {{ index + 1 }}
+              </th>
+              <td class="px-6 py-4">
+                {{ item.name }}
+              </td>
+              <td class="px-6 py-4">
+                {{ item.email }}
+              </td>
+              <td class="px-6 py-4">
+                {{ item.roles }}
+              </td>
+
+              <td class="px-6 py-4">
+                <button @click="handleEdit(item, index)">
+                  <span class="material-icons">edit </span>
+                </button>
+                <button @click="handleRemove(item.id)">
+                  <span class="material-icons">delete </span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </template>
+  </div>
+</template>

@@ -1,47 +1,57 @@
 <script>
-import { dummyArtikel, headingArtikel, kategoriOptions } from '@/utils/dummyData'
-import UpdateArtikel from './Modal/UpdateArtikel.vue';
+import {
+  dummyArtikel,
+  headingArtikel,
+  kategoriOptions,
+} from '@/utils/dummyData'
+import UpdateArtikel from './Modal/UpdateArtikel.vue'
 
 export default {
-    data() {
-        return {
-            currentPage: 1,
-            itemsPerPage: 10, // Adjust this value as needed
+  data() {
+    return {
+      currentPage: 1,
+      itemsPerPage: 10, // Adjust this value as needed
 
-            artikelData: dummyArtikel,
-            headingColomn: headingArtikel,
-            artikelEdit: {
-                data: {},
-                index: 0
-            },
-            isEdit: false,
-            isCreate: false,
-            inputValue: {
-                title: "",
-                kategori: ""
-            },
-            kategoriOptions: [],
-            showForm: false, 
-        };
+      artikelData: dummyArtikel,
+      headingColomn: headingArtikel,
+      artikelEdit: {
+        data: {},
+        index: 0,
+      },
+      isEdit: false,
+      isCreate: false,
+      inputValue: {
+        title: '',
+        content: '',
+        kategori: '',
+        author: '',
+        date: '',
+      },
+      kategoriOptions: [],
+      showForm: false,
+    }
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.artikelData.length / this.itemsPerPage)
     },
-    computed: {
-      totalPages() {
-      return Math.ceil(this.artikelData.length / this.itemsPerPage);
-    },
-      displayedData() {
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-      const endIndex = startIndex + this.itemsPerPage;
-      return this.artikelData.slice(startIndex, endIndex);
+    displayedData() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage
+      const endIndex = startIndex + this.itemsPerPage
+      return this.artikelData.slice(startIndex, endIndex)
     },
     increment() {
-      return this.totalPages >= 1;
-    },
+      return this.totalPages >= 1
+    },
     //add this function.
   },
   methods: {
+    onSubmit() {
+      this.isCreate = !this.isCreate
+    },
     changePage(page) {
-      this.currentPage = page;
-    },  
+      this.currentPage = page
+    },
     sliceString(str, maxLength) {
       if (str.length > maxLength) {
         return str.slice(0, maxLength) + '...' // Add ellipsis if the string is longer than 10 characters
@@ -51,9 +61,15 @@ export default {
     },
     handleCreate() {
       this.artikelEdit = {}
-      this.inputValue = { title: '', kategori: '', author: '', date: '' }
-      this.isCreate = true
-      this.showForm = true;
+      this.inputValue = {
+        title: '',
+        content: '',
+        kategori: '',
+        author: '',
+        date: '',
+      }
+      this.isCreate = !this.isCreate
+      this.showForm = true
 
       // this.artikelData.push({
       //   id: this.artikelData.length + 1,
@@ -63,23 +79,23 @@ export default {
       //   date: new Date().toISOString().slice(0, 10),
       // })
     },
-    
+
     handleEdit(data, index) {
       this.artikelEdit = { data, index }
       this.isEdit = true
       this.inputValue = {
         title: data.title,
         kategori: data.kategori,
+        content: data.content,
         author: data.author,
         date: data.date,
       }
-      this.showForm = true;
+      this.showForm = true
     },
     handleClose() {
       this.isEdit = false
       this.isCreate = false
-      this.showForm = false; // Hide the form when closing
-
+      this.showForm = false // Hide the form when closing
     },
     handleInputChange(event, type) {
       // A lógica para lidar com a alteração do valor do input vai aqui.
@@ -87,6 +103,9 @@ export default {
       switch (type) {
         case 'title':
           this.inputValue.title = event.target.value
+          break
+        case 'content':
+          this.inputValue.content = event.target.value
           break
         case 'kategori':
           this.inputValue.kategori = event.target.value
@@ -108,6 +127,7 @@ export default {
         const newData = {
           ...this.artikelEdit.data,
           title: title === '' ? this.artikelEdit.data.title : title,
+          content: content === '' ? this.artikelEdit.data.content : content,
           kategori: kategori === '' ? this.artikelEdit.data.kategori : kategori,
           author: author === '' ? this.artikelEdit.author : author,
           date: date === '' ? this.artikelEdit.date : date,
@@ -119,6 +139,7 @@ export default {
         const { title, kategori, author, date } = this.inputValue
         if (
           title.trim() === '' ||
+          content.trim() === '' ||
           kategori.trim() === '' ||
           author.trim() === '' ||
           date.trim() === ''
@@ -132,6 +153,7 @@ export default {
         const newArticle = {
           id: this.artikelData.length + 1,
           title,
+          content,
           kategori,
           author,
           date,
@@ -153,7 +175,7 @@ export default {
       this.artikelData = this.artikelData.filter((item) => item.id !== id)
     },
   },
-  
+
   components: { UpdateArtikel },
 }
 </script>
@@ -163,23 +185,26 @@ export default {
     <div class="mx-10 px-2 py-2">
       <div class="flex justify-between items-center">
         <h1 class="text-xl font-bold flex items-center">List Artikel</h1>
-        <button @click="handleCreate" class=" bg-red-700 text-white p-2 text-sm flex items-center gap-2 rounded-lg"> Tambah Data <span class="material-icons justify-center items-center">
-          add_circle
-</span></button>
+        <button
+          @click="isCreate = !isCreate"
+          class="bg-red-700 text-white p-2 text-sm flex items-center gap-2 rounded-lg"
+        >
+          Tambah Data
+          <span class="material-icons justify-center items-center">
+            add_circle
+          </span>
+        </button>
       </div>
-      <div v-if="showForm || isEdit || isCreate">
-        <UpdateArtikel
-        :showForm="showForm"
-          :artikelEdit="artikelEdit"
-          :handleInputChange="handleInputChange"
-          :inputValue="inputValue"
-          :handleClose="handleClose"
-          :handleSave="handleSave"
-        />
+      <div v-if="isCreate">
+        <NewArticle @onSubmit="onSubmit" />
       </div>
-      <div class="overflow-hidden shadow-md sm:rounded-lg">
-        <table class="table-auto w-full mt-5 text-sm text-left text-gray-900 dark:text-gray-900">
-          <thead class="text-xs text-gray-100 uppercase border-gray-300 dark:bg-red-500 dark:text-white">
+      <div v-else class="overflow-hidden shadow-md sm:rounded-lg">
+        <table
+          class="table-auto w-full mt-5 text-sm text-left text-gray-900 dark:text-gray-900"
+        >
+          <thead
+            class="text-xs text-gray-100 uppercase border-gray-300 dark:bg-red-500 dark:text-white"
+          >
             <tr>
               <th
                 v-for="item in headingColomn"
@@ -207,6 +232,9 @@ export default {
                 {{ sliceString(item.title, 10) }}
               </td>
               <td class="px-6 py-4">
+                {{ sliceString(item.content, 10) }}
+              </td>
+              <td class="px-6 py-4">
                 {{ item.kategori }}
               </td>
               <td class="px-6 py-4">
@@ -216,22 +244,22 @@ export default {
                 {{ item.date }}
               </td>
               <td class="px-6 py-4">
-                <button @click="handleEdit(item, index)"> <span class="material-icons">edit
-</span></button>
-                <button  @click="handleRemove(item.id)" > <span class="material-icons">delete
-</span></button>
+                <button @click="handleEdit(item, index)">
+                  <span class="material-icons">edit </span>
+                </button>
+                <button @click="handleRemove(item.id)">
+                  <span class="material-icons">delete </span>
+                </button>
               </td>
             </tr>
-            
           </tbody>
-
         </table>
         <Pagination
-      v-if="increment"
-      :currentPage="currentPage"
-      :totalPages="totalPages"
-      @page-change="changePage"
-    />
+          v-if="increment"
+          :currentPage="currentPage"
+          :totalPages="totalPages"
+          @page-change="changePage"
+        />
       </div>
     </div>
   </div>

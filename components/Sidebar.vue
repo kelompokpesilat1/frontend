@@ -33,7 +33,9 @@ export default {
 <template>
   <div class="flex min-h-screen">
     <!-- sidebar -->
-    <div class="bg-white text-gray-700 w-64 px-4 py-4 space-y-6 border-x-4 shadow">
+    <div
+      class="bg-white text-gray-700 w-64 px-4 py-4 space-y-6 border-x-4 shadow"
+    >
       <div class="flex justify-between">
         <FontHeading>ADMIN</FontHeading>
         <span class="material-icons cursor-pointer">dehaze</span>

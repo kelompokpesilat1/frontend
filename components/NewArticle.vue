@@ -4,11 +4,16 @@ export default {
     return {
       title: '',
       content: '',
+      penulis: '',
+      published: '',
     }
   },
   methods: {
     showData() {
       console.log(this.content)
+    },
+    submit() {
+      this.$emit('onSubmit')
     },
   },
 }
@@ -50,6 +55,30 @@ export default {
         >
         <quill-editor v-model="content" id="content" />
       </div>
+      <div>
+        <label for="penulis">
+          <h1 class="text-sm font-semibold mb-2">Penulis</h1></label
+        >
+        <input
+          type="text"
+          class="w-full border py-2 px-4 bg-white"
+          id="title"
+          placeholder="Andrea Hirata"
+          v-model="penulis"
+          required
+        />
+      </div>
+      <div>
+        <label for="date">
+          <h1 class="text-sm font-semibold mb-2">Published</h1></label
+        >
+        <input
+          type="date"
+          class="w-full border py-2 px-4 bg-white"
+          v-model="published"
+          required
+        />
+      </div>
 
       <div>
         <label
@@ -69,7 +98,7 @@ export default {
         </select>
       </div>
 
-      <button @click="showData" class="py-2 px-4 border-2 w-full text-center">
+      <button @click="submit" class="py-2 px-4 border-2 w-full text-center">
         Submit Artikel
       </button>
     </div>
