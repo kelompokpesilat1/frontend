@@ -1,5 +1,3 @@
-
-
 export const dummyVisitors = [
   { month: 'Januari', visitors: 1500 },
   { month: 'Februari', visitors: 1200 },
@@ -14,82 +12,81 @@ export const dummyVisitors = [
   // { month: 'November', visitors: 800 },
   // { month: 'Desember', visitors: 200 },
 ]
+
 export const dummyArticles = [
   { title: 'Artikel 1', favoriteCount: 300 },
   { title: 'Artikel 2', favoriteCount: 250 },
   { title: 'Artikel 3', favoriteCount: 400 },
 ]
-
+export const dummyNewArticles = [
+  { name: 'Siksa Kubur', disukai: 200 },
+  { name: 'Azab Kubur', disukai: 100 },
+  { name: 'Kaya Dengan Instant', disukai: 1000 },
+]
 export const dummyUsers = [
   {
     id: 1,
-    name: "jajang",
-    email: "jajangskm@gmail.com",
-    roles: "admin"
+    name: 'jajang',
+    email: 'jajangskm@gmail.com',
+    roles: 'admin',
   },
   {
     id: 2,
-    name: "john",
-    email: "john@example.com",
-    roles: "editor"
+    name: 'john',
+    email: 'john@example.com',
+    roles: 'editor',
   },
   {
     id: 3,
-    name: "jane",
-    email: "jane@example.com",
-    roles: "viewer"
+    name: 'jane',
+    email: 'jane@example.com',
+    roles: 'viewer',
   },
   {
     id: 4,
-    name: "alice",
-    email: "alice@example.com",
-    roles: "admin"
+    name: 'alice',
+    email: 'alice@example.com',
+    roles: 'admin',
   },
   {
     id: 5,
-    name: "bob",
-    email: "bob@example.com",
-    roles: "viewer"
+    name: 'bob',
+    email: 'bob@example.com',
+    roles: 'viewer',
   },
   {
     id: 6,
-    name: "david",
-    email: "david@example.com",
-    roles: "editor"
+    name: 'david',
+    email: 'david@example.com',
+    roles: 'editor',
   },
   {
     id: 7,
-    name: "emma",
-    email: "emma@example.com",
-    roles: "admin"
+    name: 'emma',
+    email: 'emma@example.com',
+    roles: 'admin',
   },
   {
     id: 8,
-    name: "frank",
-    email: "frank@example.com",
-    roles: "viewer"
+    name: 'frank',
+    email: 'frank@example.com',
+    roles: 'viewer',
   },
   {
     id: 9,
-    name: "grace",
-    email: "grace@example.com",
-    roles: "editor"
+    name: 'grace',
+    email: 'grace@example.com',
+    roles: 'editor',
   },
   {
     id: 10,
-    name: "harry",
-    email: "harry@example.com",
-    roles: "admin"
+    name: 'harry',
+    email: 'harry@example.com',
+    roles: 'admin',
   },
 ]
 
-export const headingUsers = [
-  'No',
-  'Nama',
-  'Email',
-  "Roles",
-  "Action"
-]
+export const headingUsers = ['No', 'Nama', 'Email', 'Roles', 'Action']
 
 export const headingArtikel = [
   'No',
@@ -101,11 +98,11 @@ export const headingArtikel = [
 ]
 
 export const kategoriOptions = [
-  "Gaming",
-  "Olahraga",
-  "Seni",
-  "Politik",
-  "Teknologi"
+  'Gaming',
+  'Olahraga',
+  'Seni',
+  'Politik',
+  'Teknologi',
 ]
 
 export const dummyArtikel = [
@@ -762,7 +759,7 @@ export const dummyArtikel = [
 ]
 export const userLogin = {
   email: 'admin@gmail.com',
-  username: 'admin',
   password: '12345678',
+  username: 'admin',
   role: 'admin',
 }

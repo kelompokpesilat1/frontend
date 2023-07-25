@@ -1,58 +1,54 @@
 <script>
 export default {
   props: {
-    DoughtData: {
+    dataDought: {
       type: Array,
       required: true,
     },
   },
   data() {
     return {
-      DoughtCarts: {
+      doughChartData: {
         labels: [],
         datasets: [
           {
-            label: 'Visualization',
             data: [],
-            backgroundColor: ['rgba(20, 255, 0, 0.85)'],
-            borderColor: 'rgba(100, 155, 0, 1)',
-            borderWidth: 1,
+            backgroundColor: ['red'],
+            borderColor: 'red',
+            borderWidth: 0,
           },
         ],
       },
-      DoughtChartOptions: {
+      doughChartOptions: {
         responsive: true,
         maintainAspectRatio: false,
-        offset: 20,
-        radius: 10,
-        spacing: 2,
+        offset: 8,
+        radius: 80,
+        spacing: 4,
         hoverOffset: 32,
         hoverBorderWidth: 1,
-        weight: 2,
+        weight: 0,
       },
     }
   },
-  computed: {},
   created() {
-    const datas = this.DoughtData
+    const datas = this.dataDought
+    console.log(datas)
     for (let i = 0; i <= datas.length; i++) {
       if (datas[i]) {
-        this.DoughCarts.labels.push(datas[i].title)
-        console.log(datas[i])
-        this.DoughtChartOptions.datasets[0].data.push(datas[i].favoriteCount)
+        this.doughChartData.labels.push(datas[i].name)
+        this.doughChartData.datasets[0].data.push(datas[i].disukai)
       }
     }
   },
 }
 </script>
+
 <template>
-  <div>
-    <client-only>
-      <DoughnutChart
-        class="cart-bar"
-        :chart-data="DoughtCarts"
-        :chart-options="DoughtChartOptions"
-      />
-    </client-only>
-  </div>
+  <client-only>
+    <DoughnutChart
+      :chart-data="doughChartData"
+      :chart-options="doughChartOptions"
+    />
+  </client-only>
 </template>

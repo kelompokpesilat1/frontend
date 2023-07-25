@@ -1,29 +1,7 @@
-<script>
-export default {
-  props: {
-    name: {
-      type: Object,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      dataUser: {
-        name: '',
-      },
-    }
-  },
-  methods: {},
-  created() {
-    this.dataUser.name = this.name
-  },
-}
-</script>
-
 <template>
   <div class="flex items-center gap-4">
     <!-- Avatar Bulat -->
-    <h1 class="font-semibold">{{ dataUser.name }}</h1>
+    <h1 class="font-semibold">Saha Maneeh</h1>
     <div
       class="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden"
     >

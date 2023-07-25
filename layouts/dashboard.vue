@@ -36,14 +36,13 @@ export default {
 
 <template>
   <div>
-    <div v-if="isLogin" class="flex">
+    <div class="flex">
       <Sidebar />
 
       <div class="w-full">
-        <Topbar :userProps="dataUser" :onLogout="handleLogout" />
+        <Topbar />
         <Nuxt />
       </div>
     </div>
-    <div v-else><p>Loadin ...</p></div>
   </div>
 </template>

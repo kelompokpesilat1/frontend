@@ -4,6 +4,7 @@ import CartsLine from '@/components/Carts/Line.vue'
 
 export default {
   layout: 'dashboard-remake',
+
   components: {
     CartsLine,
   },
