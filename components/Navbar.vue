@@ -46,8 +46,8 @@ export default {
           <Button label="Register" variant="primary" text="white" />
         </nuxt-link>
       </div>
-      <div v-if="user.auth" class="hidden md:flex space-x-4">
-        <nuxt-link to="/dashboard-remake">
+      <div v-if="auth" class="hidden md:flex space-x-4">
+        <nuxt-link to="/dashboard">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
       </div>
@@ -70,7 +70,12 @@ export default {
         >
       </div>
 
-      <div v-if="!user.auth" class="flex flex-col space-y-4 p-4">
+      <div v-if="auth" class="flex flex-col space-y-4 p-4">
+        <nuxt-link to="/dashboard-remake">
+          <Button label="Dashboard" icon="dashboard" text="blue-500" />
+        </nuxt-link>
+      </div>
+      <div v-else class="flex flex-col space-y-4 p-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>

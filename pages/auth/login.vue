@@ -1,6 +1,50 @@
 <script>
+import { userLogin } from '@/utils/dummyData'
+
 export default {
   layout: 'empty',
+  data() {
+    return {
+      inputValue: {
+        email: '',
+        password: '',
+      },
+      messageErr: '',
+    }
+  },
+  computed: {
+    //add this function.
+  },
+  methods: {
+    handleInputChange(event, type) {
+      if (type === 'email') this.inputValue.email = event.target.value
+      if (type === 'password') this.inputValue.password = event.target.value
+    },
+
+    handleLogin() {
+      //TODO: change
+      const dummyAccount = userLogin
+      if (this.inputValue.email !== dummyAccount.email) {
+        this.messageErr = 'Email yang anda masukan salah'
+      } else if (this.inputValue.password !== dummyAccount.password) {
+        this.messageErr = 'Password yang anda masukan salah'
+      } else if (
+        this.inputValue.password !== dummyAccount.password &&
+        this.inputValue.email !== dummyAccount.email
+      ) {
+        this.messageErr = 'Account tidak terdaftar'
+      } else {
+        //TODO: Change when have real data for API
+        localStorage.setItem('isLogin', 'true')
+        localStorage.setItem('dataAccount', JSON.stringify(dummyAccount))
+        window.location.assign('/dashboard')
+      }
+    },
+
+    handleFocus() {
+      if (this.messageErr !== '') this.messageErr = ''
+    },
+  },
 }
 </script>
 
@@ -15,6 +59,7 @@ export default {
         </nuxt-link>
       </div>
       <h2 class="text-[32px] font-bold mb-4">Masuk dulu gais</h2>
+      <h3 v-if="messageErr !== ''">{{ messageErr }}</h3>
       <form @submit.prevent="">
         <div class="mb-4">
           <input
@@ -23,6 +68,9 @@ export default {
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
             placeholder="Email"
+            v-model="inputValue.email"
+            @change="(event) => handleInputChange(event, 'email')"
+            @focus="handleFocus"
           />
         </div>
         <div class="mb-4">
@@ -31,13 +79,20 @@ export default {
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
             placeholder="Password"
+            v-model="inputValue.password"
+            @change="(event) => handleInputChange(event, 'password')"
+            @focus="handleFocus"
           />
         </div>
         <div class="flex justify-between">
           <nuxt-link to="/auth/register" class="text-blue-700"
             >Belum punya akun ?</nuxt-link
           >
-          <button type="submit" class="text-black font-bold px-4 py-2 rounded">
+          <button
+            type="submit"
+            class="text-black font-bold px-4 py-2 rounded"
+            @click="handleLogin"
+          >
             Masuk
           </button>
         </div>

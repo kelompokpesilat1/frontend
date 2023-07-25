@@ -14,8 +14,8 @@ export default {
           {
             label: 'Statistic',
             data: [],
-            backgroundColor: ['green'],
-            borderColor: 'rgba(100, 155, 0, 1)',
+            backgroundColor: ['red'],
+            borderColor: 'red',
             borderWidth: '2',
           },
         ],

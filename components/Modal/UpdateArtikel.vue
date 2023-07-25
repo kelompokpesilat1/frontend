@@ -6,8 +6,9 @@
         <label class="block text-gray-700 font-semibold mb-2">Title</label>
         <input type="text" placeholder="title" @change="event => handleInputChange(event, 'title')" v-model="inputValue.title" class="w-full"/>
       <div class="mt-4">
-        <label class="block text-gray-700 font-semibold mb-2">Category</label>
-        <input type="text" placeholder="kategori" @change="event => handleInputChange(event, 'kategori')" v-model="inputValue.kategori"/>
+        <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
+        <select> <option v-for="kategori of kategoriOptions" :key="kategori" value="kategori">{{kategori}}</option></select>
+      
         <label class="block text-gray-700 font-semibold mb-2">Penulis</label>
         <input type="text" placeholder="Penulis" @change="event => handleInputChange(event, 'author')" v-model="inputValue.author"/>
         <label class="block text-gray-700 font-semibold mb-2">Tanggal Publish</label>
@@ -23,7 +24,21 @@
 </template>
 
 <script>
+// import {kategoriOptions} from "@/utils/dummyData"
 export default {
+
+  data(){
+    return{
+      kategoriOptions : [
+      "Gaming",
+  "Olahraga",
+  "Seni",
+  "Politik",
+  "Teknologi"
+      ]
+    }
+  },
+
   props: {
     artikelEdit: {
       type: Object,
@@ -45,6 +60,9 @@ export default {
       type: Function,
       required: true,
     }
+  },
+  mounted(){
+    console.log(this.kategoriOptions)
   }
 }
   

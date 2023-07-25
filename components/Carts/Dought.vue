@@ -1,14 +1,14 @@
 <script>
 export default {
   props: {
-    BarData: {
+    dataDought: {
       type: Array,
       required: true,
     },
   },
   data() {
     return {
-      BarCarts: {
+      doughChartData: {
         labels: [],
         datasets: [
           {
@@ -16,43 +16,40 @@ export default {
             data: [],
             backgroundColor: ['red'],
             borderColor: 'red',
-            borderWidth: 1,
+            borderWidth: 0,
           },
         ],
       },
-      BarChartOptions: {
+      doughChartOptions: {
         responsive: true,
         maintainAspectRatio: false,
-        offset: 20,
-        radius: 10,
-        spacing: 2,
+        offset: 8,
+        radius: 80,
+        spacing: 4,
         hoverOffset: 32,
         hoverBorderWidth: 1,
-        weight: 2,
+        weight: 0,
       },
     }
   },
-  computed: {},
   created() {
-    const datas = this.BarData
+    const datas = this.dataDought
+    console.log(datas)
     for (let i = 0; i <= datas.length; i++) {
       if (datas[i]) {
-        this.BarCarts.labels.push(datas[i].title)
-        console.log(datas[i])
-        this.BarCarts.datasets[0].data.push(datas[i].favoriteCount)
+        this.doughChartData.labels.push(datas[i].name)
+        this.doughChartData.datasets[0].data.push(datas[i].disukai)
       }
     }
   },
 }
 </script>
+
 <template>
-  <div>
-    <client-only placeholder="Loading...">
-      <BarChart
-        class="cart-bar"
-        :chart-data="BarCarts"
-        :chart-options="BarChartOptions"
-      />
-    </client-only>
-  </div>
+  <client-only>
+    <DoughnutChart
+      :chart-data="doughChartData"
+      :chart-options="doughChartOptions"
+    />
+  </client-only>
 </template>
