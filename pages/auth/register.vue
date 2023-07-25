@@ -1,6 +1,29 @@
 <script>
 export default {
   layout: 'empty',
+  data() {
+    return {
+      registerData: {
+        name: '',
+        email: '',
+        password: '',
+      },
+    }
+  },
+  methods: {
+    async register() {
+      try {
+        const response = await this.$axios.post(
+          '/auth/register',
+          this.registerData
+        )
+
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
 }
 </script>
 
@@ -15,13 +38,14 @@ export default {
         </nuxt-link>
       </div>
       <h2 class="text-[32px] font-bold mb-4">Register</h2>
-      <form @submit.prevent="">
+      <form @submit.prevent="register">
         <div class="mb-4">
           <input
             type="text"
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
-            placeholder="Username"
+            placeholder="name"
+            v-model="registerData.name"
           />
         </div>
         <div class="mb-4">
@@ -30,6 +54,7 @@ export default {
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
             placeholder="Email"
+            v-model="registerData.email"
           />
         </div>
         <div class="mb-4">
@@ -38,16 +63,10 @@ export default {
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
             placeholder="Password"
+            v-model="registerData.password"
           />
         </div>
-        <div class="mb-4">
-          <input
-            type="password"
-            class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            required
-            placeholder="Konfirmasi Password"
-          />
-        </div>
+
         <div class="flex justify-between">
           <nuxt-link to="/auth/login" class="text-blue-700"
             >Sudah punya akun ?</nuxt-link

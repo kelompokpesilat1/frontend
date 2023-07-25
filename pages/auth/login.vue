@@ -1,5 +1,5 @@
 <script>
-import { userLogin } from '@/utils/dummyData'
+import Cookies from 'cookie-universal-nuxt'
 
 export default {
   layout: 'empty',
@@ -9,6 +9,7 @@ export default {
         email: '',
         password: '',
       },
+      user: {},
       messageErr: '',
     }
   },
@@ -21,23 +22,27 @@ export default {
       if (type === 'password') this.inputValue.password = event.target.value
     },
 
-    handleLogin() {
-      //TODO: change
-      const dummyAccount = userLogin
-      if (this.inputValue.email !== dummyAccount.email) {
-        this.messageErr = 'Email yang anda masukan salah'
-      } else if (this.inputValue.password !== dummyAccount.password) {
-        this.messageErr = 'Password yang anda masukan salah'
-      } else if (
-        this.inputValue.password !== dummyAccount.password &&
-        this.inputValue.email !== dummyAccount.email
-      ) {
-        this.messageErr = 'Account tidak terdaftar'
-      } else {
-        //TODO: Change when have real data for API
-        localStorage.setItem('isLogin', 'true')
-        localStorage.setItem('dataAccount', JSON.stringify(dummyAccount))
-        window.location.assign('/dashboard')
+    async handleLogin() {
+      try {
+        const response = await this.$axios.post('/auth/login', {
+          email: this.inputValue.email,
+          password: this.inputValue.password,
+        })
+
+        // Simpan accestoken ke dalam cookies dengan waktu kadaluarsa (expiry) selama 7 hari
+        this.$cookies.set('accestoken', response.data.token, {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 7, // 7 hari dalam detik
+        })
+
+        // Simpan data user ke dalam state Vuex `user`
+        this.$store.commit('setUser', response.data.user)
+
+        // Redirect ke halaman dashboard setelah login berhasil
+        this.$router.push('/dashboard')
+      } catch (error) {
+        // Tangani kesalahan login
+        this.messageErr = 'Email atau password salah.'
       }
     },
 
@@ -60,7 +65,7 @@ export default {
       </div>
       <h2 class="text-[32px] font-bold mb-4">Masuk dulu gais</h2>
       <h3 v-if="messageErr !== ''">{{ messageErr }}</h3>
-      <form @submit.prevent="">
+      <form @submit.prevent="handleLogin">
         <div class="mb-4">
           <input
             type="email"
@@ -88,11 +93,7 @@ export default {
           <nuxt-link to="/auth/register" class="text-blue-700"
             >Belum punya akun ?</nuxt-link
           >
-          <button
-            type="submit"
-            class="text-black font-bold px-4 py-2 rounded"
-            @click="handleLogin"
-          >
+          <button type="submit" class="text-black font-bold px-4 py-2 rounded">
             Masuk
           </button>
         </div>

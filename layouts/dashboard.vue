@@ -1,3 +1,9 @@
+<script>
+export default {
+  middleware: 'guest',
+}
+</script>
+
 <template>
   <div>
     <div class="flex">

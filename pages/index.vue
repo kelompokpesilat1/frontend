@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       artikelData: dummyArtikel,
+      users: null,
     }
   },
   computed: {
@@ -41,6 +42,12 @@ export default {
 
       return artikelTerbaru
     },
+  },
+  async fetch() {
+    await this.$axios.get('/users').then((res) => (this.users = res.data.data))
+  },
+  mounted() {
+    console.log(this.users)
   },
 }
 </script>
