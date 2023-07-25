@@ -4,7 +4,7 @@ import CartsLine from '@/components/Carts/Line.vue'
 
 export default {
   layout: 'dashboard-remake',
-  middleware: 'auth',
+
   components: {
     CartsLine,
   },
