@@ -12,7 +12,6 @@ export default {
         labels: [],
         datasets: [
           {
-            label: 'Visualization',
             data: [],
             backgroundColor: ['red'],
             borderColor: 'red',
