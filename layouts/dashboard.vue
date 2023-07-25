@@ -1,7 +1,5 @@
 <script>
-export default {
-  middleware: 'guest',
-}
+export default {}
 </script>
 
 <template>

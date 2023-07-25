@@ -1,6 +1,5 @@
 // store/index.js
 export const state = () => ({
-  user: null,
   title: 'cms-artikel',
   description: '',
 })
