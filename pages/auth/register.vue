@@ -13,10 +13,7 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await this.$axios.post(
-          '/auth/register',
-          this.registerData
-        )
+        const response = await this.$axios.post('/register', this.registerData)
 
         console.log(response)
       } catch (error) {

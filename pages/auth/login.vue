@@ -1,6 +1,4 @@
 <script>
-import Cookies from 'cookie-universal-nuxt'
-
 export default {
   layout: 'empty',
   data() {
@@ -22,29 +20,7 @@ export default {
       if (type === 'password') this.inputValue.password = event.target.value
     },
 
-    async handleLogin() {
-      try {
-        const response = await this.$axios.post('/auth/login', {
-          email: this.inputValue.email,
-          password: this.inputValue.password,
-        })
-
-        // Simpan accestoken ke dalam cookies dengan waktu kadaluarsa (expiry) selama 7 hari
-        this.$cookies.set('accestoken', response.data.token, {
-          path: '/',
-          maxAge: 60 * 60 * 24 * 7, // 7 hari dalam detik
-        })
-
-        // Simpan data user ke dalam state Vuex `user`
-        this.$store.commit('setUser', response.data.user)
-
-        // Redirect ke halaman dashboard setelah login berhasil
-        this.$router.push('/dashboard')
-      } catch (error) {
-        // Tangani kesalahan login
-        this.messageErr = 'Email atau password salah.'
-      }
-    },
+    async handleLogin() {},
 
     handleFocus() {
       if (this.messageErr !== '') this.messageErr = ''
