@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-<template>
-  <div class="flex">
-    <Sidebar  />
-=======
 <script>
 import Topbar from '@/components/Topbar.vue'
->>>>>>> 9a197e6c497f7b11a08d57ab0b36cb70e537986d
 
 export default {
   components: {

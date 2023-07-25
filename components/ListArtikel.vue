@@ -21,7 +21,7 @@ export default {
                 kategori: ""
             },
             kategoriOptions: [],
-            showModal: false, 
+            showForm: false, 
         };
     },
     computed: {
@@ -53,6 +53,7 @@ export default {
       this.artikelEdit = {}
       this.inputValue = { title: '', kategori: '', author: '', date: '' }
       this.isCreate = true
+      this.showForm = true;
 
       // this.artikelData.push({
       //   id: this.artikelData.length + 1,
@@ -62,6 +63,7 @@ export default {
       //   date: new Date().toISOString().slice(0, 10),
       // })
     },
+    
     handleEdit(data, index) {
       this.artikelEdit = { data, index }
       this.isEdit = true
@@ -71,10 +73,13 @@ export default {
         author: data.author,
         date: data.date,
       }
+      this.showForm = true;
     },
     handleClose() {
       this.isEdit = false
       this.isCreate = false
+      this.showForm = false; // Hide the form when closing
+
     },
     handleInputChange(event, type) {
       // A lógica para lidar com a alteração do valor do input vai aqui.
@@ -162,8 +167,9 @@ export default {
           add_circle
 </span></button>
       </div>
-      <div v-if="isEdit || isCreate">
+      <div v-if="showForm || isEdit || isCreate">
         <UpdateArtikel
+        :showForm="showForm"
           :artikelEdit="artikelEdit"
           :handleInputChange="handleInputChange"
           :inputValue="inputValue"
@@ -195,7 +201,7 @@ export default {
                 scope="row"
                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900"
               >
-                {{ index + 1 }}
+                {{ (currentPage - 1) * itemsPerPage + index + 1 }}
               </th>
               <td class="px-6 py-4">
                 {{ sliceString(item.title, 10) }}

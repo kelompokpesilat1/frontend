@@ -4,7 +4,7 @@
       <li v-if="increment">
         <button
           @click="changePage(currentPage - 1)"
-          class="px-3 py-1 mx-1 text-primary bg-red-500 rounded hover:bg-primary hover:text-slate-300"
+          class="px-3 py-1 mx-1 text-primary bg-white rounded hover:bg-primary hover:text-slate-300"
         >
           Previous
         </button>
@@ -13,7 +13,7 @@
         <button
           @click="changePage(page)"
           :class="{
-            'text-black bg-gray-200': currentPage === page,
+            'text-white bg-red-500': currentPage === page,
             'text-primary bg-white': currentPage !== page,
           }"
           class="px-3 py-1 mx-1 rounded hover:bg-red-500 hover:text-white"
