@@ -1,11 +1,15 @@
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
       showMenu: false,
       categories: ['olahraga', 'teknologi', 'edukasi', 'hiburan', 'gaya hidup'],
-      auth: true,
     }
+  },
+  computed: {
+    ...mapState(['user']),
   },
   methods: {
     toggleMenu() {
@@ -34,7 +38,7 @@ export default {
       </div>
 
       <!-- Tombol Login/Register Tampilan Desktop -->
-      <div v-if="!auth" class="hidden md:flex space-x-4">
+      <div v-if="!user.auth" class="hidden md:flex space-x-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>
@@ -42,7 +46,7 @@ export default {
           <Button label="Register" variant="primary" text="white" />
         </nuxt-link>
       </div>
-      <div v-if="auth" class="hidden md:flex space-x-4">
+      <div v-if="user.auth" class="hidden md:flex space-x-4">
         <nuxt-link to="/dashboard-remake">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
@@ -66,7 +70,7 @@ export default {
         >
       </div>
 
-      <div v-if="!auth" class="flex flex-col space-y-4 p-4">
+      <div v-if="!user.auth" class="flex flex-col space-y-4 p-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>
@@ -74,7 +78,7 @@ export default {
           <Button label="Register" variant="primary" text="white" />
         </nuxt-link>
       </div>
-      <div v-else="auth" class="flex flex-col space-y-4 p-4">
+      <div v-else="user.auth" class="flex flex-col space-y-4 p-4">
         <nuxt-link to="/dashboard-remake">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
