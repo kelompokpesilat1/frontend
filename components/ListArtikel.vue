@@ -48,6 +48,11 @@ export default {
   methods: {
     onSubmit() {
       this.isCreate = !this.isCreate
+      this.isEdit = !this.isEdit
+    },
+
+    onEdit() {
+      this.isEdit = !this.isEdit
     },
     changePage(page) {
       this.currentPage = page
@@ -184,8 +189,14 @@ export default {
   <div class="min-h-screen mt-5">
     <div class="mx-10 px-2 py-2">
       <div class="flex justify-between items-center">
-        <h1 class="text-xl font-bold flex items-center">List Artikel</h1>
+        <h1
+          v-if="!isCreate && !isEdit"
+          class="text-xl font-bold flex items-center"
+        >
+          List Artikel
+        </h1>
         <button
+          v-if="!isCreate && !isEdit"
           @click="isCreate = !isCreate"
           class="bg-red-700 text-white p-2 text-sm flex items-center gap-2 rounded-lg"
         >
@@ -197,6 +208,11 @@ export default {
       </div>
       <div v-if="isCreate">
         <NewArticle @onSubmit="onSubmit" />
+      </div>
+      <div v-else-if="isEdit">
+        <div>
+          <NewArticle :data="artikelEdit.data" @onEdit="onEdit" editMode />
+        </div>
       </div>
       <div v-else class="overflow-hidden shadow-md sm:rounded-lg">
         <table
@@ -244,7 +260,7 @@ export default {
                 {{ item.date }}
               </td>
               <td class="px-6 py-4">
-                <button @click="handleEdit(item, index)">
+                <button @click="isEdit = !isEdit">
                   <span class="material-icons">edit </span>
                 </button>
                 <button @click="handleRemove(item.id)">
