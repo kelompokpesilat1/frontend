@@ -9,11 +9,15 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user']),
+    ...mapState(['auth']),
   },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu
+    },
+    logout() {
+      console.log('logout')
+      this.$auth.logout()
     },
   },
 }
@@ -37,7 +41,7 @@ export default {
       </div>
 
       <!-- Tombol Login/Register Tampilan Desktop -->
-      <div class="hidden md:flex space-x-4">
+      <div v-if="!$store.state.auth.loggedIn" class="hidden md:flex space-x-4">
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>
@@ -45,10 +49,13 @@ export default {
           <Button label="Register" variant="primary" text="white" />
         </nuxt-link>
       </div>
-      <div class="hidden md:flex space-x-4">
+      <div v-if="$store.state.auth.loggedIn" class="hidden md:flex space-x-4">
         <nuxt-link to="/dashboard">
           <Button label="Dashboard" icon="dashboard" text="blue-500" />
         </nuxt-link>
+        <div @click="logout">
+          <Button label="Logout" icon="logout" text="red-500" />
+        </div>
       </div>
 
       <!-- Tombol Menu Hamburger untuk Tampilan Mobile -->
@@ -69,18 +76,28 @@ export default {
         >
       </div>
 
-      <div class="flex flex-col space-y-4 p-4">
-        <nuxt-link to="/dashboard">
-          <Button label="Dashboard" icon="dashboard" text="blue-500" />
-        </nuxt-link>
-      </div>
-      <div class="flex flex-col space-y-4 p-4">
+      <div
+        v-if="!$store.state.auth.loggedIn"
+        class="flex flex-col space-y-4 p-4"
+      >
         <nuxt-link to="/auth/login">
           <Button label="Login" variant="save" />
         </nuxt-link>
         <nuxt-link to="/auth/register">
           <Button label="Register" variant="primary" text="white" />
         </nuxt-link>
+      </div>
+
+      <div
+        v-if="$store.state.auth.loggedIn"
+        class="flex flex-col space-y-4 p-4"
+      >
+        <nuxt-link to="/dashboard">
+          <Button label="Dashboard" icon="dashboard" text="blue-500" />
+        </nuxt-link>
+        <div @click="logout">
+          <Button label="Logout" icon="logout" text="red-500" />
+        </div>
       </div>
     </div>
   </nav>

@@ -43,6 +43,11 @@ export default {
       return artikelTerbaru
     },
   },
+  mounted() {
+    const auth = this.$store.state.auth.loggedIn
+
+    if (auth) console.log('login')
+  },
 }
 </script>
 
