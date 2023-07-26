@@ -1,25 +1,20 @@
 <script>
 import { dummyArtikel } from '@/utils/dummyData'
-import { state } from '@/store/index.js'
+import { mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
-  head: {
-    title: state.title,
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: state.description,
-      },
-    ],
-  },
   data() {
     return {
       artikelData: dummyArtikel,
-      users: null,
     }
   },
+  method: {
+    ...mapActions(['setUser']),
+  },
   computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser', 'getUserRole']),
+    ...mapState(['userData']),
+
     artikelPenting() {
       return this.artikelData.filter((artikel) => artikel.penting).slice(0, 8)
     },
@@ -43,10 +38,27 @@ export default {
       return artikelTerbaru
     },
   },
-  mounted() {
-    const auth = this.$store.state.auth.loggedIn
+  async asyncData({ $axios, $auth, store }) {
+    const token = $auth.strategy.token.get()
+    if (token) {
+      try {
+        // Ambil token dari Nuxt Auth
 
-    if (auth) console.log('login')
+        // Lakukan permintaan dengan token sebagai header
+        const response = await $axios.$get('/userByAuth', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // Tambahan headers lainnya...
+          },
+        })
+
+        console.log(response.data)
+        store.dispatch('setUser', response.data)
+      } catch (error) {
+        console.error('Error fetching user data:', error)
+        return { userData: null }
+      }
+    }
   },
 }
 </script>

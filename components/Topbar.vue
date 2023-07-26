@@ -1,7 +1,9 @@
 <template>
   <nav class="bg-white border p-4 sticky w-full top-0 z-3">
     <div class="flex items-center justify-between">
-      <a href="/" class="text-red-600 text-2xl font-bold">RagamArtikel</a>
+      <nuxt-link to="/" class="text-red-600 text-2xl font-bold"
+        >RagamArtikel</nuxt-link
+      >
 
       <div class="flex gap-3">
         <div class="hidden md:flex space-x-4">

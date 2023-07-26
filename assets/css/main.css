@@ -1,10 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
+
 * {
   outline: solid red 1px;
-} */
+}
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -26,4 +26,28 @@ h3 {
 }
 .cart-bar {
   height: 250px;
+}
+
+.btn {
+  @apply p-2 rounded-md border font-medium text-white  hover:opacity-80 flex items-center justify-center gap-3;
+}
+
+.btn-info {
+  @apply bg-blue-600;
+}
+
+.btn-danger {
+  @apply bg-red-600;
+}
+
+.btn-warning {
+  @apply bg-yellow-500;
+}
+
+.btn-light {
+  @apply bg-white text-black;
+}
+
+.btn-dark {
+  @apply bg-slate-800;
 }
