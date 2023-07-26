@@ -19,7 +19,14 @@ export const getters = {
   isAuthenticated(state) {
     return state.auth.loggedIn
   },
-  loggedInUser(state) {
-    return state.auth.user
+  getUserRole(state) {
+    switch (state.userData.id_roles) {
+      case 1:
+        return 'admin'
+      case 2:
+        return 'author'
+      default:
+        return 'user'
+    }
   },
 }

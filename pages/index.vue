@@ -1,6 +1,6 @@
 <script>
 import { dummyArtikel } from '@/utils/dummyData'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
   data() {
@@ -12,7 +12,8 @@ export default {
     ...mapActions(['setUser']),
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    ...mapGetters(['isAuthenticated', 'loggedInUser', 'getUserRole']),
+    ...mapState(['userData']),
 
     artikelPenting() {
       return this.artikelData.filter((artikel) => artikel.penting).slice(0, 8)
@@ -38,23 +39,25 @@ export default {
     },
   },
   async asyncData({ $axios, $auth, store }) {
-    try {
-      // Ambil token dari Nuxt Auth
-      const token = $auth.strategy.token.get()
+    const token = $auth.strategy.token.get()
+    if (token) {
+      try {
+        // Ambil token dari Nuxt Auth
 
-      // Lakukan permintaan dengan token sebagai header
-      const response = await $axios.$get('/userByAuth', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          // Tambahan headers lainnya...
-        },
-      })
+        // Lakukan permintaan dengan token sebagai header
+        const response = await $axios.$get('/userByAuth', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // Tambahan headers lainnya...
+          },
+        })
 
-      console.log(response.data)
-      store.dispatch('setUser', response.data)
-    } catch (error) {
-      console.error('Error fetching user data:', error)
-      return { userData: null }
+        console.log(response.data)
+        store.dispatch('setUser', response.data)
+      } catch (error) {
+        console.error('Error fetching user data:', error)
+        return { userData: null }
+      }
     }
   },
 }

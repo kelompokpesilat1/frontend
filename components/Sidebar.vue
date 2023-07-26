@@ -1,4 +1,6 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
@@ -28,6 +30,12 @@ export default {
       }
     },
   },
+  computed: {
+    ...mapGetters(['getUserRole']),
+  },
+  mounted() {
+    console.log(this.getUserRole)
+  },
 }
 </script>
 <template>
@@ -41,7 +49,7 @@ export default {
       </div>
 
       <nav class="mt-5">
-        <ul>
+        <ul v-if="getUserRole == 'admin'">
           <li>
             <nuxt-link
               class="flex items-center gap-3 p-4 rounded-lg"
@@ -71,6 +79,23 @@ export default {
               to="/dashboard/user-management"
               ><span class="material-icons"> manage_accounts </span> User
               Management</nuxt-link
+            >
+          </li>
+        </ul>
+        <ul v-if="getUserRole == 'author'">
+          <li>
+            <nuxt-link
+              class="flex items-center gap-3 p-4 rounded-lg"
+              to="/dashboard"
+              ><span class="material-icons"> analytics </span>
+              Analytics</nuxt-link
+            >
+          </li>
+          <li>
+            <nuxt-link
+              class="flex items-center gap-3 p-4 rounded-lg"
+              to="/dashboard/article"
+              ><span class="material-icons"> article </span> Artikel</nuxt-link
             >
           </li>
         </ul>

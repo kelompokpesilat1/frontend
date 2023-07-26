@@ -5,16 +5,13 @@ export default {
   computed: {
     ...mapState(['userData']),
   },
-  mounted() {
-    console.log(this.userData)
-  },
 }
 </script>
 
 <template>
   <div class="flex items-center gap-4">
     <!-- Avatar Bulat -->
-    <h1 class="font-semibold">{{ userData?.name }}</h1>
+    <h1 class="font-semibold">{{ userData.name }}</h1>
     <div
       class="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden"
     >
