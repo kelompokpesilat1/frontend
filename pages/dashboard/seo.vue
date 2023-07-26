@@ -6,7 +6,6 @@ export default {
 
 <template>
   <div>
-    <NewArticle />
-    <!-- <GoodTable/> -->
+    <SEO />
   </div>
 </template>
