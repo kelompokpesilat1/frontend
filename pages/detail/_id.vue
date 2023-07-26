@@ -1,16 +1,15 @@
 <script>
-import { dummyArtikel } from '@/utils/dummyData'
-
 export default {
   data() {
     return {
       id: this.$route.params.id,
+      article: null,
     }
   },
-  computed: {
-    artikel() {
-      return dummyArtikel.find((value) => value.id === this.id)
-    },
+  async fetch() {
+    await this.$axios
+      .get('/articles/' + this.id)
+      .then((res) => (this.article = res.data.data))
   },
 }
 </script>
@@ -26,64 +25,25 @@ export default {
     >
       <div>
         <p class="uppercase font-semibold text-red-600">
-          {{ artikel.kategori }}
+          {{ article?.category }}
         </p>
-        <h1 class="text-4xl font-bold mb-4 mt-2">{{ artikel.title }}</h1>
+        <h1 class="text-4xl font-bold mb-4 mt-2">{{ article?.title }}</h1>
         <div>
-          <h3 class="font-semibold">{{ artikel.author }}</h3>
-          <p>{{ artikel.date }}</p>
+          <h3 class="font-semibold">{{ article?.author }}</h3>
+          <p>{{ article?.createdAt }}</p>
         </div>
       </div>
 
       <img
-        :src="artikel.cover"
+        :src="article?.cover"
         alt="Deskripsi Gambar"
         class="w-full object-cover shadow-md"
       />
 
-      <div class="flex flex-col gap-6">
-        <p class="text-lg text-gray-700 leading-[32px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
-          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
-          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
-          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
-          est eget odio convallis fermentum. Integer lacinia lacus nec leo
-          feugiat, quis hendrerit quam finibus.
-        </p>
-        <p class="text-lg text-gray-700 leading-[32px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
-          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
-          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
-          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
-          est eget odio convallis fermentum. Integer lacinia lacus nec leo
-          feugiat, quis hendrerit quam finibus.
-        </p>
-        <p class="text-lg text-gray-700 leading-[32px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
-          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
-          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
-          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
-          est eget odio convallis fermentum. Integer lacinia lacus nec leo
-          feugiat, quis hendrerit quam finibus.
-        </p>
-
-        <p class="text-lg text-gray-700 leading-[32px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
-          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
-          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
-          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
-          est eget odio convallis fermentum. Integer lacinia lacus nec leo
-          feugiat, quis hendrerit quam finibus.
-        </p>
-        <p class="text-lg text-gray-700 leading-[32px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod
-          sem vel tristique tristique. Integer nec volutpat elit, at dignissim
-          nulla. Sed sed magna eget sapien dapibus tempus at vel nulla. Quisque
-          cursus odio elit, id tincidunt nulla tempor sit amet. Vestibulum eget
-          est eget odio convallis fermentum. Integer lacinia lacus nec leo
-          feugiat, quis hendrerit quam finibus.
-        </p>
-      </div>
+      <div
+        class="flex flex-col gap-6 prose text-lg text-gray-700 leading-[32px]"
+        v-html="article?.content"
+      ></div>
 
       <form class="mt-20">
         <textarea
@@ -99,16 +59,9 @@ export default {
 
       <div class="my-2">
         <div class="flex items-center mb-2">
-          <!-- <div class="h-8 w-8 rounded-full overflow-hidden">
-          <img
-            :src="comment.userAvatar"
-            alt="User Avatar"
-            class="object-cover h-full w-full"
-          />
-        </div> -->
           <div>
             <p class="font-semibold">Zulfikar Muhamad</p>
-            <p class="text-gray-500 text-sm">{{ artikel.date }}</p>
+            <p class="text-gray-500 text-sm">{{ article?.date }}</p>
           </div>
         </div>
         <p class="text-gray-700">

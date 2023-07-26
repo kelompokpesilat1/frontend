@@ -1,3 +1,14 @@
+<script>
+export default {
+  methods: {
+    handleLogout() {
+      this.$auth.logout()
+      redirect('/')
+    },
+  },
+}
+</script>
+
 <template>
   <nav class="bg-white border p-4 sticky w-full top-0 z-3">
     <div class="flex items-center justify-between">
@@ -10,11 +21,9 @@
           <Avatar />
         </div>
 
-        <div
-          class="bg-white shadow-md rounded-lg p-2 text-black cursor-pointer"
-        >
-          Logout
-        </div>
+        <button class="btn btn-danger" @click="$auth.logout()">
+          <span class="material-icons-outlined"> logout </span>
+        </button>
       </div>
     </div>
   </nav>

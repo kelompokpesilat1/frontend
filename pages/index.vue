@@ -1,11 +1,10 @@
 <script>
-import { dummyArtikel } from '@/utils/dummyData'
 import { mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
   data() {
     return {
-      artikelData: dummyArtikel,
+      articles: [],
     }
   },
   method: {
@@ -38,27 +37,11 @@ export default {
       return artikelTerbaru
     },
   },
-  async asyncData({ $axios, $auth, store }) {
-    const token = $auth.strategy.token.get()
-    if (token) {
-      try {
-        // Ambil token dari Nuxt Auth
 
-        // Lakukan permintaan dengan token sebagai header
-        const response = await $axios.$get('/userByAuth', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            // Tambahan headers lainnya...
-          },
-        })
-
-        console.log(response.data)
-        store.dispatch('setUser', response.data)
-      } catch (error) {
-        console.error('Error fetching user data:', error)
-        return { userData: null }
-      }
-    }
+  async fetch() {
+    await this.$axios
+      .get('/articles')
+      .then((res) => (this.articles = res.data.data))
   },
 }
 </script>
@@ -71,7 +54,7 @@ export default {
       <h1 class="font-bold text-red-600 text-2xl mb-10">Informasi Penting</h1>
       <ArticleWrapperTwo>
         <ArticleCardTwo
-          v-for="article in artikelTerbaru"
+          v-for="article in articles"
           :article="article"
           :key="article.id"
         />
@@ -81,7 +64,7 @@ export default {
       <h1 class="font-bold text-red-600 text-2xl mb-10">Artikel Terbaru</h1>
       <ArticleWrapper>
         <ArticleCard
-          v-for="article in artikelTerbaru"
+          v-for="article in articles"
           :article="article"
           :key="article.id"
         />

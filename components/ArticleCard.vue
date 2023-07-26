@@ -1,13 +1,32 @@
 <script>
+import striptags from 'striptags'
+
 export default {
   props: ['article'],
 
   filters: {
-    truncateContent(content, maxLength) {
+    truncateContentTitle(content, maxLength) {
       if (content.length <= maxLength) {
         return content
       } else {
         return content.substring(0, maxLength) + '...'
+      }
+    },
+  },
+  data() {
+    return {
+      maxWords: 25,
+    }
+  },
+  computed: {
+    truncatedContent() {
+      const plainTextContent = striptags(this.article.content)
+      const words = plainTextContent.trim().split(' ')
+
+      if (words.length <= this.maxWords) {
+        return this.article.content
+      } else {
+        return words.slice(0, this.maxWords).join(' ') + '...'
       }
     },
   },
@@ -27,9 +46,9 @@ export default {
         {{ article.kategori }}
       </p>
       <h1 class="text-xl font-bold mb-4">
-        {{ article.title | truncateContent(60) }}
+        {{ article.title }}
       </h1>
-      <p>{{ article.content | truncateContent(120) }}</p>
+      <p v-html="truncatedContent"></p>
     </div>
 
     <div

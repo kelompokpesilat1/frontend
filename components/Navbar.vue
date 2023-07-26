@@ -25,7 +25,9 @@ export default {
   >
     <div class="w-full flex items-center justify-between">
       <!-- LOGO -->
-      <nuxt-link to="/" class="text-2xl font-bold text-red-600">RagamArtikel</nuxt-link>
+      <nuxt-link to="/" class="text-2xl font-bold text-red-600"
+        >RagamArtikel</nuxt-link
+      >
 
       <!-- Navbar Links Desktop -->
       <div class="hidden lg:flex items-center space-x-6">
@@ -63,7 +65,7 @@ export default {
       </div>
 
       <!-- Menu Icon -->
-      <button @click="toggleDropdown" class="btn btn-dark flex lg:hidden">
+      <button @click="toggleDropdown" class="btn btn-light flex lg:hidden">
         <span class="material-icons-outlined"> menu </span>
       </button>
     </div>
