@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div>
-    <NewArticle/>
-    <GoodTable/>
-</div>
+    <NewArticle />
+    <!-- <GoodTable/> -->
+  </div>
 </template>

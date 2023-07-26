@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -27,7 +27,9 @@ export default {
   <nav class="bg-white border p-4 sticky w-full top-0 z-10 shadow-sm">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="text-red-600 text-2xl font-bold">RagamArtikel</a>
+      <nuxt-link to="/" class="text-red-600 text-2xl font-bold"
+        >RagamArtikel</nuxt-link
+      >
 
       <!-- Menu Tampilan Desktop -->
       <div class="hidden md:flex space-x-8">
@@ -41,22 +43,7 @@ export default {
       </div>
 
       <!-- Tombol Login/Register Tampilan Desktop -->
-      <div v-if="!$store.state.auth.loggedIn" class="hidden md:flex space-x-4">
-        <nuxt-link to="/auth/login">
-          <Button label="Login" variant="save" />
-        </nuxt-link>
-        <nuxt-link to="/auth/register">
-          <Button label="Register" variant="primary" text="white" />
-        </nuxt-link>
-      </div>
-      <div v-if="$store.state.auth.loggedIn" class="hidden md:flex space-x-4">
-        <nuxt-link to="/dashboard">
-          <Button label="Dashboard" icon="dashboard" text="blue-500" />
-        </nuxt-link>
-        <div @click="logout">
-          <Button label="Logout" icon="logout" text="red-500" />
-        </div>
-      </div>
+      <NavbarMenuDesktop @onLogout="logout" />
 
       <!-- Tombol Menu Hamburger untuk Tampilan Mobile -->
       <div class="md:hidden flex items-center" @click="toggleMenu">
@@ -76,29 +63,7 @@ export default {
         >
       </div>
 
-      <div
-        v-if="!$store.state.auth.loggedIn"
-        class="flex flex-col space-y-4 p-4"
-      >
-        <nuxt-link to="/auth/login">
-          <Button label="Login" variant="save" />
-        </nuxt-link>
-        <nuxt-link to="/auth/register">
-          <Button label="Register" variant="primary" text="white" />
-        </nuxt-link>
-      </div>
-
-      <div
-        v-if="$store.state.auth.loggedIn"
-        class="flex flex-col space-y-4 p-4"
-      >
-        <nuxt-link to="/dashboard">
-          <Button label="Dashboard" icon="dashboard" text="blue-500" />
-        </nuxt-link>
-        <div @click="logout">
-          <Button label="Logout" icon="logout" text="red-500" />
-        </div>
-      </div>
+      <NavbarMenuMobile @onLogout="logout" />
     </div>
   </nav>
 </template>

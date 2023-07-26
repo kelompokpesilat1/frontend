@@ -1,28 +1,17 @@
 // store/index.js
 export const state = () => ({
-  title: 'cms-artikel',
-  description: '',
+  userData: null,
 })
 
 export const mutations = {
-  SET_USERS(state, payload) {
-    state.user = payload
-  },
-  SET_TITLE(state, title) {
-    state.title = title
-  },
-  SET_DESCRIPTION(state, description) {
-    state.description = description
+  SET_USER(state, user) {
+    state.userData = user
   },
 }
 
 export const actions = {
-  setTitle({ commit }, title) {
-    commit('SET_TITLE', title)
-  },
-  setDescription({ commit }, description) {
-    commit('SET_DESCRIPTION', description)
-    console.log(description)
+  setUser({ commit }, user) {
+    commit('SET_USER', user)
   },
 }
 

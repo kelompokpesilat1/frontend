@@ -1,4 +1,6 @@
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   layout: 'empty',
   data() {
@@ -13,8 +15,11 @@ export default {
   },
   computed: {
     //add this function.
+    ...mapState(['userData']),
   },
   methods: {
+    ...mapActions(['setUser']),
+
     handleInputChange(event, type) {
       if (type === 'email') this.inputValue.email = event.target.value
       if (type === 'password') this.inputValue.password = event.target.value
@@ -25,9 +30,8 @@ export default {
         const response = await this.$auth.loginWith('local', {
           data: this.inputValue,
         })
-        console.log(response)
-        console.log(this.$auth.user)
-        // this.$router.push('/')
+        // this.setUser(response.data.user)
+        // console.log(this.userData)
       } catch (e) {
         this.error = e.response.data.message
       }
