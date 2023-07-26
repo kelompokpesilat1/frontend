@@ -20,7 +20,18 @@ export default {
       if (type === 'password') this.inputValue.password = event.target.value
     },
 
-    async handleLogin() {},
+    async login() {
+      try {
+        const response = await this.$auth.loginWith('local', {
+          data: this.inputValue,
+        })
+        console.log(response)
+        console.log(this.$auth.user)
+        // this.$router.push('/')
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    },
 
     handleFocus() {
       if (this.messageErr !== '') this.messageErr = ''
@@ -41,7 +52,7 @@ export default {
       </div>
       <h2 class="text-[32px] font-bold mb-4">Masuk dulu gais</h2>
       <h3 v-if="messageErr !== ''">{{ messageErr }}</h3>
-      <form @submit.prevent="handleLogin">
+      <form @submit.prevent="login">
         <div class="mb-4">
           <input
             type="email"
