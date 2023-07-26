@@ -5,13 +5,15 @@ import {
   kategoriOptions,
 } from '@/utils/dummyData'
 import UpdateArtikel from './Modal/UpdateArtikel.vue'
+import axios from 'axios'
 
 export default {
   data() {
     return {
       currentPage: 1,
       itemsPerPage: 10, // Adjust this value as needed
-
+      // declare nama artikel bebas
+      articles: [],
       artikelData: dummyArtikel,
       headingColomn: headingArtikel,
       artikelEdit: {
@@ -31,6 +33,7 @@ export default {
       showForm: false,
     }
   },
+
   computed: {
     totalPages() {
       return Math.ceil(this.artikelData.length / this.itemsPerPage)
@@ -45,7 +48,20 @@ export default {
     },
     //add this function.
   },
+  mounted() {
+    this.fetchArticle()
+  },
   methods: {
+    async fetchArticle() {
+      try {
+        // Menggunakan Axios untuk mengambil data artikel dari backend
+        const response = await this.$axios.get('/articles')
+        this.articles = response.data.data
+        console.log(response.data.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
     onSubmit() {
       this.isCreate = !this.isCreate
       this.isEdit = !this.isEdit
@@ -83,6 +99,39 @@ export default {
       //   author: this. newArticle.author,
       //   date: new Date().toISOString().slice(0, 10),
       // })
+    },
+
+    async handleSave() {
+      // Lakukan validasi untuk memastikan semua input telah diisi
+      if (
+        this.inputValue.title.trim() === '' ||
+        this.inputValue.content.trim() === '' ||
+        this.inputValue.kategori.trim() === '' ||
+        this.inputValue.author.trim() === '' ||
+        this.inputValue.date.trim() === ''
+      ) {
+        alert('Semua field harus diisi')
+        return
+      }
+
+      // Kirim permintaan POST ke backend untuk menyimpan data artikel baru
+      try {
+        const response = await axios.post('/articles', this.inputValue)
+        // Jika penyimpanan berhasil, tambahkan data artikel baru ke daftar artikel yang ditampilkan
+        this.articles.push(response.data)
+        // Reset nilai input dan flag
+        this.inputValue = {
+          title: '',
+          content: '',
+          kategori: '',
+          author: '',
+          date: '',
+        }
+        this.isCreate = false
+        this.showForm = false
+      } catch (error) {
+        console.error(error)
+      }
     },
 
     handleEdit(data, index) {
@@ -234,7 +283,7 @@ export default {
           </thead>
           <tbody>
             <tr
-              v-for="(item, index) in displayedData"
+              v-for="(item, index) in articles"
               :key="index"
               class="bg-white border-b dark:bg-gray-100 dark:border-gray-100 transition duration-300 ease-in-out hover:bg-gray-300"
             >
@@ -251,13 +300,13 @@ export default {
                 {{ sliceString(item.content, 10) }}
               </td>
               <td class="px-6 py-4">
-                {{ item.kategori }}
+                {{ item.id_category }}
               </td>
               <td class="px-6 py-4">
                 {{ item.author }}
               </td>
               <td class="px-6 py-4">
-                {{ item.date }}
+                {{ item.createdAt }}
               </td>
               <td class="px-6 py-4">
                 <button @click="isEdit = !isEdit">
