@@ -29,6 +29,7 @@ export default {
   mounted() {
     this.fetchKategori()
     console.log(this.fetchKategori)
+    console.log(this.category)
   },
   methods: {
     async fetchKategori() {
@@ -238,7 +239,7 @@ export default {
           >
           <quill-editor v-model="content" id="content" />
         </div>
-        <div>
+        <!-- <div>
           <label for="penulis">
             <h1 class="text-sm font-semibold mb-2">Penulis</h1></label
           >
@@ -250,7 +251,7 @@ export default {
             v-model="penulis"
             required
           />
-        </div>
+        </div> -->
         <div>
           <label for="date">
             <h1 class="text-sm font-semibold mb-2">Published</h1></label
@@ -263,11 +264,8 @@ export default {
           />
         </div>
         <div>
-          <label
-            for="countries"
-            class="block mb-2 text-sm font-medium text-gray-900"
-            >Pilih Kategori</label
-          >
+          <h1 class="block text-sm font-semibold mb-2">Pilih Kategori</h1>
+
           <select
             id="kategori"
             class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -275,13 +273,19 @@ export default {
             required
           >
             <option
-              v-for="category in category"
-              :key="category.id"
-              :value="category.id"
+              v-for="kategoriValue in category"
+              class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              :key="kategoriValue.id"
+              :value="kategoriValue.id"
             >
-              {{ category.name }}
+              {{ kategoriValue.category }}
             </option>
           </select>
+        </div>
+        <div class="mb-2 flex content-center items-center">
+          <h1 for="checkbox" class="text-sm font-semibold">Artikel Penting</h1>
+
+          <input type="checkbox" class="text-sm font-semibold mx-3 h-5 w-5" />
         </div>
         <button
           @click="handleSave"
