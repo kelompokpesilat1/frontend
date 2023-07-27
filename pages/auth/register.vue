@@ -8,6 +8,7 @@ export default {
         email: '',
         password: '',
       },
+      messageErr: '',
     }
   },
   methods: {
@@ -17,9 +18,12 @@ export default {
 
         console.log(response)
       } catch (error) {
-        console.log(error)
+        this.messageErr = error.response.data.errors
       }
     },
+  },
+  handleFocus() {
+    if (this.messageErr !== '') this.messageErr = ''
   },
 }
 </script>
@@ -35,6 +39,9 @@ export default {
         </nuxt-link>
       </div>
       <h2 class="text-[32px] font-bold mb-4">Register</h2>
+      <h3 v-if="messageErr !== ''" class="text-red-500 mb-2">
+        {{ messageErr }}
+      </h3>
       <form @submit.prevent="register">
         <div class="mb-4">
           <input

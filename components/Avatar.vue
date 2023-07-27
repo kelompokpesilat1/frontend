@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex items-center gap-4">
+  <div class="flex items-center gap-4 w-full">
     <!-- Avatar Bulat -->
     <h1 class="font-semibold">{{ userData.name }}</h1>
     <div

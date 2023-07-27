@@ -63,7 +63,6 @@ export default {
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/aos', mode: 'client' },
     { src: '~/plugins/quill.js', ssr: false },
-    // '~/plugins/axios-interceptor.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

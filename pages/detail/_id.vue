@@ -7,7 +7,8 @@ export default {
       id: this.$route.params.id,
       article: null,
       inputComment: '',
-      comments: [],
+      categoryName: '',
+      comments: '',
     }
   },
   computed: {
@@ -15,8 +16,10 @@ export default {
   },
   async fetch() {
     await this.$axios.get('/articles/' + this.id).then((res) => {
-      this.article = res.data.category
-      this.comments = res.data.category.comments
+      this.article = res.data.article
+      this.categoryName = res.data.category
+      this.comments = res.data.comment
+      console.log(res.data)
     })
   },
   methods: {
@@ -37,26 +40,34 @@ export default {
             },
             commentar: this.inputComment,
           })
-          .then((res) => console.log(res))
-        this.comments.push(this.inputComment)
-        alert('Comment Berhasil Ditambahkan')
+          .then((res) => {
+            console.log(res)
+            this.comments.push(res.data.data)
+          })
       } catch (error) {
         console.log(error)
       }
 
       this.inputComment = ''
     },
-  },
-  mounted() {
-    console.log(this.article)
+    formatDate(dateString) {
+      if (!dateString) return ''
+      const date = new Date(dateString)
+      return date.toLocaleString('in-IN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      })
+    },
   },
 }
 </script>
 
 <template>
   <div>
-    <!-- <Navigation /> -->
-
     <div
       class="max-w-3xl mx-auto flex flex-col gap-10 my-10"
       data-aos="flip-right"
@@ -64,17 +75,17 @@ export default {
     >
       <div>
         <p class="uppercase font-semibold text-red-600">
-          {{ article?.category }}
+          {{ categoryName }}
         </p>
         <h1 class="text-4xl font-bold mb-4 mt-2">{{ article?.title }}</h1>
         <div>
           <h3 class="font-semibold">{{ article?.author }}</h3>
-          <p>{{ article?.createdAt }}</p>
+          <p>{{ formatDate(article?.createdAt) }}</p>
         </div>
       </div>
 
       <img
-        :src="article?.cover"
+        src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
         alt="Deskripsi Gambar"
         class="w-full object-cover shadow-md"
       />
@@ -97,11 +108,13 @@ export default {
         </div>
       </form>
 
-      <div v-for="comment in article?.comments" class="my-2">
+      <div v-for="comment in comments" class="my-2">
         <div class="flex items-center mb-2">
           <div>
-            <!-- <p class="font-semibold">Zulfikar Muhamad</p> -->
-            <p class="text-gray-500 text-sm">{{ comment?.createdAt }}</p>
+            <p class="font-semibold">{{ comment?.User.name }}</p>
+            <p class="text-gray-500 text-sm">
+              {{ formatDate(comment?.createdAt) }}
+            </p>
           </div>
         </div>
         <p class="text-gray-700">

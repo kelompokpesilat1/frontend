@@ -7,25 +7,53 @@ export default {
   data() {
     return {
       users: [],
-      currentUserEdit: {},
+      currentUserEditId: 1,
+      setRoles: 1,
+      modalEditOpen: false,
     }
   },
   computed: {
-    ...mapState(['categories']),
+    ...mapState(['userData']),
+    currentUserEdit() {
+      return this.users.find((user) => user.id === this.currentUserEditId)
+    },
+  },
+  methods: {
+    getRoleLabel(idRoles) {
+      // Membuat objek yang memetakan id_roles ke label yang sesuai
+      const roleMap = {
+        1: 'admin',
+        2: 'author',
+        3: 'user',
+      }
+
+      // Mengembalikan label berdasarkan nilai id_roles dari objek roleMap
+      return roleMap[idRoles] || 'Unknown Role'
+    },
+    async setUserRoles() {
+      try {
+        const token = this.$auth.strategy.token.get()
+        const response = await this.$axios.put(
+          '/user/editAdmin/' + this.currentUserEditId,
+          { id_roles: this.setRoles },
+          {
+            headers: {
+              Authorization: 'Bearer' + token,
+            },
+          }
+        )
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
   async fetch() {
     await this.$axios.get('/users').then((res) => (this.users = res.data.data))
   },
-  methods: {
-    async editUser(id) {
-      await this.$axios
-        .get('/user/' + id)
-        .then((res) => (this.currentUserEdit = res.data.user))
-    },
-  },
+
   mounted() {
     console.log(this.users)
-    console.log(this.categories)
   },
 }
 </script>
@@ -34,96 +62,87 @@ export default {
   <div>
     <div class="bg-white rounded-xl shadow-sm border p-4 m-3">
       <h1>User Management</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(user, index) in users" :key="user.id">
-            <td>{{ index + 1 }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.id_roles }}</td>
-            <td>
-              <button class="btn btn-info" @click="editUser(user.id)">
-                Edit</button
-              ><button class="btn btn-danger">
-                <span class="material-icons-outlined"> delete </span>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div
-        class="modal fixed min-h-screen my-10 inset-0 flex items-center justify-center bg-black bg-opacity-50"
-      >
-        <div class="modal-content bg-white p-9 w-[700px] rounded-md shadow-lg">
-          <div class="flex justify-end">
-            <nuxt-link to="/">
-              <span class="material-icons cursor-pointer">close</span>
-            </nuxt-link>
-          </div>
-          <h2 class="text-[32px] font-bold mb-4">Edit User</h2>
-          <!-- <h3 v-if="messageErr !== ''" class="text-red-500 mb-2">
-            {{ messageErr }}
-          </h3> -->
-          <div class="flex flex-col gap-4">
-            <div>
-              <label for="title">
-                <h1 class="text-sm font-semibold mb-2">Nama</h1></label
-              >
-              <input
-                type="text"
-                class="w-full border py-2 px-4 bg-white"
-                id="title"
-                placeholder="Tulis Judul..."
-                required
-              />
+      <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <thead class="border-b font-medium dark:border-neutral-500">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">No.</th>
+                    <th scope="col" class="px-6 py-4">Nama</th>
+                    <th scope="col" class="px-6 py-4">Email</th>
+                    <th scope="col" class="px-6 py-4">Role</th>
+                    <th scope="col" class="px-6 py-4">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(user, index) in users"
+                    :key="user.id"
+                    class="border-b dark:border-neutral-500"
+                  >
+                    <td class="whitespace-nowrap px-6 py-4 font-medium">
+                      {{ index + 1 }}
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">{{ user.name }}</td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                      {{ user.email }}
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                      {{ getRoleLabel(user.id_roles) }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-6 py-4 flex items-center gap-2"
+                    >
+                      <button
+                        class="btn btn-info"
+                        @click="modalEditOpen = !modalEditOpen"
+                      >
+                        Edit
+                      </button>
+                      <button class="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
-            <div>
-              <label for="penulis">
-                <h1 class="text-sm font-semibold mb-2">Email</h1></label
-              >
-              <input
-                type="text"
-                class="w-full border py-2 px-4 bg-white"
-                id="title"
-                placeholder="Andrea Hirata"
-                required
-              />
-            </div>
-            <div>
-              <label
-                for="countries"
-                class="block mb-2 text-sm font-medium text-gray-900"
-                >Pilih Kategori</label
-              >
-              <select
-                id="countries"
-                class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              >
-                <option v-for="category in categories" :value="category.id">
-                  {{ category.category }}
-                </option>
-              </select>
-            </div>
-            <button
-              class="py-2 px-4 border-2 w-full text-center bg-red-600 text-white"
-            >
-              Submit
-            </button>
           </div>
         </div>
       </div>
-    </div>
+      <div
+        v-show="modalEditOpen"
+        class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+      >
+        <div class="modal-content bg-white p-9 w-[700px] rounded-md shadow-lg">
+          <div class="flex items-center justify-between mb-10">
+            <h1 class="text-2xl font-bold">Edit Roles</h1>
+            <span
+              class="material-icons cursor-pointer"
+              @click="modalEditOpen = !modalEditOpen"
+              >close</span
+            >
+          </div>
 
-    <!-- <ListUser /> -->
+          <div class="flex items-center justify-between mb-5">
+            <h1 class="text-lg font-bold">{{ currentUserEdit?.name }}</h1>
+            <div class="flex items-center gap-3">
+              <select
+                id="kategori"
+                class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                v-model="setRoles"
+              >
+                <option value="1">Admin</option>
+                <option value="2">Author</option>
+                <option value="3">User</option>
+              </select>
+            </div>
+          </div>
+          <button @click="setUserRoles" class="btn btn-dark w-full">
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

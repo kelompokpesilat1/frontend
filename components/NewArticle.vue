@@ -31,9 +31,6 @@ export default {
 
 <template>
   <div>
-    <button @click="goBack">
-      <span class="material-icons"> arrow_back </span>
-    </button>
     <div class="max-w-2xl mx-auto my-2">
       <h1 class="font-bold text-red-600 text-xl mb-10">
         {{ editMode ? 'Edit Artikel' : 'Membuat Artikel' }}
