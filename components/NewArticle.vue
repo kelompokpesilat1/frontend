@@ -104,56 +104,7 @@ export default {
         }
       }
     },
-    // handleSave() {
-    //   if (this.isEdit) {
-    //     const { title, kategori, author, date } = this.inputValue
-    //     const newData = {
-    //       ...this.artikelEdit.data,
-    //       title: title === '' ? this.artikelEdit.data.title : title,
-    //       content: content === '' ? this.artikelEdit.data.content : content,
-    //       kategori: kategori === '' ? this.artikelEdit.data.kategori : kategori,
-    //       author: author === '' ? this.artikelEdit.author : author,
-    //       date: date === '' ? this.artikelEdit.date : date,
-    //     }
-    //     this.$set(this.artikelData, this.artikelEdit.index, newData)
-    //     this.inputValue = { title: '', kategori: '' }
-    //   } else if (this.isCreate) {
-    //     // Handle create mode
-    //     const { title, kategori, author, date } = this.inputValue
-    //     if (
-    //       title.trim() === '' ||
-    //       content.trim() === '' ||
-    //       kategori.trim() === '' ||
-    //       author.trim() === '' ||
-    //       date.trim() === ''
-    //     ) {
-    //       // Validation: Make sure title and kategori are not empty
-    //       alert('Title and kategori cannot be empty.')
-    //       return
-    //     }
 
-    //     // Create a new data object for the new article
-    //     const newArticle = {
-    //       id: this.artikelData.length + 1,
-    //       title,
-    //       content,
-    //       kategori,
-    //       author,
-    //       date,
-    //       // Add other properties for the new article
-    //     }
-
-    //     // Push the new data to the artikelData array
-    //     this.artikelData.push(newArticle)
-
-    //     // Reset the input values and flags
-    //     this.inputValue = { title: '', kategori: '', author: '', date: '' }
-    //     this.isCreate = false
-    //     this.isEdit = false
-    //   }
-    //   this.isEdit = false
-    //   this.isCreate = false
-    // },
     showData() {
       console.log(this.content)
     },
@@ -163,38 +114,6 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
-    // async handleSave() {
-    //   // Lakukan validasi untuk memastikan semua input telah diisi
-    //   if (
-    //     this.inputValue.title.trim() === '' ||
-    //     this.inputValue.content.trim() === '' ||
-    //     this.inputValue.kategori.trim() === '' ||
-    //     this.inputValue.author.trim() === '' ||
-    //     this.inputValue.date.trim() === ''
-    //   ) {
-    //     alert('Semua field harus diisi')
-    //     return
-    //   }
-
-    //   // Kirim permintaan POST ke backend untuk menyimpan data artikel baru
-    //   try {
-    //     const response = await axios.post('/articles', this.inputValue)
-    //     // Jika penyimpanan berhasil, tambahkan data artikel baru ke daftar artikel yang ditampilkan
-    //     this.articles.push(response.data)
-    //     // Reset nilai input dan flag
-    //     this.inputValue = {
-    //       title: '',
-    //       content: '',
-    //       kategori: '',
-    //       author: '',
-    //       date: '',
-    //     }
-    //     this.isCreate = false
-    //     this.showForm = false
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // },
   },
 }
 </script>
