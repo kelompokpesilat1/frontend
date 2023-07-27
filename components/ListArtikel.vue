@@ -175,59 +175,22 @@ export default {
       }
       this.inputValue.name = event.target.value
     },
-    handleSave() {
-      if (this.isEdit) {
-        const { title, kategori, author, date } = this.inputValue
-        const newData = {
-          ...this.artikelEdit.data,
-          title: title === '' ? this.artikelEdit.data.title : title,
-          content: content === '' ? this.artikelEdit.data.content : content,
-          kategori: kategori === '' ? this.artikelEdit.data.kategori : kategori,
-          author: author === '' ? this.artikelEdit.author : author,
-          date: date === '' ? this.artikelEdit.date : date,
-        }
-        this.$set(this.artikelData, this.artikelEdit.index, newData)
-        this.inputValue = { title: '', kategori: '' }
-      } else if (this.isCreate) {
-        // Handle create mode
-        const { title, kategori, author, date } = this.inputValue
-        if (
-          title.trim() === '' ||
-          content.trim() === '' ||
-          kategori.trim() === '' ||
-          author.trim() === '' ||
-          date.trim() === ''
-        ) {
-          // Validation: Make sure title and kategori are not empty
-          alert('Title and kategori cannot be empty.')
-          return
-        }
 
-        // Create a new data object for the new article
-        const newArticle = {
-          id: this.artikelData.length + 1,
-          title,
-          content,
-          kategori,
-          author,
-          date,
-          // Add other properties for the new article
-        }
-
-        // Push the new data to the artikelData array
-        this.artikelData.push(newArticle)
-
-        // Reset the input values and flags
-        this.inputValue = { title: '', kategori: '', author: '', date: '' }
-        this.isCreate = false
-        this.isEdit = false
-      }
-      this.isEdit = false
-      this.isCreate = false
-    },
     handleRemove(id) {
       this.artikelData = this.artikelData.filter((item) => item.id !== id)
     },
+  },
+
+  async handleRemove(id) {
+    try {
+      // Send a DELETE request to the backend to remove the article with the given ID
+      await axios.delete(`/articles/${id}`)
+
+      // Remove the article from the frontend by filtering the articles array
+      this.articles = this.articles.filter((article) => article.id !== id)
+    } catch (error) {
+      console.error(error)
+    }
   },
 
   components: { UpdateArtikel },

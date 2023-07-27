@@ -1,20 +1,73 @@
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       title: '',
       content: '',
+      desc: '', // Add desc data property
       penulis: '',
-      published: '',
+    }
+  },
+  head() {
+    return {
+      title: this.title, // Set the page title dynamically from the data property
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.desc, // Set the meta description dynamically from the data property
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.penulis, // Set the meta keywords dynamically from the data property
+        },
+        // Add other meta tags as needed
+      ],
     }
   },
   methods: {
+    async submitSEO() {
+      // Prepare the SEO data to be sent to the server
+      const seoData = {
+        title: this.title,
+        description: this.desc,
+        keywords: this.keywords,
+      }
+
+      try {
+        // Make an Axios POST request to send the SEO data to the server
+        const response = await axios.post('/article/:id/seo', seoData)
+        // Optionally, you can show a success message to the user
+        alert('SEO settings updated successfully!')
+        // Clear the form fields
+        this.title = ''
+        this.desc = ''
+        this.keywords = ''
+      } catch (error) {
+        // Handle any errors that occur during the request
+        console.error(error)
+        // Optionally, you can show an error message to the user
+        alert('An error occurred while updating SEO settings.')
+      }
+    },
+    async updateSEO() {
+      // ... Your existing updateSEO method ...
+    },
     showData() {
       console.log(this.content)
     },
     submit() {
-      this.$emit('onSubmit')
+      this.updateSEO() // Call the updateSEO method when the Submit SEO button is clicked
     },
+    async fetchSEOSettings() {
+      // ... Your existing fetchSEOSettings method ...
+    },
+  },
+  mounted() {
+    // Fetch the initial SEO settings when the component is mounted
+    this.fetchSEOSettings()
   },
 }
 </script>
@@ -77,7 +130,7 @@ export default {
       </div>
 
       <button
-        @click="submit"
+        @click="submitSEO"
         class="py-2 px-4 border-2 w-full text-center text-white bg-red-600"
       >
         Submit SEO

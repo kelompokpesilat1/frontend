@@ -11,8 +11,15 @@ export default {
   data() {
     return {
       category: [],
+      title: '',
+      cover: '',
+      content: '',
+      penulis: '',
+      published: '',
+
       inputValue: {
         title: '',
+        cover: '',
         content: '',
         penulis: '',
         published: '',
@@ -272,7 +279,7 @@ export default {
               :key="category.id"
               :value="category.id"
             >
-              {{ category.category }}
+              {{ category.name }}
             </option>
           </select>
         </div>
