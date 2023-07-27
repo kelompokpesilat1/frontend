@@ -29,6 +29,7 @@ export default {
         await this.$auth.loginWith('local', {
           data: this.inputValue,
         })
+        this.$router.push('/')
       } catch (e) {
         this.messageErr = e.response.data.errors
       }
@@ -57,6 +58,9 @@ export default {
       </h3>
       <form @submit.prevent="login">
         <div class="mb-4">
+          <label for="email">
+            <h1 class="text-sm font-semibold mb-2">Email</h1></label
+          >
           <input
             type="email"
             id="email"
@@ -69,6 +73,9 @@ export default {
           />
         </div>
         <div class="mb-4">
+          <label for="password">
+            <h1 class="text-sm font-semibold mb-2">Password</h1></label
+          >
           <input
             type="password"
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
@@ -79,12 +86,12 @@ export default {
             @focus="handleFocus"
           />
         </div>
-        <div class="flex justify-between">
+        <div class="flex items-center justify-between">
           <nuxt-link to="/auth/register" class="text-blue-700"
             >Belum punya akun ?</nuxt-link
           >
-          <button type="submit" class="text-black font-bold px-4 py-2 rounded">
-            Masuk
+          <button type="submit" class="btn btn-info">
+            Masuk<span class="material-icons"> login </span>
           </button>
         </div>
       </form>
