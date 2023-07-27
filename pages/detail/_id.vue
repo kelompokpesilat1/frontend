@@ -1,15 +1,54 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       id: this.$route.params.id,
       article: null,
+      inputComment: '',
+      comments: [],
     }
   },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
   async fetch() {
-    await this.$axios
-      .get('/articles/' + this.id)
-      .then((res) => (this.article = res.data.data))
+    await this.$axios.get('/articles/' + this.id).then((res) => {
+      this.article = res.data.category
+      this.comments = res.data.category.comments
+    })
+  },
+  methods: {
+    async postComment({ redirect }) {
+      if (!this.isAuthenticated) {
+        this.$router.push('/auth/login')
+        return
+      }
+
+      const token = this.$auth.strategy.token.get()
+
+      try {
+        await this.$axios
+          .post('/article/' + this.id + '/comment', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              // Add any other headers if needed...
+            },
+            commentar: this.inputComment,
+          })
+          .then((res) => console.log(res))
+        this.comments.push(this.inputComment)
+        alert('Comment Berhasil Ditambahkan')
+      } catch (error) {
+        console.log(error)
+      }
+
+      this.inputComment = ''
+    },
+  },
+  mounted() {
+    console.log(this.article)
   },
 }
 </script>
@@ -45,30 +84,28 @@ export default {
         v-html="article?.content"
       ></div>
 
-      <form class="mt-20">
+      <form class="mt-20" @submit.prevent="postComment">
         <textarea
           class="w-full py-4 px-2 border-b"
           placeholder="Tulis Komentar..."
+          v-model="inputComment"
         ></textarea>
         <div class="flex justify-end">
-          <button class="flex items-center gap-3">
+          <button class="btn btn-light">
             Kirim <span class="material-icons"> send </span>
           </button>
         </div>
       </form>
 
-      <div class="my-2">
+      <div v-for="comment in article?.comments" class="my-2">
         <div class="flex items-center mb-2">
           <div>
-            <p class="font-semibold">Zulfikar Muhamad</p>
-            <p class="text-gray-500 text-sm">{{ article?.date }}</p>
+            <!-- <p class="font-semibold">Zulfikar Muhamad</p> -->
+            <p class="text-gray-500 text-sm">{{ comment?.createdAt }}</p>
           </div>
         </div>
         <p class="text-gray-700">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum obcaecati
-          perspiciatis nihil vero beatae? Ea distinctio error facilis. Omnis
-          aspernatur deserunt, nesciunt at velit saepe rem. Laborum ipsum rem
-          facilis!
+          {{ comment?.commentar }}
         </p>
         <hr class="mt-4" />
       </div>

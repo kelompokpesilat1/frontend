@@ -1,6 +1,7 @@
 // store/index.js
 export const state = () => ({
   userData: null,
+  categories: [],
 })
 
 export const mutations = {
@@ -20,13 +21,16 @@ export const getters = {
     return state.auth.loggedIn
   },
   getUserRole(state) {
-    switch (state.userData.id_roles) {
-      case 1:
-        return 'admin'
-      case 2:
-        return 'author'
-      default:
-        return 'user'
+    if (state.userData) {
+      switch (state.userData.id_roles) {
+        case 1:
+          return 'admin'
+        case 2:
+          return 'author'
+        default:
+          return 'user'
+      }
     }
+    return 'anonymous'
   },
 }

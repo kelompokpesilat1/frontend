@@ -10,6 +10,9 @@ export default async function ({ $axios, $auth, store }) {
         },
       })
 
+      const categoriesData = await $axios.$get('/category')
+
+      console.log(categoriesData.data)
       console.log(response.data)
       store.dispatch('setUser', response.data)
     } catch (error) {
