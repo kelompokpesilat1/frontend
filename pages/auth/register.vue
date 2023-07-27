@@ -16,7 +16,7 @@ export default {
       try {
         const response = await this.$axios.post('/register', this.registerData)
 
-        console.log(response)
+        this.$router.push('/auth/login')
       } catch (error) {
         this.messageErr = error.response.data.errors
       }
@@ -38,13 +38,17 @@ export default {
           <span class="material-icons cursor-pointer">close</span>
         </nuxt-link>
       </div>
-      <h2 class="text-[32px] font-bold mb-4">Register</h2>
+      <h2 class="text-[32px] font-bold mb-4">Daftar dulu ya</h2>
       <h3 v-if="messageErr !== ''" class="text-red-500 mb-2">
         {{ messageErr }}
       </h3>
       <form @submit.prevent="register">
         <div class="mb-4">
+          <label for="name">
+            <h1 class="text-sm font-semibold mb-2">Username</h1></label
+          >
           <input
+            id="name"
             type="text"
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
@@ -53,8 +57,12 @@ export default {
           />
         </div>
         <div class="mb-4">
+          <label for="email">
+            <h1 class="text-sm font-semibold mb-2">Email</h1></label
+          >
           <input
             type="email"
+            id="email"
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
             placeholder="Email"
@@ -62,8 +70,12 @@ export default {
           />
         </div>
         <div class="mb-4">
+          <label for="password">
+            <h1 class="text-sm font-semibold mb-2">Password</h1></label
+          >
           <input
             type="password"
+            id="password"
             class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             required
             placeholder="Password"
@@ -76,8 +88,8 @@ export default {
             >Sudah punya akun ?</nuxt-link
           >
 
-          <button type="submit" class="text-black font-bold px-4 py-2 rounded">
-            Register
+          <button type="submit" class="btn btn-dark">
+            Daftar<span class="material-icons"> register </span>
           </button>
         </div>
       </form>

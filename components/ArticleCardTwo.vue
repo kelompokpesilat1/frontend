@@ -29,6 +29,9 @@ export default {
         return words.slice(0, this.maxWords).join(' ') + '...'
       }
     },
+    coverUrl() {
+      return 'http://localhost:8080/' + this.article.cover
+    },
   },
 }
 </script>
@@ -38,32 +41,36 @@ export default {
     class="bg-white shadow-lg overflow-hidden flex items-center h-72"
     data-aos="fade-right"
   >
-    <img
-      class="artikel-image max-w-lg h-full object-cover"
-      :src="article.cover"
-      alt="Article Cover"
-    />
+    <client-only
+      ><img
+        class="artikel-image max-w-lg h-full object-cover"
+        :src="coverUrl"
+        alt="Article Cover"
+      />
 
-    <div>
-      <div class="article-body p-8">
-        <p class="text-sm font-bold mb-1 uppercase text-red-600">
-          {{ article.kategori }}
-        </p>
-        <h1 class="text-xl font-bold mb-4">
-          {{ article.title }}
-        </h1>
-        <p v-html="truncatedContent"></p>
-      </div>
+      <div>
+        <div class="article-body p-8">
+          <p class="text-sm font-bold mb-1 uppercase text-red-600">
+            {{ article.kategori }}
+          </p>
+          <h1 class="text-xl font-bold mb-4">
+            {{ article.title }}
+          </h1>
+          <p v-html="truncatedContent"></p>
+        </div>
 
-      <div class="p-8 w-full hover:scale-105 hover:text-red-600 transition-all">
-        <nuxt-link
-          :to="`/detail/${article.id}`"
-          class="flex items-center justify-between font-medium"
+        <div
+          class="p-8 w-full hover:scale-105 hover:text-red-600 transition-all"
         >
-          Lihat selengkapnya
-          <span class="material-icons"> arrow_right_alt </span></nuxt-link
-        >
-      </div>
-    </div>
+          <nuxt-link
+            :to="`/detail/${article.id}`"
+            class="flex items-center justify-between font-medium"
+          >
+            Lihat selengkapnya
+            <span class="material-icons"> arrow_right_alt </span></nuxt-link
+          >
+        </div>
+      </div></client-only
+    >
   </div>
 </template>

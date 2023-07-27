@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       formNewArtikel: {
-        name: 'Admin ganteng',
+        name: this.$store.state.userData.name,
         category: 'hiburan',
         title: 'Tes aja coba yaaa',
         important: 0,
@@ -32,7 +32,6 @@ export default {
             Authorization: `Bearer ${token}`,
           },
         })
-        console.log(response)
       } catch (error) {
         this.messageErr = error.response.data.errors
       }

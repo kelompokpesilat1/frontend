@@ -5,8 +5,8 @@ export default function ({ store, redirect }) {
     return redirect('/')
   }
 
-  // if (store.state.userData.id_roles === 3) {
-  //   // Redirect ke halaman lain (misalnya halaman login)
-  //   return redirect('/')
-  // }
+  if (store.state.userData.id_roles === 3) {
+    // Redirect ke halaman lain (misalnya halaman login)
+    return redirect('/')
+  }
 }
