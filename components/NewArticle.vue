@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios'
 export default {
   props: {
     editMode: {
@@ -9,13 +10,150 @@ export default {
   },
   data() {
     return {
+      category: [],
       title: '',
+      cover: '',
       content: '',
       penulis: '',
       published: '',
+
+      inputValue: {
+        title: '',
+        cover: '',
+        content: '',
+        penulis: '',
+        published: '',
+      },
     }
   },
+  mounted() {
+    this.fetchKategori()
+    console.log(this.fetchKategori)
+    console.log(this.category)
+  },
   methods: {
+    async fetchKategori() {
+      try {
+        const response = await this.$axios.get('/category')
+        this.category = response.data.data
+        console.log(response.data.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async handleSave() {
+      // Lakukan validasi untuk memastikan semua input telah diisi
+      if (
+        this.inputValue.title.trim() === '' ||
+        this.inputValue.content.trim() === '' ||
+        this.inputValue.category.trim() === '' ||
+        this.inputValue.penulis.trim() === '' ||
+        this.inputValue.published.trim() === ''
+      ) {
+        alert('Semua field harus diisi')
+        return
+      }
+
+      if (this.editMode) {
+        // Handle edit mode
+        try {
+          const response = await axios.put(
+            `/articles/${this.inputValue.id}`,
+            this.inputValue
+          )
+
+          // Find the edited article in the list and update it
+          const editedArticleIndex = this.articles.findIndex(
+            (article) => article.id === response.data.id
+          )
+          if (editedArticleIndex !== -1) {
+            this.articles.splice(editedArticleIndex, 1, response.data)
+          }
+
+          // Reset nilai input dan flag
+          this.inputValue = {
+            title: '',
+            content: '',
+            category: '',
+            penulis: '',
+            published: '',
+          }
+          this.isEdit = false
+          this.showForm = false
+        } catch (error) {
+          console.error(error)
+        }
+      } else {
+        // Handle create mode
+        try {
+          const response = await this.$axios.post('/articles', this.inputValue)
+          // Jika penyimpanan berhasil, tambahkan data artikel baru ke daftar artikel yang ditampilkan
+          this.articles.push(response.data)
+          // Reset nilai input dan flag
+          this.inputValue = {
+            title: '',
+            content: '',
+            category: '',
+            penulis: '',
+            published: '',
+          }
+          this.isCreate = false
+          this.showForm = false
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    },
+    // handleSave() {
+    //   if (this.isEdit) {
+    //     const { title, kategori, author, date } = this.inputValue
+    //     const newData = {
+    //       ...this.artikelEdit.data,
+    //       title: title === '' ? this.artikelEdit.data.title : title,
+    //       content: content === '' ? this.artikelEdit.data.content : content,
+    //       kategori: kategori === '' ? this.artikelEdit.data.kategori : kategori,
+    //       author: author === '' ? this.artikelEdit.author : author,
+    //       date: date === '' ? this.artikelEdit.date : date,
+    //     }
+    //     this.$set(this.artikelData, this.artikelEdit.index, newData)
+    //     this.inputValue = { title: '', kategori: '' }
+    //   } else if (this.isCreate) {
+    //     // Handle create mode
+    //     const { title, kategori, author, date } = this.inputValue
+    //     if (
+    //       title.trim() === '' ||
+    //       content.trim() === '' ||
+    //       kategori.trim() === '' ||
+    //       author.trim() === '' ||
+    //       date.trim() === ''
+    //     ) {
+    //       // Validation: Make sure title and kategori are not empty
+    //       alert('Title and kategori cannot be empty.')
+    //       return
+    //     }
+
+    //     // Create a new data object for the new article
+    //     const newArticle = {
+    //       id: this.artikelData.length + 1,
+    //       title,
+    //       content,
+    //       kategori,
+    //       author,
+    //       date,
+    //       // Add other properties for the new article
+    //     }
+
+    //     // Push the new data to the artikelData array
+    //     this.artikelData.push(newArticle)
+
+    //     // Reset the input values and flags
+    //     this.inputValue = { title: '', kategori: '', author: '', date: '' }
+    //     this.isCreate = false
+    //     this.isEdit = false
+    //   }
+    //   this.isEdit = false
+    //   this.isCreate = false
+    // },
     showData() {
       console.log(this.content)
     },
@@ -25,6 +163,38 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
+    // async handleSave() {
+    //   // Lakukan validasi untuk memastikan semua input telah diisi
+    //   if (
+    //     this.inputValue.title.trim() === '' ||
+    //     this.inputValue.content.trim() === '' ||
+    //     this.inputValue.kategori.trim() === '' ||
+    //     this.inputValue.author.trim() === '' ||
+    //     this.inputValue.date.trim() === ''
+    //   ) {
+    //     alert('Semua field harus diisi')
+    //     return
+    //   }
+
+    //   // Kirim permintaan POST ke backend untuk menyimpan data artikel baru
+    //   try {
+    //     const response = await axios.post('/articles', this.inputValue)
+    //     // Jika penyimpanan berhasil, tambahkan data artikel baru ke daftar artikel yang ditampilkan
+    //     this.articles.push(response.data)
+    //     // Reset nilai input dan flag
+    //     this.inputValue = {
+    //       title: '',
+    //       content: '',
+    //       kategori: '',
+    //       author: '',
+    //       date: '',
+    //     }
+    //     this.isCreate = false
+    //     this.showForm = false
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // },
   },
 }
 </script>
@@ -57,6 +227,7 @@ export default {
             type="file"
             class="w-full border py-2 px-4 bg-white"
             id="cover"
+            v-on:change="cover"
           />
         </div>
         <div>
@@ -65,7 +236,7 @@ export default {
           >
           <quill-editor v-model="content" id="content" />
         </div>
-        <div>
+        <!-- <div>
           <label for="penulis">
             <h1 class="text-sm font-semibold mb-2">Penulis</h1></label
           >
@@ -77,7 +248,7 @@ export default {
             v-model="penulis"
             required
           />
-        </div>
+        </div> -->
         <div>
           <label for="date">
             <h1 class="text-sm font-semibold mb-2">Published</h1></label
@@ -90,24 +261,31 @@ export default {
           />
         </div>
         <div>
-          <label
-            for="countries"
-            class="block mb-2 text-sm font-medium text-gray-900"
-            >Pilih Kategori</label
-          >
+          <h1 class="block text-sm font-semibold mb-2">Pilih Kategori</h1>
+
           <select
-            id="countries"
+            id="kategori"
             class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            v-model="inputValue.category"
+            required
           >
-            <option selected>Pilih Kategori</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <option
+              v-for="kategoriValue in category"
+              class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              :key="kategoriValue.id"
+              :value="kategoriValue.id"
+            >
+              {{ kategoriValue.category }}
+            </option>
           </select>
         </div>
+        <div class="mb-2 flex content-center items-center">
+          <h1 for="checkbox" class="text-sm font-semibold">Artikel Penting</h1>
+
+          <input type="checkbox" class="text-sm font-semibold mx-3 h-5 w-5" />
+        </div>
         <button
-          @click="submit"
+          @click="handleSave"
           class="py-2 px-4 border-2 w-full text-center bg-red-600 text-white"
         >
           Submit
