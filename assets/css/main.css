@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* * {
   outline: solid red 1px;
-}
+} */
 
 body {
   font-family: 'Roboto', sans-serif;

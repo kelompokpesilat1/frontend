@@ -9,7 +9,6 @@ export default {
         email: '',
         password: '',
       },
-      user: {},
       messageErr: '',
     }
   },
@@ -27,13 +26,11 @@ export default {
 
     async login() {
       try {
-        const response = await this.$auth.loginWith('local', {
+        await this.$auth.loginWith('local', {
           data: this.inputValue,
         })
-        // this.setUser(response.data.user)
-        // console.log(this.userData)
       } catch (e) {
-        this.error = e.response.data.message
+        this.messageErr = e.response.data.errors
       }
     },
 
@@ -55,7 +52,9 @@ export default {
         </nuxt-link>
       </div>
       <h2 class="text-[32px] font-bold mb-4">Masuk dulu gais</h2>
-      <h3 v-if="messageErr !== ''">{{ messageErr }}</h3>
+      <h3 v-if="messageErr !== ''" class="text-red-500 mb-2">
+        {{ messageErr }}
+      </h3>
       <form @submit.prevent="login">
         <div class="mb-4">
           <input

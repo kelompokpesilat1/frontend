@@ -107,4 +107,7 @@ export default {
       },
     },
   },
+  router: {
+    middleware: 'fetchUserData',
+  },
 }
