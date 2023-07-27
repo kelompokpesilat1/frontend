@@ -1,7 +1,6 @@
 // store/index.js
 export const state = () => ({
-  userData: null,
-  categories: [],
+  userData: {},
 })
 
 export const mutations = {

@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       isDropdownOpen: false,
-      categories: ['olahraga', 'teknologi', 'edukasi', 'hiburan', 'gaya hidup'],
+      categories: [],
     }
   },
   methods: {
@@ -13,8 +13,17 @@ export default {
       this.isDropdownOpen = !this.isDropdownOpen
     },
   },
+  async fetch() {
+    await this.$axios
+      .get('/category')
+      .then((res) => (this.categories = res.data.category))
+  },
   computed: {
     ...mapGetters(['isAuthenticated', 'getUserRole']),
+  },
+  mounted() {
+    console.log('tess')
+    console.log(this.categories)
   },
 }
 </script>
@@ -34,15 +43,15 @@ export default {
         <nuxt-link
           v-for="category in categories"
           class="capitalize text-black hover:text-red-600 transition-all"
-          :key="category"
-          :to="`/kategori/${category}`"
-          >{{ category }}</nuxt-link
+          :key="category.id"
+          :to="`/kategori/${category.id}`"
+          >{{ category.name }}</nuxt-link
         >
       </div>
 
       <!-- Navbar Buttons Desktop -->
       <div class="hidden lg:flex">
-        <div v-if="!isAuthenticated" class="flex items-center space-x-4">
+        <div v-if="!isAuthenticated" class="flex items-center space-x-4 w-fit">
           <nuxt-link to="/auth/login">
             <button class="btn btn-info">Login</button>
           </nuxt-link>
@@ -51,7 +60,7 @@ export default {
           </nuxt-link>
         </div>
 
-        <div v-else class="flex items-center space-x-4">
+        <div v-else class="flex items-center space-x-4 w-fit">
           <Avatar v-if="getUserRole == 'user'" />
           <nuxt-link v-else to="/dashboard">
             <button class="btn btn-warning w-full">
@@ -81,9 +90,9 @@ export default {
           v-for="category in categories"
           @click="toggleDropdown"
           class="capitalize text-black hover:text-red-600 transition-all"
-          :key="category"
-          :to="`/kategori/${category}`"
-          >{{ category }}</nuxt-link
+          :key="category.id"
+          :to="`/kategori/${category.id}`"
+          >{{ category.name }}</nuxt-link
         >
       </div>
 
