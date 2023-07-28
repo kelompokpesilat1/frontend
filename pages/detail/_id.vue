@@ -19,7 +19,7 @@ export default {
       this.article = res.data.article
       this.categoryName = res.data.category
       this.comments = res.data.comment
-      console.log(res.data)
+      console.log(res.data.article)
       console.log(res.data.comment)
     })
   },
@@ -64,6 +64,11 @@ export default {
       })
     },
   },
+  computed: {
+    coverUrl() {
+      return 'http://localhost:8080/' + this.article?.cover
+    },
+  },
 }
 </script>
 
@@ -79,7 +84,9 @@ export default {
           <p class="uppercase font-semibold text-red-600">
             {{ categoryName }}
           </p>
-          <h1 class="text-4xl font-bold mb-4 mt-2">{{ article?.title }}</h1>
+          <h1 class="text-4xl font-bold mb-4 mt-2">
+            {{ article?.title }}
+          </h1>
           <div>
             <h3 class="font-semibold">{{ article?.author }}</h3>
             <p>{{ formatDate(article?.createdAt) }}</p>
@@ -87,7 +94,7 @@ export default {
         </div>
 
         <img
-          src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+          :src="coverUrl"
           alt="Deskripsi Gambar"
           class="w-full object-cover shadow-md"
         />
@@ -113,7 +120,9 @@ export default {
         <div v-for="comment in comments" class="my-2">
           <div class="flex items-center mb-2">
             <div>
-              <p class="font-semibold">{{ comment?.User?.name }}</p>
+              <p class="font-semibold">
+                {{ comment?.User?.name }}
+              </p>
               <p class="text-gray-500 text-sm">
                 {{ formatDate(comment?.createdAt) }}
               </p>
