@@ -1,5 +1,7 @@
 <script>
 import { mapGetters } from 'vuex'
+import { toast } from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 
 export default {
   data() {
@@ -12,12 +14,18 @@ export default {
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen
     },
+    handleLogout() {
+      this.$auth.logout()
+      this.$toast.success('Anda berhasil logout.')
+      this.$router.push('/')
+    },
   },
   async fetch() {
     await this.$axios
       .get('/category')
       .then((res) => (this.categories = res.data.category))
   },
+
   computed: {
     ...mapGetters(['isAuthenticated', 'getUserRole']),
   },
@@ -67,7 +75,7 @@ export default {
               Dashboard <span class="material-icons"> dashboard </span>
             </button>
           </nuxt-link>
-          <button class="btn btn-danger w-full" @click="$auth.logout()">
+          <button class="btn btn-danger w-full" @click="handleLogout">
             <span class="material-icons-outlined"> logout </span>
           </button>
         </div>
@@ -115,7 +123,7 @@ export default {
               Dashboard <span class="material-icons"> dashboard </span>
             </button>
           </nuxt-link>
-          <button class="btn btn-danger w-full" @click="$auth.logout()">
+          <button class="btn btn-danger w-full" @click="handleLogout">
             <span class="material-icons-outlined"> logout </span>
           </button>
         </div>

@@ -100,9 +100,9 @@ export default {
   mounted() {
     console.log(this.articles)
   },
-  mounted(){
+  mounted() {
     console.log(this.postArtikel)
-  }
+  },
 }
 </script>
 
@@ -222,7 +222,6 @@ export default {
       </div>
       <div class="h-[300px]">
         <label> <h1 class="text-sm font-semibold mb-2">Content</h1></label>
-        <quill-editor v-model="formNewArtikel.content" />
       </div>
 
       <button

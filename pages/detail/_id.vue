@@ -50,14 +50,15 @@ export default {
     formatDate(dateString) {
       if (!dateString) return ''
       const date = new Date(dateString)
-      return date.toLocaleString('in-IN', {
-        year: 'numeric',
-        month: 'long',
+      const options = {
+        weekday: 'long',
         day: 'numeric',
+        month: 'long',
+        year: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
-      })
+      }
+      return date.toLocaleString('id-ID', options)
     },
   },
   computed: {
@@ -113,7 +114,7 @@ export default {
           </div>
         </form>
 
-        <div v-for="comment in comments" class="my-2">
+        <div v-for="comment in comments" :key="comment.id" class="my-2">
           <div class="flex items-center mb-2">
             <div>
               <p class="font-semibold">

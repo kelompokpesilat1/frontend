@@ -63,6 +63,7 @@ export default {
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/aos', mode: 'client' },
     { src: '~/plugins/quill.js', ssr: false },
+    { src: '~/plugins/vue-toastification', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
