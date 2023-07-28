@@ -1,11 +1,10 @@
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   data() {
     return {
       isDropdownOpen: false,
-      categories: [],
     }
   },
   methods: {
@@ -13,12 +12,13 @@ export default {
       this.isDropdownOpen = !this.isDropdownOpen
     },
   },
-  async fetch() {
-    await this.$axios
-      .get('/category')
-      .then((res) => (this.categories = res.data.category))
-  },
+  // async fetch() {
+  //   await this.$axios
+  //     .get('/category')
+  //     .then((res) => (this.categories = res.data.category))
+  // },
   computed: {
+    ...mapState(['categories']),
     ...mapGetters(['isAuthenticated', 'getUserRole']),
   },
   mounted() {

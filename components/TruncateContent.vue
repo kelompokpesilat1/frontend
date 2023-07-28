@@ -15,9 +15,6 @@ export default {
       }
     },
   },
-  mounted() {
-    console.log(this.articleContent)
-  },
 }
 </script>
 

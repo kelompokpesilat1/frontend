@@ -1,17 +1,24 @@
 // store/index.js
 export const state = () => ({
   userData: {},
+  categories: [],
 })
 
 export const mutations = {
   SET_USER(state, user) {
     state.userData = user
   },
+  SET_CATEGORIES(state, categories) {
+    state.categories = categories
+  },
 }
 
 export const actions = {
   setUser({ commit }, user) {
     commit('SET_USER', user)
+  },
+  setCategories({ commit }, categories) {
+    commit('SET_CATEGORIES', categories)
   },
 }
 

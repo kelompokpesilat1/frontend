@@ -1,8 +1,8 @@
-export default async function ({ $axios, $auth, store }) {
+export default async function ({ $axios, store }) {
   try {
     const response = await $axios.$get('/category')
-    console.log(response.data.category)
-    // store.dispatch('et', response.data)
+    console.log(response.data)
+    store.dispatch('setCategories', response.data)
   } catch (error) {
     console.error('Error fetching category data:', error)
   }

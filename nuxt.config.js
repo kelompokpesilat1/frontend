@@ -107,6 +107,6 @@ export default {
     },
   },
   router: {
-    middleware: 'fetchUserData',
+    middleware: ['fetchUserData', 'fetchData'],
   },
 }
