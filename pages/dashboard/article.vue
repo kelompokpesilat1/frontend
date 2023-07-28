@@ -40,6 +40,9 @@ export default {
       this.formNewArtikel.cover = event.target.files[0]
     },
   },
+  mounted(){
+    console.log(this.postArtikel)
+  }
 }
 </script>
 
