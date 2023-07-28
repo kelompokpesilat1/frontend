@@ -11,6 +11,9 @@ export default {
         cover: null,
         content: '',
       },
+      articles: [],
+      pageCreate: true,
+      pageList: false,
     }
   },
 
@@ -27,7 +30,7 @@ export default {
       console.log(token)
       console.log(this.formNewArtikel)
       try {
-        const response = await this.$axios.post('/addArticle', formData, {
+        await this.$axios.post('/addArticle', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -39,13 +42,50 @@ export default {
     handleFileInputChange(event) {
       this.formNewArtikel.cover = event.target.files[0]
     },
+    handlePage(page) {
+      this.pageCreate = false
+      this.pageList = false
+
+      switch (page) {
+        case 'create':
+          this.pageCreate = true
+          break
+        case 'list':
+          this.pageList = true
+          break
+      }
+    },
+  },
+  async fetch() {
+    await this.$axios
+      .get('/articles')
+      .then((res) => (this.articles = res.data.data))
+  },
+  mounted() {
+    console.log(this.articles)
   },
 }
 </script>
 
 <template>
-  <div>
-    <div class="flex flex-col gap-4 max-w-2xl mx-auto my-2">
+  <div class="bg-white rounded-xl shadow-sm border m-3">
+    <div class="flex items-center border-b">
+      <div
+        class="p-4 cursor-pointer"
+        @click="handlePage('create')"
+        :class="{ 'bg-slate-50 text-red-600 font-semibold': pageCreate }"
+      >
+        Buat Artikel
+      </div>
+      <div
+        class="p-4 cursor-pointer"
+        @click="handlePage('list')"
+        :class="{ 'bg-slate-50 text-red-600 font-semibold': pageList }"
+      >
+        List Artikel
+      </div>
+    </div>
+    <div v-show="pageCreate" class="flex flex-col gap-4 max-w-2xl mx-auto my-2">
       <div>
         <label for="title">
           <h1 class="text-sm font-semibold mb-2">Judul Artikel</h1></label
@@ -100,6 +140,53 @@ export default {
         Submit
       </button>
     </div>
-    <!-- <ListArtikel /> -->
+    <div v-show="pageList">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead class="border-b font-medium dark:border-neutral-500">
+                <tr>
+                  <th scope="col" class="px-6 py-4">No.</th>
+                  <th scope="col" class="px-6 py-4">Judul</th>
+                  <th scope="col" class="px-6 py-4">Konten</th>
+                  <th scope="col" class="px-6 py-4">Kategori</th>
+                  <th scope="col" class="px-6 py-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(article, index) in articles"
+                  :key="article.id"
+                  class="border-b dark:border-neutral-500"
+                >
+                  <td class="whitespace-nowrap px-6 py-4 font-medium">
+                    {{ index + 1 }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4">
+                    {{ article.title }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4">
+                    <TruncateContent
+                      :articleContent="article.content"
+                      :maxWords="5"
+                    />
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4">
+                    {{ article.kategori }}
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-6 py-4 flex items-center gap-2"
+                  >
+                    <button class="btn btn-info">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

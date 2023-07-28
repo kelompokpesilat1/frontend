@@ -1,6 +1,4 @@
 <script>
-import striptags from 'striptags'
-
 export default {
   props: ['article'],
 
@@ -13,23 +11,8 @@ export default {
       }
     },
   },
-  data() {
-    return {
-      maxWords: 25,
-      cover: '',
-    }
-  },
-  computed: {
-    truncatedContent() {
-      const plainTextContent = striptags(this.article.content)
-      const words = plainTextContent.trim().split(' ')
 
-      if (words.length <= this.maxWords) {
-        return this.article.content
-      } else {
-        return words.slice(0, this.maxWords).join(' ') + '...'
-      }
-    },
+  computed: {
     coverUrl() {
       return 'http://localhost:8080/' + this.article.cover
     },
@@ -53,7 +36,7 @@ export default {
         <h1 class="text-xl font-bold mb-4">
           {{ article.title }}
         </h1>
-        <p v-html="truncatedContent"></p>
+        <TruncateContent :articleContent="article.content" :maxWords="20" />
       </div>
 
       <div
