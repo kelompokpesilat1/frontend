@@ -1,6 +1,4 @@
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   data() {
     return {
@@ -10,9 +8,6 @@ export default {
       categoryName: '',
       comments: '',
     }
-  },
-  computed: {
-    ...mapGetters(['isAuthenticated']),
   },
   async fetch() {
     await this.$axios.get('/articles/' + this.id).then((res) => {
@@ -25,9 +20,10 @@ export default {
   },
   methods: {
     async postComment() {
-      if (!this.isAuthenticated) {
+      const isAuth = this.$store.$auth.state.loggedIn
+
+      if (!isAuth) {
         this.$router.push('/auth/login')
-        return
       }
 
       const token = this.$auth.strategy.token.get()

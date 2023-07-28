@@ -13,13 +13,36 @@ export default {
         cover: null,
         content: '',
       },
+      formEditArtikel: {
+        name: this.$store.state.userData.name,
+        category: 'hiburan',
+        title: 'Tes aja coba yaaa',
+        important: 0,
+        cover: null,
+        content: '',
+      },
       articles: [],
-      pageCreate: true,
-      pageList: false,
+      currentArtikelId: 27,
+      isCreating: false,
+      isEdit: false,
+      showList: true,
     }
+  },
+  watch: {
+    isCreating(newValue) {
+      this.showList = !newValue && !this.isEdit
+    },
+    isEdit(newValue) {
+      this.showList = !newValue && !this.isCreating
+    },
   },
   computed: {
     ...mapState(['userData']),
+    articleToEdit() {
+      return this.articles.find(
+        (article) => article.id === this.currentArtikelId
+      )
+    },
   },
   methods: {
     async postArtikel() {
@@ -43,21 +66,28 @@ export default {
         this.messageErr = error.response.data.errors
       }
     },
+    async deleteArtikel(id) {
+      const token = this.$auth.strategy.token.get()
+
+      try {
+        await this.$axios.delete('/articles/delete/' + id, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        this.articles = this.articles.filter((article) => article.id !== id)
+      } catch (error) {
+        this.messageErr = error.response.data.errors
+      }
+    },
     handleFileInputChange(event) {
       this.formNewArtikel.cover = event.target.files[0]
     },
-    handlePage(page) {
-      this.pageCreate = false
-      this.pageList = false
-
-      switch (page) {
-        case 'create':
-          this.pageCreate = true
-          break
-        case 'list':
-          this.pageList = true
-          break
-      }
+    toggleCreate() {
+      this.isCreating = !this.isCreating
+    },
+    toggleEdit() {
+      this.isEdit = !this.isEdit
     },
   },
   async fetch() {
@@ -75,23 +105,14 @@ export default {
 
 <template>
   <div class="bg-white rounded-xl shadow-sm border m-3">
-    <div class="flex items-center border-b">
-      <div
-        class="p-4 cursor-pointer"
-        @click="handlePage('create')"
-        :class="{ 'bg-slate-50 text-red-600 font-semibold': pageCreate }"
-      >
+    <div class="flex items-center justify-end border-b p-4">
+      <button class="btn btn-success" @click="toggleCreate">
         Buat Artikel
-      </div>
-      <div
-        class="p-4 cursor-pointer"
-        @click="handlePage('list')"
-        :class="{ 'bg-slate-50 text-red-600 font-semibold': pageList }"
-      >
-        List Artikel
-      </div>
+        <span class="material-icons-outlined"> add_circle </span>
+      </button>
     </div>
-    <div v-show="pageCreate" class="flex flex-col gap-4 max-w-2xl mx-auto my-2">
+    <div v-show="isCreating" class="flex flex-col gap-4 max-w-2xl mx-auto my-2">
+      <h1 class="text-lg font-semibold">Menulis Artikel</h1>
       <div>
         <label for="title">
           <h1 class="text-sm font-semibold mb-2">Judul Artikel</h1></label
@@ -118,10 +139,67 @@ export default {
         />
       </div>
       <div>
+        <label
+          for="kategori"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Pilih Kategori</label
+        >
+        <select
+          id="kategori"
+          class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        >
+          <option selected>Pilih Kategori</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+        </select>
+      </div>
+      <div class="h-[300px]">
         <label> <h1 class="text-sm font-semibold mb-2">Content</h1></label>
-        <quill-editor v-model="formNewArtikel.content" />
+        <quill-editor v-model="formNewArtikel.content" class="h-2/3" />
       </div>
 
+      <button
+        @click="postArtikel"
+        class="py-2 px-4 border-2 w-full text-center bg-red-600 text-white"
+      >
+        Submit
+      </button>
+    </div>
+    <div v-show="isEdit" class="flex flex-col gap-4 max-w-2xl mx-auto my-2">
+      <div class="flex items-center justify-between">
+        <h1 class="text-lg font-semibold">Edit Artikel</h1>
+        <button class="btn btn-dark" @click="toggleEdit">
+          <span class="material-icons-outlined"> close </span>
+        </button>
+      </div>
+
+      <div>
+        <label for="title">
+          <h1 class="text-sm font-semibold mb-2">Judul Artikel</h1></label
+        >
+        <input
+          type="text"
+          class="w-full border py-2 px-4 bg-white"
+          id="title"
+          v-model="formNewArtikel.title"
+          placeholder="Tulis Judul..."
+          required
+        />
+      </div>
+      <div>
+        <label for="cover">
+          <h1 class="text-sm font-semibold mb-2">Cover Artikel</h1></label
+        >
+        <input
+          type="file"
+          class="w-full border py-2 px-4 bg-white"
+          id="cover"
+          name="cover"
+          @change="handleFileInputChange"
+        />
+      </div>
       <div>
         <label
           for="kategori"
@@ -139,6 +217,11 @@ export default {
           <option value="DE">Germany</option>
         </select>
       </div>
+      <div class="h-[300px]">
+        <label> <h1 class="text-sm font-semibold mb-2">Content</h1></label>
+        <quill-editor v-model="formNewArtikel.content" />
+      </div>
+
       <button
         @click="postArtikel"
         class="py-2 px-4 border-2 w-full text-center bg-red-600 text-white"
@@ -146,8 +229,8 @@ export default {
         Submit
       </button>
     </div>
-    <div v-show="pageList">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div>
+      <div v-show="showList" class="w-full min-h-screen overflow-y-scroll">
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
           <div class="overflow-hidden">
             <table class="min-w-full text-left text-sm font-light">
@@ -184,8 +267,15 @@ export default {
                   <td
                     class="whitespace-nowrap px-6 py-4 flex items-center gap-2"
                   >
-                    <button class="btn btn-info">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-info" @click="toggleEdit">
+                      Edit
+                    </button>
+                    <button
+                      class="btn btn-danger"
+                      @click="deleteArtikel(article.id)"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -194,5 +284,35 @@ export default {
         </div>
       </div>
     </div>
+    <!-- <div
+      class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div
+        class="modal-content bg-white py-6 px-4 max-w-lg rounded-md shadow-lg"
+      >
+        <div class="text-end">
+          <span
+            class="material-icons cursor-pointer"
+            @click="modalDeleteOpen = !modalDeleteOpen"
+            >close</span
+          >
+        </div>
+        <div class="flex items-center justify-between mb-10">
+          <h1 class="text-lg font-bold">
+            Apakah anda yakin ingin menghapus user?
+          </h1>
+        </div>
+
+        <div class="flex items-center gap-5 justify-between">
+          <button @click="deleteUser" class="btn btn-dark w-1/2">Hapus</button>
+          <button
+            @click="modalDeleteOpen = !modalDeleteOpen"
+            class="btn btn-danger w-1/2"
+          >
+            Batal
+          </button>
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
