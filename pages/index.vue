@@ -5,6 +5,15 @@ export default {
   data() {
     return {
       articles: [],
+      seoData: [],
+      title: 'Ragam Artikel',
+    }
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: this.seoData,
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.icon' }],
     }
   },
   method: {
@@ -39,9 +48,40 @@ export default {
   },
 
   async fetch() {
+    const token = this.$auth.strategy.token.get()
+    console.log('==>', token)
     await this.$axios
       .get('/articles')
       .then((res) => (this.articles = res.data.data))
+
+    if (token) {
+      await this.$axios
+        .get('/seo', {
+          headers: {
+            Authorization: 'Bearer' + token,
+          },
+        })
+        .then((res) => {
+          const data = res.data.data
+          const metaDataConverd = [
+            { charset: 'utf-8' },
+            {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1',
+            },
+          ]
+          for (let i = 0; i < data.length; i++) {
+            const formatData = {
+              hid: data[i].keywords,
+              name: data[i].title,
+              content: data[i].desc,
+            }
+            metaDataConverd.push(formatData)
+          }
+
+          this.seoData = metaDataConverd
+        })
+    }
   },
 }
 </script>
