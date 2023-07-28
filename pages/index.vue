@@ -2,79 +2,113 @@
 import { mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
-    data() {
-        return {
-            articles: [],
-        }
+  data() {
+    return {
+      articles: [],
+      seoData: [],
+      title: 'Ragam Artikel',
+    }
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: this.seoData,
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.icon' }],
+    }
+  },
+  method: {
+    ...mapActions(['setUser']),
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser', 'getUserRole']),
+    ...mapState(['userData']),
+
+    artikelPenting() {
+      return this.artikelData.filter((artikel) => artikel.penting).slice(0, 8)
     },
-    method: {
-        ...mapActions(['setUser']),
+    artikelTerbaru() {
+      const copiedData = this.artikelData.map((artikel) => ({
+        ...artikel,
+        date: new Date(artikel.date),
+      }))
+
+      // Lakukan sorting berdasarkan tanggal terbaru
+      const sortedData = copiedData.sort((a, b) => b.date - a.date)
+
+      const resultData = sortedData.map((artikel) => ({
+        ...artikel,
+        date: artikel.date.toLocaleDateString(),
+      }))
+
+      // Ambil 8 artikel terbaru
+      const artikelTerbaru = resultData.slice(0, 8)
+
+      return artikelTerbaru
     },
-    computed: {
-        ...mapGetters(['isAuthenticated', 'loggedInUser', 'getUserRole']),
-        ...mapState(['userData']),
+  },
 
-        artikelPenting() {
-            return this.artikelData
-                .filter((artikel) => artikel.penting)
-                .slice(0, 8)
-        },
-        artikelTerbaru() {
-            const copiedData = this.artikelData.map((artikel) => ({
-                ...artikel,
-                date: new Date(artikel.date),
-            }))
+  async fetch() {
+    const token = this.$auth.strategy.token.get()
+    console.log('==>', token)
+    await this.$axios
+      .get('/articles')
+      .then((res) => (this.articles = res.data.data))
 
-            // Lakukan sorting berdasarkan tanggal terbaru
-            const sortedData = copiedData.sort((a, b) => b.date - a.date)
+    if (token) {
+      await this.$axios
+        .get('/seo', {
+          headers: {
+            Authorization: 'Bearer' + token,
+          },
+        })
+        .then((res) => {
+          const data = res.data.data
+          const metaDataConverd = [
+            { charset: 'utf-8' },
+            {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1',
+            },
+          ]
+          for (let i = 0; i < data.length; i++) {
+            const formatData = {
+              hid: data[i].keywords,
+              name: data[i].title,
+              content: data[i].desc,
+            }
+            metaDataConverd.push(formatData)
+          }
 
-            const resultData = sortedData.map((artikel) => ({
-                ...artikel,
-                date: artikel.date.toLocaleDateString(),
-            }))
-
-            // Ambil 8 artikel terbaru
-            const artikelTerbaru = resultData.slice(0, 8)
-
-            return artikelTerbaru
-        },
-    },
-
-    async fetch() {
-        await this.$axios
-            .get('/articles')
-            .then((res) => (this.articles = res.data.data))
-    },
+          this.seoData = metaDataConverd
+        })
+    }
+  },
 }
 </script>
 
 <template>
-    <div class="flex flex-col gap-20 pb-10">
-        <HeroSection />
+  <div class="flex flex-col gap-20 pb-10">
+    <HeroSection />
 
-        <section class="px-8 md:px-16">
-            <h1 class="font-bold text-red-600 text-2xl mb-10">
-                Informasi Penting
-            </h1>
-            <ArticleWrapperTwo>
-                <ArticleCardTwo
-                    v-for="article in articles"
-                    :article="article"
-                    :key="article.id"
-                />
-            </ArticleWrapperTwo>
-        </section>
-        <section class="px-8 md:px-16">
-            <h1 class="font-bold text-red-600 text-2xl mb-10">
-                Artikel Terbaru
-            </h1>
-            <ArticleWrapper>
-                <ArticleCard
-                    v-for="article in articles"
-                    :article="article"
-                    :key="article.id"
-                />
-            </ArticleWrapper>
-        </section>
-    </div>
+    <section class="px-8 md:px-16">
+      <h1 class="font-bold text-red-600 text-2xl mb-10">Informasi Penting</h1>
+      <ArticleWrapperTwo>
+        <ArticleCardTwo
+          v-for="article in articles"
+          :article="article"
+          :key="article.id"
+        />
+      </ArticleWrapperTwo>
+    </section>
+    <section class="px-8 md:px-16">
+      <h1 class="font-bold text-red-600 text-2xl mb-10">Artikel Terbaru</h1>
+      <ArticleWrapper>
+        <ArticleCard
+          v-for="article in articles"
+          :article="article"
+          :key="article.id"
+        />
+      </ArticleWrapper>
+    </section>
+  </div>
 </template>

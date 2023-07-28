@@ -36,6 +36,10 @@ h3 {
   @apply bg-blue-600;
 }
 
+.btn-success {
+  @apply bg-green-500;
+}
+
 .btn-danger {
   @apply bg-red-600;
 }

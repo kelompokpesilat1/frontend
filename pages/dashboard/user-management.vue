@@ -208,19 +208,23 @@ export default {
         v-show="modalDeleteOpen"
         class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
       >
-        <div class="modal-content bg-white p-9 w-[700px] rounded-md shadow-lg">
-          <div class="flex items-center justify-between mb-10">
-            <h1 class="text-2xl font-bold">
-              Apakah anda yakin ingin menghapus user?
-            </h1>
+        <div
+          class="modal-content bg-white py-6 px-4 max-w-lg rounded-md shadow-lg"
+        >
+          <div class="text-end">
             <span
               class="material-icons cursor-pointer"
               @click="modalDeleteOpen = !modalDeleteOpen"
               >close</span
             >
           </div>
+          <div class="flex items-center justify-between mb-10">
+            <h1 class="text-lg font-bold">
+              Apakah anda yakin ingin menghapus user?
+            </h1>
+          </div>
 
-          <div class="flex items-center gap-10 justify-between mb-5">
+          <div class="flex items-center gap-5 justify-between">
             <button @click="deleteUser" class="btn btn-dark w-1/2">
               Hapus
             </button>

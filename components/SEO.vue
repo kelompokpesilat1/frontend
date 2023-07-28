@@ -1,5 +1,4 @@
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -7,12 +6,26 @@ export default {
       content: '',
       desc: '', // Add desc data property
       penulis: '',
+      urlImg: '',
     }
   },
   head() {
     return {
       title: this.title, // Set the page title dynamically from the data property
+      link: [
+        // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: 'http://localhost:8080/' + this.urlImg,
+        },
+      ],
       meta: [
+        { charset: 'utf-8' },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1',
+        },
         {
           hid: 'description',
           name: 'description',
@@ -28,23 +41,50 @@ export default {
     }
   },
   methods: {
+    // getImg(event) {
+    //   const file = event.target.files[0]
+    //   this.urlImg = file
+    //   // this.createBase64Image(file)
+    // },
+    // createBase64Image(fileObject) {
+    //   const render = new FileReader()
+
+    //   render.onload = (e) => {
+    //     this.urlImg = e.target.result
+    //   }
+    //   render.readAsBinaryString(fileObject)
+    // },
+    getImg(event) {
+      this.urlImg = event.target.files[0]
+    },
     async submitSEO() {
       // Prepare the SEO data to be sent to the server
-      const seoData = {
-        title: this.title,
-        description: this.desc,
-        keywords: this.keywords,
-      }
+      const formData = new FormData()
+      formData.append('logo', this.urlImg)
+      formData.append('title', this.title)
+      formData.append('desc', this.desc)
+      formData.append('keywords', this.penulis)
 
       try {
         // Make an Axios POST request to send the SEO data to the server
-        const response = await axios.post('/article/:id/seo', seoData)
+        const token = this.$auth.strategy.token.get()
+        const response = await this.$axios.put(`/updateseo/${1}`, formData, {
+          headers: {
+            Authorization: 'Bearer' + token,
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        console.log('-->', response)
         // Optionally, you can show a success message to the user
         alert('SEO settings updated successfully!')
         // Clear the form fields
         this.title = ''
         this.desc = ''
         this.keywords = ''
+        this.penulis = ''
+        this.urlImg = ''
+
+        location.reload()
       } catch (error) {
         // Handle any errors that occur during the request
         console.error(error)
@@ -52,16 +92,26 @@ export default {
         alert('An error occurred while updating SEO settings.')
       }
     },
-    async updateSEO() {
-      // ... Your existing updateSEO method ...
-    },
-    showData() {
-      console.log(this.content)
-    },
-    submit() {
-      this.updateSEO() // Call the updateSEO method when the Submit SEO button is clicked
-    },
+
     async fetchSEOSettings() {
+      const token = this.$auth.strategy.token.get()
+      console.log('-->', token)
+      await this.$axios
+        .get('/seo', {
+          headers: {
+            Authorization: 'Bearer' + token,
+          },
+        })
+        .then((res) => {
+          const data = res.data.data
+          this.title = data[0].title
+          this.desc = data[0].desc
+          this.penulis = data[0].keywords
+          this.content = data[0].keywords
+          this.urlImg = data[0].logo
+
+          console.log('-->', data[0].logo)
+        })
       // ... Your existing fetchSEOSettings method ...
     },
   },
@@ -112,6 +162,7 @@ export default {
           type="file"
           class="w-full border py-2 px-4 bg-white"
           id="cover"
+          @change="getImg"
         />
       </div>
 
@@ -135,11 +186,6 @@ export default {
       >
         Submit SEO
       </button>
-    </div>
-
-    <div class="mt-20">
-      <h1 class="text-4xl font-bold mb-4 mt-2">{{ title }}</h1>
-      <div v-html="content" class="text-lg text-gray-700 leading-[32px]"></div>
     </div>
   </div>
 </template>
