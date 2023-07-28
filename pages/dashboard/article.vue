@@ -39,6 +39,9 @@ export default {
       this.isModalVisible = !this.isModalVisible
     },
   },
+  mounted() {
+    console.log(this.postArtikel)
+  },
 }
 </script>
 

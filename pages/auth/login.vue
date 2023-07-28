@@ -26,12 +26,22 @@ export default {
 
     async login() {
       try {
+        // Show notification before login
+
+        // Delay for 2 seconds (2000 milliseconds)
+        // Perform login
         await this.$auth.loginWith('local', {
           data: this.inputValue,
         })
+
+        // Show success notification after successful login
+        this.$toast.success('Selamat, anda sukses login.')
+
+        // Redirect to homepage after login
         this.$router.push('/')
       } catch (e) {
         this.messageErr = e.response.data.errors
+        this.$toast.error(this.messageErr)
       }
     },
 
@@ -52,10 +62,7 @@ export default {
           <span class="material-icons cursor-pointer">close</span>
         </nuxt-link>
       </div>
-      <h2 class="text-[32px] font-bold mb-4">Masuk dulu gais</h2>
-      <h3 v-if="messageErr !== ''" class="text-red-500 mb-2">
-        {{ messageErr }}
-      </h3>
+      <h2 class="text-[32px] font-bold mb-4">Login</h2>
       <form @submit.prevent="login">
         <div class="mb-4">
           <label for="email">
@@ -87,8 +94,8 @@ export default {
           />
         </div>
         <div class="flex items-center justify-between">
-          <nuxt-link to="/auth/register" class="text-blue-700"
-            >Belum punya akun ?</nuxt-link
+          <nuxt-link to="/auth/register" class="text-blue-700 hover:underline"
+            >Belum punya akun ? Daftar disini</nuxt-link
           >
           <button type="submit" class="btn btn-info">
             Masuk<span class="material-icons"> login </span>

@@ -1,5 +1,11 @@
 <script>
+<<<<<<< HEAD
 import { mapGetters, mapState } from 'vuex'
+=======
+import { mapGetters } from 'vuex'
+import { toast } from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
+>>>>>>> 4a2606749dcc511d382eec115ce8ea540abfbeb7
 
 export default {
   data() {
@@ -11,12 +17,26 @@ export default {
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen
     },
+    handleLogout() {
+      this.$auth.logout()
+      this.$toast.success('Anda berhasil logout.')
+      this.$router.push('/')
+    },
   },
+<<<<<<< HEAD
   // async fetch() {
   //   await this.$axios
   //     .get('/category')
   //     .then((res) => (this.categories = res.data.category))
   // },
+=======
+  async fetch() {
+    await this.$axios
+      .get('/category')
+      .then((res) => (this.categories = res.data.category))
+  },
+
+>>>>>>> 4a2606749dcc511d382eec115ce8ea540abfbeb7
   computed: {
     ...mapState(['categories']),
     ...mapGetters(['isAuthenticated', 'getUserRole']),
@@ -67,7 +87,7 @@ export default {
               Dashboard <span class="material-icons"> dashboard </span>
             </button>
           </nuxt-link>
-          <button class="btn btn-danger w-full" @click="$auth.logout()">
+          <button class="btn btn-danger w-full" @click="handleLogout">
             <span class="material-icons-outlined"> logout </span>
           </button>
         </div>
@@ -115,7 +135,7 @@ export default {
               Dashboard <span class="material-icons"> dashboard </span>
             </button>
           </nuxt-link>
-          <button class="btn btn-danger w-full" @click="$auth.logout()">
+          <button class="btn btn-danger w-full" @click="handleLogout">
             <span class="material-icons-outlined"> logout </span>
           </button>
         </div>
