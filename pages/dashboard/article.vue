@@ -1,4 +1,6 @@
 <script>
+import { mapState } from 'vuex'
+
 export default {
   layout: 'dashboard',
   data() {
@@ -16,7 +18,9 @@ export default {
       pageList: false,
     }
   },
-
+  computed: {
+    ...mapState(['userData']),
+  },
   methods: {
     async postArtikel() {
       const token = this.$auth.strategy.token.get()
@@ -57,9 +61,11 @@ export default {
     },
   },
   async fetch() {
-    await this.$axios
-      .get('/articles')
-      .then((res) => (this.articles = res.data.data))
+    await this.$axios.get('/articles').then((res) => {
+      this.articles = res.data.data.filter(
+        (article) => article.author === this.userData.name
+      )
+    })
   },
   mounted() {
     console.log(this.articles)
@@ -153,7 +159,7 @@ export default {
                   <th scope="col" class="px-6 py-4">No.</th>
                   <th scope="col" class="px-6 py-4">Judul</th>
                   <th scope="col" class="px-6 py-4">Konten</th>
-                  <th scope="col" class="px-6 py-4">Kategori</th>
+                  <th scope="col" class="px-6 py-4">Penulis</th>
                   <th scope="col" class="px-6 py-4">Actions</th>
                 </tr>
               </thead>
@@ -176,7 +182,7 @@ export default {
                     />
                   </td>
                   <td class="whitespace-nowrap px-6 py-4">
-                    {{ article.kategori }}
+                    {{ article.author }}
                   </td>
                   <td
                     class="whitespace-nowrap px-6 py-4 flex items-center gap-2"
