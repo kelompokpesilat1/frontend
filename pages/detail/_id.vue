@@ -1,4 +1,6 @@
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
@@ -7,6 +9,7 @@ export default {
       inputComment: '',
       categoryName: '',
       comments: '',
+      commentIdToDelete: null,
     }
   },
   async fetch() {
@@ -30,18 +33,16 @@ export default {
       const token = this.$auth.strategy.token.get()
 
       try {
-        await this.$axios
-          .post('/article/' + this.id + '/comment', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              // Add any other headers if needed...
-            },
-            commentar: this.inputComment,
-          })
-          .then((res) => {
-            console.log(res.data)
-            this.comments.push(res.data.data)
-          })
+        await this.$axios.post('/article/' + this.id + '/comment', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // Add any other headers if needed...
+          },
+          commentar: this.inputComment,
+        })
+        await this.$axios.get('/articles/' + this.id).then((res) => {
+          this.comments = res.data.comment
+        })
         this.$toast.success('Berhasil Menambahkan komentar')
       } catch (error) {
         this.$toast.error('Gagal Menambahkan komentar')
@@ -50,22 +51,28 @@ export default {
 
       this.inputComment = ''
     },
-    formatDate(dateString) {
-      const options = {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        timeZoneName: 'short',
-      }
+    async deleteComment(id) {
+      const token = this.$auth.strategy.token.get()
 
-      const date = new Date(dateString)
-      return date.toLocaleString('id-ID', options)
+      try {
+        await this.$axios.delete('/article/comment/' + id, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // Add any other headers if needed...
+          },
+        })
+        await this.$axios.get('/articles/' + this.id).then((res) => {
+          this.comments = res.data.comment
+        })
+        this.$toast.success('Berhasil Menghapus komentar')
+      } catch (error) {
+        this.$toast.error('Gagal Menghapus komentar')
+        console.log(error.response)
+      }
     },
   },
   computed: {
+    ...mapState(['userData']),
     coverUrl() {
       return 'http://localhost:8080/' + this.article?.cover
     },
@@ -90,7 +97,7 @@ export default {
           </h1>
           <div>
             <h3 class="font-semibold">{{ article?.author }}</h3>
-            <p>{{ formatDate(article?.createdAt) }}</p>
+            <p>{{ $utils.formatDate(article?.createdAt) }}</p>
           </div>
         </div>
 
@@ -119,15 +126,22 @@ export default {
         </form>
 
         <div v-for="comment in comments" :key="comment.id" class="my-2">
-          <div class="flex items-center mb-2">
+          <div class="flex items-center justify-between mb-2">
             <div>
               <p class="font-semibold">
                 {{ comment?.User?.name }}
               </p>
               <p class="text-gray-500 text-sm">
-                {{ formatDate(comment?.createdAt) }}
+                {{ $utils.formatDate(comment?.createdAt) }}
               </p>
             </div>
+            <button
+              class="btn btn-danger"
+              v-if="comment.User.name === userData.name"
+              @click="deleteComment(comment.id)"
+            >
+              <span class="material-icons"> delete </span>
+            </button>
           </div>
           <p class="text-gray-700">
             {{ comment?.commentar }}

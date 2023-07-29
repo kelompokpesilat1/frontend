@@ -26,7 +26,11 @@ export default {
     artikelPenting() {
       return this.articles.filter((artikel) => artikel.important).slice(0, 3)
     },
-    artikelTerbaru() {},
+    artikelTerbaru() {
+      return this.articles.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      ) // Urutkan berdasarkan tanggal terbaru
+    },
   },
 
   async fetch() {
@@ -86,7 +90,7 @@ export default {
       <h1 class="font-bold text-red-600 text-2xl mb-10">Artikel Terbaru</h1>
       <ArticleWrapper>
         <ArticleCard
-          v-for="article in articles"
+          v-for="article in artikelTerbaru"
           :article="article"
           :key="article.id"
         />

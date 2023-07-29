@@ -34,9 +34,9 @@ export default {
 
       <div>
         <div class="article-body p-8">
-          <p class="text-sm font-bold mb-1 uppercase text-red-600">
-            {{ article.kategori }}
-          </p>
+          <!-- <p class="text-sm font-bold mb-1 uppercase text-red-600">
+            {{ article.Category.name }}
+          </p> -->
           <h1 class="text-xl font-bold mb-4">
             {{ article.title }}
           </h1>
