@@ -24,6 +24,7 @@ export default {
 
       if (!isAuth) {
         this.$router.push('/auth/login')
+        return this.$toast.info('Login terlebih dahulu!')
       }
 
       const token = this.$auth.strategy.token.get()
@@ -38,26 +39,29 @@ export default {
             commentar: this.inputComment,
           })
           .then((res) => {
-            console.log(res)
+            console.log(res.data)
             this.comments.push(res.data.data)
           })
+        this.$toast.success('Berhasil Menambahkan komentar')
       } catch (error) {
+        this.$toast.error('Gagal Menambahkan komentar')
         console.log(error)
       }
 
       this.inputComment = ''
     },
     formatDate(dateString) {
-      if (!dateString) return ''
-      const date = new Date(dateString)
       const options = {
         weekday: 'long',
         day: 'numeric',
-        month: 'long',
+        month: 'short',
         year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZoneName: 'short',
       }
+
+      const date = new Date(dateString)
       return date.toLocaleString('id-ID', options)
     },
   },

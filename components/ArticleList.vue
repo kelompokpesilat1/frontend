@@ -18,10 +18,17 @@ export default {
     },
     async deleteArticle() {
       try {
-        response = await this.$axios.delete(
-          '/articles/delete/' + this.articleIdToDelete
+        await this.$axios.delete('/articles/delete/' + this.articleIdToDelete)
+        this.$toast.success('Artikel berhasil dihapus')
+        // Setelah menghapus artikel, perbarui data this.articles dengan menghapus artikel dari array.
+        this.articles = this.articles.filter(
+          (article) => article.id !== this.articleIdToDelete
         )
+
+        // Setelah menghapus artikel, atur kembali nilai articleIdToDelete ke null.
+        this.articleIdToDelete = null
       } catch (error) {
+        this.$toast.error('Artikel gagal dihapus')
         console.error
       }
 

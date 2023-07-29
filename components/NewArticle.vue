@@ -29,13 +29,14 @@ export default {
       console.log(token)
       console.log(this.formNewArtikel)
       try {
-        await this.$axios.post('/addArticle', formData, {
+        await this.$axios.post('/articles', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
+        this.$toast.success('Artikel berhasil dibuat')
       } catch (error) {
-        this.messageErr = error.response.data.errors
+        this.$toast.error('Artikel gagal dibuat')
       }
     },
     handleFileInputChange(event) {

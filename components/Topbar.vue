@@ -3,7 +3,7 @@ export default {
   methods: {
     handleLogout() {
       this.$auth.logout()
-      redirect('/')
+      this.$toast.success('Anda berhasil logout.')
     },
   },
 }
@@ -21,7 +21,7 @@ export default {
           <Avatar />
         </div>
 
-        <button class="btn btn-danger" @click="$auth.logout()">
+        <button class="btn btn-danger" @click="handleLogout">
           <span class="material-icons-outlined"> logout </span>
         </button>
       </div>

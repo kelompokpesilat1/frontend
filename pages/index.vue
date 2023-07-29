@@ -24,27 +24,9 @@ export default {
     ...mapState(['userData']),
 
     artikelPenting() {
-      return this.artikelData.filter((artikel) => artikel.penting).slice(0, 8)
+      return this.articles.filter((artikel) => artikel.important).slice(0, 3)
     },
-    artikelTerbaru() {
-      const copiedData = this.artikelData.map((artikel) => ({
-        ...artikel,
-        date: new Date(artikel.date),
-      }))
-
-      // Lakukan sorting berdasarkan tanggal terbaru
-      const sortedData = copiedData.sort((a, b) => b.date - a.date)
-
-      const resultData = sortedData.map((artikel) => ({
-        ...artikel,
-        date: artikel.date.toLocaleDateString(),
-      }))
-
-      // Ambil 8 artikel terbaru
-      const artikelTerbaru = resultData.slice(0, 8)
-
-      return artikelTerbaru
-    },
+    artikelTerbaru() {},
   },
 
   async fetch() {
@@ -94,7 +76,7 @@ export default {
       <h1 class="font-bold text-red-600 text-2xl mb-10">Informasi Penting</h1>
       <ArticleWrapperTwo>
         <ArticleCardTwo
-          v-for="article in articles"
+          v-for="article in artikelPenting"
           :article="article"
           :key="article.id"
         />

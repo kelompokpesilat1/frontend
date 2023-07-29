@@ -26,10 +26,6 @@ export default {
 
     async login() {
       try {
-        // Show notification before login
-
-        // Delay for 2 seconds (2000 milliseconds)
-        // Perform login
         await this.$auth.loginWith('local', {
           data: this.inputValue,
         })

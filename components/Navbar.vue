@@ -1,11 +1,7 @@
 <script>
-<<<<<<< HEAD
 import { mapGetters, mapState } from 'vuex'
-=======
-import { mapGetters } from 'vuex'
-import { toast } from 'vue-toastification'
+
 import 'vue-toastification/dist/index.css'
->>>>>>> 4a2606749dcc511d382eec115ce8ea540abfbeb7
 
 export default {
   data() {
@@ -23,20 +19,7 @@ export default {
       this.$router.push('/')
     },
   },
-<<<<<<< HEAD
-  // async fetch() {
-  //   await this.$axios
-  //     .get('/category')
-  //     .then((res) => (this.categories = res.data.category))
-  // },
-=======
-  async fetch() {
-    await this.$axios
-      .get('/category')
-      .then((res) => (this.categories = res.data.category))
-  },
 
->>>>>>> 4a2606749dcc511d382eec115ce8ea540abfbeb7
   computed: {
     ...mapState(['categories']),
     ...mapGetters(['isAuthenticated', 'getUserRole']),

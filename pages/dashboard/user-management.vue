@@ -38,6 +38,7 @@ export default {
     openModalEdit(id) {
       this.modalEditOpen = !this.modalEditOpen
       this.currentUserEditId = id
+      this.setRoles = this.currentUserEdit.id_roles
     },
     openModalDelete(id) {
       this.modalDeleteOpen = !this.modalDeleteOpen
@@ -69,8 +70,10 @@ export default {
             id_roles: this.setRoles,
           })
         }
+        this.$toast.success('User berhasil diedit')
         console.log(response)
       } catch (error) {
+        this.$toast.success('User gagal diedit')
         console.log(error)
       }
     },
@@ -96,7 +99,9 @@ export default {
         if (userIndex !== -1) {
           this.users.splice(userIndex, 1)
         }
+        this.$toast.success('User berhasil dihapus')
       } catch (error) {
+        this.$toast.success('User gagal dihapus')
         console.log(error)
       }
     },
