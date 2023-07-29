@@ -5,10 +5,9 @@ export default {
   data() {
     return {
       formEditArtikel: {
-        category: 'olahraga',
+        category: '',
         title: '',
         important: 0,
-        cover: null,
         content: '',
       },
     }
@@ -20,7 +19,7 @@ export default {
     async postArtikel() {
       const token = this.$auth.strategy.token.get()
       const formData = new FormData()
-      formData.append('cover', this.formEditArtikel.cover)
+      formData.append('content', this.formEditArtikel.content)
       formData.append('category', this.formEditArtikel.category)
       formData.append('title', this.formEditArtikel.title)
       formData.append('important', this.formEditArtikel.important)
@@ -51,7 +50,7 @@ export default {
     this.formEditArtikel.title = response.data.article.title
     this.formEditArtikel.important = response.data.article.important
     this.formEditArtikel.content = response.data.article.content
-    this.formEditArtikel.cover = response.data.article.cover
+    this.formEditArtikel.category = response.data.category
   },
   mounted() {
     console.log(this.formEditArtikel)
@@ -91,7 +90,7 @@ export default {
           id="kategori"
           class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
-          <option v-for="category in categories" :value="category.name">
+          <option v-for="category in categories" v-bind:value="category.name">
             {{ category.name }}
           </option>
         </select>

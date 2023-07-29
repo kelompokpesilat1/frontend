@@ -117,6 +117,7 @@ export default {
             class="w-full py-4 px-2 border-b"
             placeholder="Tulis Komentar..."
             v-model="inputComment"
+            required
           ></textarea>
           <div class="flex justify-end">
             <button class="btn btn-light">

@@ -65,7 +65,7 @@ export default {
               <th scope="col" class="px-6 py-4">No.</th>
               <th scope="col" class="px-6 py-4">Judul</th>
               <th scope="col" class="px-6 py-4">Konten</th>
-              <th scope="col" class="px-6 py-4">Penulis</th>
+              <th scope="col" class="px-6 py-4">Kategori</th>
               <th scope="col" class="px-6 py-4">Actions</th>
             </tr>
           </thead>
@@ -88,7 +88,7 @@ export default {
                 />
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                {{ article.author }}
+                {{ article.Category.name }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 flex items-center gap-2">
                 <button
