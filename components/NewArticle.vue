@@ -26,14 +26,13 @@ export default {
       formData.append('title', this.formNewArtikel.title)
       formData.append('important', this.formNewArtikel.important)
       formData.append('content', this.formNewArtikel.content)
-      console.log(token)
-      console.log(this.formNewArtikel)
       try {
-        await this.$axios.post('/articles', formData, {
+        const response = await this.$axios.post('/articles', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
+        this.$emit('onPost')
         this.$toast.success('Artikel berhasil dibuat')
       } catch (error) {
         this.$toast.error('Artikel gagal dibuat')

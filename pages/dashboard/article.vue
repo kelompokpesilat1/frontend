@@ -5,6 +5,7 @@ export default {
   layout: 'dashboard',
   data() {
     return {
+      articles: [],
       isCreating: false,
       isEdit: false,
       showList: true,
@@ -33,14 +34,26 @@ export default {
     setEditId(value) {
       this.isEdit = true
       this.editArticleId = value
-      console.log(this.editArticleId)
     },
     toggleModal() {
       this.isModalVisible = !this.isModalVisible
     },
+    async refreshArticles() {
+      await this.$axios.get('/articles').then((res) => {
+        this.articles = res.data.data.filter(
+          (article) => article.author === this.userData.name
+        )
+      })
+      this.isEdit = false
+      this.isCreating = false
+    },
   },
-  mounted() {
-    console.log(this.postArtikel)
+  async fetch() {
+    await this.$axios.get('/articles').then((res) => {
+      this.articles = res.data.data.filter(
+        (article) => article.author === this.userData.name
+      )
+    })
   },
 }
 </script>
@@ -59,8 +72,17 @@ export default {
         <span class="material-icons-outlined"> close </span>
       </button>
     </div>
-    <NewArticle v-show="isCreating" />
-    <EditArticle v-if="isEdit" :articleId="editArticleId" />
-    <ArticleList v-show="showList" @onEdit="setEditId" />
+    <NewArticle v-show="isCreating" @onPost="refreshArticles" />
+    <EditArticle
+      v-if="isEdit"
+      @onPost="refreshArticles"
+      :articleId="editArticleId"
+    />
+    <ArticleList
+      v-show="showList"
+      @onDelete="refreshArticles"
+      @onEdit="setEditId"
+      :articles="articles"
+    />
   </div>
 </template>

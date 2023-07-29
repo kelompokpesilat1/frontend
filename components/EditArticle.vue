@@ -35,8 +35,10 @@ export default {
             },
           }
         )
-        console.log(response)
+        this.$emit('onPost')
+        this.$toast.success('Artikel berhasil di edit')
       } catch (error) {
+        this.$toast.error('Artikel gagal di edit')
         this.messageErr = error.response.data.errors
       }
     },

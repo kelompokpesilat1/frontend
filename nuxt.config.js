@@ -12,7 +12,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'preconnect',
         href: 'https://fonts.googleapis.com',
@@ -53,6 +53,19 @@ export default {
     ],
   },
 
+  async asyncData({ $axios }) {
+    try {
+      // Ambil data pengaturan SEO dari API atau layanan backend Anda
+      const response = await $axios.get('/seo')
+      const seoSettings = response.data
+
+      return { seoSettings }
+    } catch (error) {
+      console.error('Error fetching SEO settings:', error)
+      return { seoSettings: {} }
+    }
+  },
+
   target: 'static',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -60,6 +73,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/seo.js' },
     { src: '~/plugins/utils.js' },
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/aos', mode: 'client' },

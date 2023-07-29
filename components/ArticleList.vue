@@ -1,12 +1,12 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  props: ['articles'],
   computed: {
     ...mapState(['userData']),
   },
   data() {
     return {
-      articles: [],
       isModalVisible: false,
       articleIdToDelete: null,
     }
@@ -21,9 +21,7 @@ export default {
         await this.$axios.delete('/articles/delete/' + this.articleIdToDelete)
         this.$toast.success('Artikel berhasil dihapus')
         // Setelah menghapus artikel, perbarui data this.articles dengan menghapus artikel dari array.
-        this.articles = this.articles.filter(
-          (article) => article.id !== this.articleIdToDelete
-        )
+        this.$emit('onDelete')
 
         // Setelah menghapus artikel, atur kembali nilai articleIdToDelete ke null.
         this.articleIdToDelete = null
@@ -34,16 +32,6 @@ export default {
 
       this.isModalVisible = false
     },
-  },
-  async fetch() {
-    await this.$axios.get('/articles').then((res) => {
-      this.articles = res.data.data.filter(
-        (article) => article.author === this.userData.name
-      )
-    })
-  },
-  mounted() {
-    console.log(this.articles)
   },
 }
 </script>
