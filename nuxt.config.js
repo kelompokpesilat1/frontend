@@ -23,6 +23,16 @@ export default {
           href: 'http://localhost:8080/' + this.$store.state.seoData.logo,
         },
         {
+          rel: 'icon',
+          type: 'image/png',
+          href: 'http://localhost:8080/' + this.$store.state.seoData.logo,
+        },
+        {
+          rel: 'icon',
+          type: 'image/svg',
+          href: 'http://localhost:8080/' + this.$store.state.seoData.logo,
+        },
+        {
           rel: 'preconnect',
           href: 'https://fonts.googleapis.com',
         },
