@@ -71,10 +71,8 @@ export default {
           })
         }
         this.$toast.success('User berhasil diedit')
-        console.log(response)
       } catch (error) {
         this.$toast.success('User gagal diedit')
-        console.log(error)
       }
     },
     async deleteUser() {
@@ -102,7 +100,6 @@ export default {
         this.$toast.success('User berhasil dihapus')
       } catch (error) {
         this.$toast.success('User gagal dihapus')
-        console.log(error)
       }
     },
   },
@@ -111,11 +108,7 @@ export default {
       this.users = res.data.data
     })
   },
-  mounted() {
-    console.log(this.users)
-    console.log(this.userData.id)
-    console.log(this.currentUserEdit)
-  },
+  mounted() {},
 }
 </script>
 

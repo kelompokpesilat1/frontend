@@ -33,9 +33,7 @@ export default {
   computed: {
     ...mapGetters(['getUserRole']),
   },
-  mounted() {
-    console.log(this.getUserRole)
-  },
+  mounted() {},
 }
 </script>
 <template>

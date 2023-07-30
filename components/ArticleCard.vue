@@ -29,7 +29,7 @@ export default {
         alt="Article Cover"
       />
 
-      <div class="article-body p-8 h-[240px]">
+      <div class="article-body p-8 h-[200px]">
         <!-- <p class="text-sm font-bold mb-1 uppercase text-red-600">
           {{ article.Category.name }}
         </p> -->

@@ -9,51 +9,7 @@ export default {
       urlImg: '',
     }
   },
-  head() {
-    return {
-      title: this.title, // Set the page title dynamically from the data property
-      link: [
-        // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          href: 'http://localhost:8080/' + this.urlImg,
-        },
-      ],
-      meta: [
-        { charset: 'utf-8' },
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1',
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.desc, // Set the meta description dynamically from the data property
-        },
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: this.penulis, // Set the meta keywords dynamically from the data property
-        },
-        // Add other meta tags as needed
-      ],
-    }
-  },
   methods: {
-    // getImg(event) {
-    //   const file = event.target.files[0]
-    //   this.urlImg = file
-    //   // this.createBase64Image(file)
-    // },
-    // createBase64Image(fileObject) {
-    //   const render = new FileReader()
-
-    //   render.onload = (e) => {
-    //     this.urlImg = e.target.result
-    //   }
-    //   render.readAsBinaryString(fileObject)
-    // },
     getImg(event) {
       this.urlImg = event.target.files[0]
     },
@@ -65,16 +21,17 @@ export default {
       formData.append('desc', this.desc)
       formData.append('keywords', this.penulis)
 
+      console.log(formData)
       try {
         // Make an Axios POST request to send the SEO data to the server
         const token = this.$auth.strategy.token.get()
-        const response = await this.$axios.put(`/updateseo/${1}`, formData, {
+        await this.$axios.put(`/updateseo/${1}`, formData, {
           headers: {
             Authorization: 'Bearer' + token,
             'Content-Type': 'multipart/form-data',
           },
         })
-        console.log('-->', response)
+
         // Optionally, you can show a success message to the user
         alert('SEO settings updated successfully!')
         // Clear the form fields
@@ -86,38 +43,9 @@ export default {
 
         location.reload()
       } catch (error) {
-        // Handle any errors that occur during the request
-        console.error(error)
-        // Optionally, you can show an error message to the user
         alert('An error occurred while updating SEO settings.')
       }
     },
-
-    async fetchSEOSettings() {
-      const token = this.$auth.strategy.token.get()
-      console.log('-->', token)
-      await this.$axios
-        .get('/seo', {
-          headers: {
-            Authorization: 'Bearer' + token,
-          },
-        })
-        .then((res) => {
-          const data = res.data.data
-          this.title = data[0].title
-          this.desc = data[0].desc
-          this.penulis = data[0].keywords
-          this.content = data[0].keywords
-          this.urlImg = data[0].logo
-
-          console.log('-->', data[0].logo)
-        })
-      // ... Your existing fetchSEOSettings method ...
-    },
-  },
-  mounted() {
-    // Fetch the initial SEO settings when the component is mounted
-    this.fetchSEOSettings()
   },
 }
 </script>
@@ -141,13 +69,13 @@ export default {
         />
       </div>
       <div>
-        <label for="title">
+        <label for="desc">
           <h1 class="text-sm font-semibold mb-2">Site Description</h1></label
         >
         <input
           type="text"
           class="w-full border py-2 px-4 bg-white"
-          id="title"
+          id="desc"
           placeholder="7 Keajaiban Dunia yang tidak diketahui oleh orang banyak yang tidak disangka sangka ada di Indonesia"
           v-model="desc"
           required

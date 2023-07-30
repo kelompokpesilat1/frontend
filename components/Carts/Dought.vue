@@ -33,7 +33,7 @@ export default {
   },
   created() {
     const datas = this.dataDought
-    console.log(datas)
+
     for (let i = 0; i <= datas.length; i++) {
       if (datas[i]) {
         this.doughChartData.labels.push(datas[i].name)

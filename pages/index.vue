@@ -29,7 +29,7 @@ export default {
 
   async fetch() {
     const token = this.$auth.strategy.token.get()
-    console.log('==>', token)
+
     await this.$axios
       .get('/articles')
       .then((res) => (this.articles = res.data.data))

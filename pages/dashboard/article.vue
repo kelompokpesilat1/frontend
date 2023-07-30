@@ -60,7 +60,7 @@ export default {
 
 <template>
   <div class="bg-white rounded-xl shadow-sm border m-3">
-    <div class="flex items-center justify-end border-b p-4">
+    <div class="flex items-center justify-end border-b p-2">
       <button v-if="!isCreating" class="btn btn-success" @click="toggleCreate">
         Buat Artikel
         <span class="material-icons-outlined"> add_circle </span>

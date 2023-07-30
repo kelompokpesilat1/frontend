@@ -11,7 +11,6 @@ export default {
     await this.$axios.get('/category/' + this.value).then((res) => {
       this.articles = res.data.data.article
       this.categoryName = res.data.data.kategory
-      console.log(res.data.data)
     })
   },
 }

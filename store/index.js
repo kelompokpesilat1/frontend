@@ -2,6 +2,7 @@
 export const state = () => ({
   userData: {},
   categories: [],
+  seoData: {},
 })
 
 export const mutations = {
@@ -11,6 +12,9 @@ export const mutations = {
   SET_CATEGORIES(state, categories) {
     state.categories = categories
   },
+  SET_SEO(state, seoData) {
+    state.seoData = seoData
+  },
 }
 
 export const actions = {
@@ -19,6 +23,9 @@ export const actions = {
   },
   setCategories({ commit }, categories) {
     commit('SET_CATEGORIES', categories)
+  },
+  setSeo({ commit }, seoData) {
+    commit('SET_SEO', seoData)
   },
 }
 

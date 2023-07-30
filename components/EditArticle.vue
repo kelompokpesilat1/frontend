@@ -23,8 +23,7 @@ export default {
       formData.append('category', this.formEditArtikel.category)
       formData.append('title', this.formEditArtikel.title)
       formData.append('important', this.formEditArtikel.important)
-      console.log(token)
-      console.log(this.formEditArtikel)
+
       try {
         const response = await this.$axios.put(
           '/articles/update/' + this.articleId,
@@ -54,9 +53,7 @@ export default {
     this.formEditArtikel.content = response.data.article.content
     this.formEditArtikel.category = response.data.category
   },
-  mounted() {
-    console.log(this.formEditArtikel)
-  },
+  mounted() {},
 }
 </script>
 

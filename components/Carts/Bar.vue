@@ -38,7 +38,7 @@ export default {
     for (let i = 0; i <= datas.length; i++) {
       if (datas[i]) {
         this.BarCarts.labels.push(datas[i].title)
-        console.log(datas[i])
+
         this.BarCarts.datasets[0].data.push(datas[i].favoriteCount)
       }
     }

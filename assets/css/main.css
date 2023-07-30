@@ -17,7 +17,7 @@ h3 {
 }
 
 .hero {
-  background: url('../bg-hero.jpg');
+  background: url('../bg-hero.webp');
   background-size: cover;
 }
 
@@ -29,7 +29,7 @@ h3 {
 }
 
 .btn {
-  @apply p-2 rounded-md border font-medium text-white  hover:opacity-80 flex items-center justify-center gap-3;
+  @apply p-2 rounded-md border font-medium text-black  hover:opacity-80 flex items-center justify-center gap-3;
 }
 
 .btn-circle {
@@ -37,19 +37,19 @@ h3 {
 }
 
 .btn-info {
-  @apply bg-blue-600;
+  @apply text-white  bg-blue-600;
 }
 
 .btn-success {
-  @apply bg-green-500;
+  @apply text-white  bg-green-500;
 }
 
 .btn-danger {
-  @apply bg-red-600;
+  @apply text-white  bg-red-600;
 }
 
 .btn-warning {
-  @apply bg-yellow-500;
+  @apply text-white  bg-yellow-500;
 }
 
 .btn-light {
@@ -57,5 +57,5 @@ h3 {
 }
 
 .btn-dark {
-  @apply bg-slate-800;
+  @apply text-white  bg-slate-800;
 }

@@ -24,10 +24,7 @@ export default {
     ...mapState(['categories']),
     ...mapGetters(['isAuthenticated', 'getUserRole']),
   },
-  mounted() {
-    console.log('tess')
-    console.log(this.categories)
-  },
+  mounted() {},
 }
 </script>
 

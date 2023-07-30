@@ -17,8 +17,6 @@ export default {
       this.article = res.data.article
       this.categoryName = res.data.category
       this.comments = res.data.comment
-      console.log(res.data.article)
-      console.log(res.data.comment)
     })
   },
   methods: {
@@ -46,7 +44,6 @@ export default {
         this.$toast.success('Berhasil Menambahkan komentar')
       } catch (error) {
         this.$toast.error('Gagal Menambahkan komentar')
-        console.log(error)
       }
 
       this.inputComment = ''
@@ -67,21 +64,23 @@ export default {
         this.$toast.success('Berhasil Menghapus komentar')
       } catch (error) {
         this.$toast.error('Gagal Menghapus komentar')
-        console.log(error.response)
       }
     },
   },
   computed: {
     ...mapState(['userData']),
     coverUrl() {
-      return 'http://localhost:8080/' + this.article?.cover
+      if (this.article?.cover) {
+        return 'http://localhost:8080/' + this.article?.cover
+      }
+      return ''
     },
   },
 }
 </script>
 
 <template>
-  <div>
+  <div class="px-8 md:px-16">
     <client-only>
       <div
         class="max-w-3xl mx-auto flex flex-col gap-10 my-10"
@@ -95,9 +94,19 @@ export default {
           <h1 class="text-4xl font-bold mb-4 mt-2">
             {{ article?.title }}
           </h1>
-          <div>
-            <h3 class="font-semibold">{{ article?.author }}</h3>
-            <p>{{ $utils.formatDate(article?.createdAt) }}</p>
+          <div
+            class="flex items-center justify-between border-t border-b py-2 mt-5"
+          >
+            <div>
+              <h3 class="font-medium">{{ article?.author }}</h3>
+              <p class="text-gray-600 text-sm mt-1">
+                {{ $utils.formatDate(article?.createdAt) }}
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600">
+              <span class="material-icons"> visibility </span>
+              {{ article?.viewers }}
+            </div>
           </div>
         </div>
 
@@ -108,13 +117,13 @@ export default {
         />
 
         <div
-          class="flex flex-col gap-6 prose text-lg text-gray-700 leading-[32px]"
+          class="text-lg text-gray-700 leading-[32px] py-5"
           v-html="article?.content"
         ></div>
 
-        <form class="mt-20" @submit.prevent="postComment">
+        <form @submit.prevent="postComment">
           <textarea
-            class="w-full py-4 px-2 border-b"
+            class="w-full py-4 px-2 border"
             placeholder="Tulis Komentar..."
             v-model="inputComment"
             required
@@ -126,28 +135,34 @@ export default {
           </div>
         </form>
 
-        <div v-for="comment in comments" :key="comment.id" class="my-2">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <p class="font-semibold">
-                {{ comment?.User?.name }}
-              </p>
-              <p class="text-gray-500 text-sm">
-                {{ $utils.formatDate(comment?.createdAt) }}
-              </p>
+        <div>
+          <div></div>
+          <div v-for="comment in comments" :key="comment.id" class="my-2">
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <p class="font-semibold">
+                  {{ comment?.User?.name }}
+                </p>
+                <p class="text-gray-500 text-sm">
+                  {{ $utils.formatDate(comment?.createdAt) }}
+                </p>
+              </div>
+              <button
+                class="btn btn-danger"
+                v-if="
+                  comment.User.name === userData.name &&
+                  $store.$auth.state.loggedIn
+                "
+                @click="deleteComment(comment.id)"
+              >
+                <span class="material-icons md-18"> delete </span>
+              </button>
             </div>
-            <button
-              class="btn btn-danger"
-              v-if="comment.User.name === userData.name"
-              @click="deleteComment(comment.id)"
-            >
-              <span class="material-icons"> delete </span>
-            </button>
+            <p class="text-gray-700">
+              {{ comment?.commentar }}
+            </p>
+            <hr class="mt-4" />
           </div>
-          <p class="text-gray-700">
-            {{ comment?.commentar }}
-          </p>
-          <hr class="mt-4" />
         </div>
       </div>
     </client-only>
