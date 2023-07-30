@@ -28,31 +28,9 @@ export default {
   },
 
   async fetch() {
-    const token = this.$auth.strategy.token.get()
-
     await this.$axios
       .get('/articles')
       .then((res) => (this.articles = res.data.data))
-
-    // await this.$axios.get('/seo').then((res) => {
-    //   const data = res.data.data
-    //   const metaDataConverd = [
-    //     { charset: 'utf-8' },
-    //     {
-    //       name: 'viewport',
-    //       content: 'width=device-width, initial-scale=1',
-    //     },
-    //   ]
-
-    //   const formatData = {
-    //     hid: data[0].keywords,
-    //     name: data[0].title,
-    //     content: data[0].desc,
-    //   }
-    //   metaDataConverd.push(formatData)
-
-    //   this.seoData = metaDataConverd
-    // })
   },
 }
 </script>
