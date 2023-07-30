@@ -1,22 +1,9 @@
-export const dummyVisitors = [
-  { month: 'Januari', visitors: 1500 },
-  { month: 'Februari', visitors: 1200 },
-  { month: 'Maret', visitors: 1800 },
-  { month: 'April', visitors: 100 },
-  { month: 'Mei', visitors: 0 },
-  { month: 'Juni', visitors: 2000 },
-  // { month: 'Juli', visitors: 2000 },
-  // { month: 'Agustus', visitors: 4000 },
-  // { month: 'September', visitors: 3000 },
-  // { month: 'Oktober', visitors: 2500 },
-  // { month: 'November', visitors: 800 },
-  // { month: 'Desember', visitors: 200 },
-]
+export const dummyVisitors = [{ month: 'Agustus', visitors: 4000 }]
 
 export const dummyArticles = [
-  { title: 'Artikel 1', favoriteCount: 300 },
-  { title: 'Artikel 2', favoriteCount: 250 },
-  { title: 'Artikel 3', favoriteCount: 400 },
+  { title: 'Artikel 1', viewers: 300 },
+  { title: 'Artikel 2', viewers: 250 },
+  { title: 'Artikel 3', viewers: 400 },
 ]
 export const dummyNewArticles = [
   { name: 'Siksa Kubur', disukai: 200 },

@@ -3,6 +3,7 @@ export const state = () => ({
   userData: {},
   categories: [],
   seoData: {},
+  dataCartLine: [],
 })
 
 export const mutations = {

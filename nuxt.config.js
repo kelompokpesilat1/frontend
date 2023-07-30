@@ -8,7 +8,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$store.state.seoData.description,
+          content: this.$store.state.seoData.desc,
         },
         {
           hid: 'keywords',

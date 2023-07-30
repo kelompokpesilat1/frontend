@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <div class="bg-white shadow-lg overflow-hidden" data-aos="fade-right">
+  <div class="bg-white border shadow-lg overflow-hidden" data-aos="fade-right">
     <div class="flex flex-col lg:flex-row">
       <!-- Bagian Kiri (Gambar) -->
       <div class="w-full lg:w-1/3">

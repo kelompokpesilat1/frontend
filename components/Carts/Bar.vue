@@ -39,7 +39,7 @@ export default {
       if (datas[i]) {
         this.BarCarts.labels.push(datas[i].title)
 
-        this.BarCarts.datasets[0].data.push(datas[i].favoriteCount)
+        this.BarCarts.datasets[0].data.push(datas[i].viewers)
       }
     }
   },

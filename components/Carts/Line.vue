@@ -15,7 +15,7 @@ export default {
             label: 'Statistic',
             data: [],
             backgroundColor: ['rgb(250, 152, 132)'],
-            borderColor: "rgb(231, 70, 70)",
+            borderColor: 'rgb(231, 70, 70)',
             borderWidth: '7',
           },
         ],
@@ -38,7 +38,7 @@ export default {
     for (let i = 0; i <= datas.length; i++) {
       if (datas[i]) {
         this.LineChartData.labels.push(datas[i].month)
-        this.LineChartData.datasets[0].data.push(datas[i].visitors)
+        this.LineChartData.datasets[0].data.push(datas[i].views)
       }
     }
   },
