@@ -1,9 +1,7 @@
 <script>
 import {
-  dummyArticles,
   dummyNewArticles,
-  dummyVisitors,
-  newArticles,
+
 } from '@/utils/dummyData'
 import CartsLine from '@/components/Carts/Line.vue'
 import CartsBar from '@/components/Carts/Bar.vue'
@@ -18,7 +16,7 @@ export default {
   data() {
     return {
       dataCartLine: [],
-      dataCartBar: dummyArticles,
+      dataCartBar: [],
       dataCartsDought: dummyNewArticles,
     }
   },
@@ -29,9 +27,8 @@ export default {
     const sortedArticles = [...responseDataArticle.data.data]
     sortedArticles.sort((a, b) => b.views - a.views)
     const top3Articles = sortedArticles.slice(0, 3)
-    this.dataCartLine = responseDataViews?.data?.resultsWithMonthNames
+    this.dataCartLine = responseDataViews?.data.data
     this.dataCartBar = top3Articles
-    console.log(top3Articles)
   },
   mounted() {
     console.log(this.dataCartLine)
@@ -58,15 +55,6 @@ export default {
             <CartsBar :BarData="dataCartBar" />
           </CardsDashbord>
         </div>
-
-        <div>
-          <CardsDashbord>
-            <h1>Grafik Artikel Perkategori</h1>
-            <DoughnutChart :dataDought="dataCartsDought" />
-          </CardsDashbord>
-        </div>
-        <div><CardsDashbord>COMINGSOON</CardsDashbord></div>
-        <div><CardsDashbord>COMINGSOON</CardsDashbord></div>
       </section>
     </client-only>
   </div>

@@ -8,17 +8,18 @@ export default {
   data() {
     return {
       isModalVisible: false,
-      articleIdToDelete: null,
+      articleNameToDelete: '',
     }
   },
   methods: {
-    toggleModal(value) {
+    toggleModal(title) {
       this.isModalVisible = !this.isModalVisible
-      this.articleIdToDelete = value
+      this.articleNameToDelete = title
     },
     async deleteArticle() {
       try {
-        await this.$axios.delete('/articles/delete/' + this.articleIdToDelete)
+        const encodedTitle = encodeURIComponent(this.articleNameToDelete)
+        await this.$axios.delete('/articles/delete/' + encodedTitle)
         this.$toast.success('Artikel berhasil dihapus')
         // Setelah menghapus artikel, perbarui data this.articles dengan menghapus artikel dari array.
         this.$emit('onDelete')
@@ -37,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full min-h-screen overflow-y-scroll">
+  <div class="w-full h-screen overflow-y-scroll">
     <Modal
       :isOpen="isModalVisible"
       :text="'Apakah anda yakin?'"
@@ -45,7 +46,10 @@ export default {
       @confirm="deleteArticle"
     >
     </Modal>
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+    <div
+      v-if="articles.length > 0"
+      class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+    >
       <div class="overflow-hidden">
         <table class="min-w-full text-left text-sm font-light">
           <thead class="border-b font-medium dark:border-neutral-500">
@@ -67,12 +71,15 @@ export default {
                 {{ index + 1 }}
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                {{ article.title }}
+                <TruncateContent
+                  :articleContent="article.title"
+                  :maxWords="4"
+                />
               </td>
               <td class="whitespace-nowrap px-6 py-4">
                 <TruncateContent
                   :articleContent="article.content"
-                  :maxWords="5"
+                  :maxWords="4"
                 />
               </td>
               <td class="whitespace-nowrap px-6 py-4">
@@ -81,11 +88,14 @@ export default {
               <td class="whitespace-nowrap px-6 py-4 flex items-center gap-2">
                 <button
                   class="btn btn-info"
-                  @click="$emit('onEdit', article.id)"
+                  @click="$emit('onEdit', article.title)"
                 >
                   Edit
                 </button>
-                <button class="btn btn-danger" @click="toggleModal(article.id)">
+                <button
+                  class="btn btn-danger"
+                  @click="toggleModal(article.title)"
+                >
                   Delete
                 </button>
               </td>
@@ -93,6 +103,9 @@ export default {
           </tbody>
         </table>
       </div>
+    </div>
+    <div v-else class="text-center">
+      <h1 class="text-lg">Belum ada artikel</h1>
     </div>
   </div>
 </template>

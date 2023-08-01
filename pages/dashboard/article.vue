@@ -9,7 +9,7 @@ export default {
       isCreating: false,
       isEdit: false,
       showList: true,
-      editArticleId: 0,
+      editArticleTitle: '',
       isModalVisible: false,
     }
   },
@@ -31,9 +31,9 @@ export default {
     toggleEdit() {
       this.isEdit = !this.isEdit
     },
-    setEditId(value) {
+    setEditTitle(title) {
       this.isEdit = true
-      this.editArticleId = value
+      this.editArticleTitle = title
     },
     toggleModal() {
       this.isModalVisible = !this.isModalVisible
@@ -68,20 +68,23 @@ export default {
       <button v-else class="btn-circle btn-danger" @click="toggleCreate">
         <span class="material-icons-outlined"> close </span>
       </button>
-      <button v-if="isEdit" class="btn btn-success" @click="toggleEdit">
+    </div>
+    <NewArticle v-show="isCreating" @onPost="refreshArticles" />
+    <div class="flex justify-end m-5">
+      <button v-if="isEdit" class="btn btn-danger" @click="toggleEdit">
         <span class="material-icons-outlined"> close </span>
       </button>
     </div>
-    <NewArticle v-show="isCreating" @onPost="refreshArticles" />
+
     <EditArticle
       v-if="isEdit"
       @onPost="refreshArticles"
-      :articleId="editArticleId"
+      :articleTitle="editArticleTitle"
     />
     <ArticleList
       v-show="showList"
       @onDelete="refreshArticles"
-      @onEdit="setEditId"
+      @onEdit="setEditTitle"
       :articles="articles"
     />
   </div>

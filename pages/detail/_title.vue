@@ -4,7 +4,7 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      id: this.$route.params.id,
+      title: this.$route.params.title,
       article: null,
       inputComment: '',
       categoryName: '',
@@ -13,34 +13,44 @@ export default {
     }
   },
   async fetch() {
-    await this.$axios.get('/articles/' + this.id).then((res) => {
-      this.article = res.data.article
-      this.categoryName = res.data.category
-      this.comments = res.data.comment
-    })
+    await this.$axios
+      .get('/articles/detail?title=' + this.title)
+      .then((res) => {
+        this.article = res.data?.article
+        this.categoryName = res.data?.category
+        this.comments = res.data?.comment
+      })
+  },
+
+  computed: {
+    ...mapState(['userData', 'auth']),
+    coverUrl() {
+      if (this.article?.cover) {
+        return 'http://localhost:8080/' + this.article?.cover
+      }
+      return ''
+    },
   },
   methods: {
     async postComment() {
-      const isAuth = this.$store.$auth.state.loggedIn
-
-      if (!isAuth) {
-        this.$router.push('/auth/login')
-        return this.$toast.info('Login terlebih dahulu!')
-      }
-
       const token = this.$auth.strategy.token.get()
 
       try {
-        await this.$axios.post('/article/' + this.id + '/comment', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            // Add any other headers if needed...
-          },
-          commentar: this.inputComment,
-        })
-        await this.$axios.get('/articles/' + this.id).then((res) => {
-          this.comments = res.data.comment
-        })
+        await this.$axios.post(
+          '/article/' + encodeURIComponent(this.title) + '/comment',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              // Add any other headers if needed...
+            },
+            commentar: this.inputComment,
+          }
+        )
+        await this.$axios
+          .get('/articles/detail?title=' + this.title)
+          .then((res) => {
+            this.comments = res.data.comment
+          })
         this.$toast.success('Berhasil Menambahkan komentar')
       } catch (error) {
         this.$toast.error('Gagal Menambahkan komentar')
@@ -58,23 +68,19 @@ export default {
             // Add any other headers if needed...
           },
         })
-        await this.$axios.get('/articles/' + this.id).then((res) => {
-          this.comments = res.data.comment
-        })
+        await this.$axios
+          .get('/articles/detail?title=' + this.title)
+          .then((res) => {
+            this.comments = res.data.comment
+          })
         this.$toast.success('Berhasil Menghapus komentar')
       } catch (error) {
         this.$toast.error('Gagal Menghapus komentar')
       }
     },
   },
-  computed: {
-    ...mapState(['userData']),
-    coverUrl() {
-      if (this.article?.cover) {
-        return 'http://localhost:8080/' + this.article?.cover
-      }
-      return ''
-    },
+  mounted() {
+    console.log(this.title)
   },
 }
 </script>
@@ -117,11 +123,25 @@ export default {
         />
 
         <div
-          class="text-lg text-gray-700 leading-[32px] py-5"
+          class="prose prose-slate text-lg text-gray-700 leading-[32px] py-5 mx-auto"
           v-html="article?.content"
         ></div>
 
-        <form @submit.prevent="postComment">
+        <form @submit.prevent="postComment" v-if="!auth.loggedIn">
+          <textarea
+            class="w-full py-4 px-2 border"
+            placeholder="Login terlebih dahulu sebelum komentar"
+            v-model="inputComment"
+            disabled
+            required
+          ></textarea>
+          <div class="flex justify-end">
+            <button class="btn btn-light" disabled>
+              Kirim <span class="material-icons"> send </span>
+            </button>
+          </div>
+        </form>
+        <form @submit.prevent="postComment" v-else>
           <textarea
             class="w-full py-4 px-2 border"
             placeholder="Tulis Komentar..."
@@ -136,7 +156,6 @@ export default {
         </form>
 
         <div>
-          <div></div>
           <div v-for="comment in comments" :key="comment.id" class="my-2">
             <div class="flex items-center justify-between mb-2">
               <div>
@@ -148,7 +167,7 @@ export default {
                 </p>
               </div>
               <button
-                class="btn btn-danger"
+                class="btn-small btn-danger"
                 v-if="
                   comment.User.name === userData.name &&
                   $store.$auth.state.loggedIn

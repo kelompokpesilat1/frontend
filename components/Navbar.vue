@@ -42,9 +42,10 @@ export default {
       <div class="hidden lg:flex items-center space-x-6">
         <nuxt-link
           v-for="category in categories"
+          @click="toggleDropdown"
           class="capitalize text-black hover:text-red-600 transition-all"
-          :key="category.id"
-          :to="`/kategori/${category.id}`"
+          :key="category.name"
+          :to="`/kategori/${category.name}`"
           >{{ category.name }}</nuxt-link
         >
       </div>
@@ -90,8 +91,8 @@ export default {
           v-for="category in categories"
           @click="toggleDropdown"
           class="capitalize text-black hover:text-red-600 transition-all"
-          :key="category.id"
-          :to="`/kategori/${category.id}`"
+          :key="category.name"
+          :to="`/kategori/${category.name}`"
           >{{ category.name }}</nuxt-link
         >
       </div>

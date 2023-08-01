@@ -35,10 +35,13 @@ export default {
   computed: {},
   created() {
     const datas = this.BarData
-    for (let i = 0; i <= datas.length; i++) {
+    for (let i = 0; i < datas.length; i++) {
       if (datas[i]) {
-        this.BarCarts.labels.push(datas[i].title)
-
+        const title =
+          datas[i].title.length > 20
+            ? datas[i].title.substring(0, 20) + '...'
+            : datas[i].title
+        this.BarCarts.labels.push(title)
         this.BarCarts.datasets[0].data.push(datas[i].viewers)
       }
     }

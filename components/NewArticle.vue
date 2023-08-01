@@ -77,7 +77,7 @@ export default {
         required
       />
     </div>
-    <div class="grid grid-cols-2 gap-5">
+    <div class="grid grid-cols-2 justify-between gap-5">
       <div>
         <label
           for="kategori"
@@ -94,8 +94,10 @@ export default {
           </option>
         </select>
       </div>
-      <div>
-        <label for="important">Penting?</label>
+      <div class="flex items-center gap-2">
+        <label for="important">
+          <h1 class="text-sm font-semibold">Informasi Penting?</h1></label
+        >
         <input
           type="checkbox"
           name="important"

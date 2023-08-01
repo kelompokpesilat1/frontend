@@ -1,7 +1,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  props: ['articleId'],
+  props: ['articleTitle'],
   data() {
     return {
       formEditArtikel: {
@@ -25,15 +25,12 @@ export default {
       formData.append('important', this.formEditArtikel.important)
 
       try {
-        const response = await this.$axios.put(
-          '/articles/update/' + this.articleId,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+        const encodedTitle = encodeURIComponent(this.articleTitle)
+        await this.$axios.put('/articles/update/' + encodedTitle, formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         this.$emit('onPost')
         this.$toast.success('Artikel berhasil di edit')
       } catch (error) {
@@ -46,7 +43,8 @@ export default {
     },
   },
   async fetch() {
-    const response = await this.$axios.get('/articles/' + this.articleId)
+    const encodedTitle = encodeURIComponent(this.articleTitle)
+    const response = await this.$axios.get(`/articles/${encodedTitle}`)
 
     this.formEditArtikel.title = response.data.article.title
     this.formEditArtikel.important = response.data.article.important
@@ -77,7 +75,7 @@ export default {
       />
     </div>
 
-    <div class="grid grid-cols-2 gap-5">
+    <div class="grid grid-cols-2 justify-center gap-5">
       <div>
         <label
           for="kategori"
@@ -94,8 +92,10 @@ export default {
           </option>
         </select>
       </div>
-      <div>
-        <label for="important">Penting?</label>
+      <div class="flex items-center gap-2">
+        <label for="important">
+          <h1 class="text-sm font-semibold">Informasi Penting?</h1></label
+        >
         <input
           type="checkbox"
           name="important"

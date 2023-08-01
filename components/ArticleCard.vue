@@ -29,27 +29,20 @@ export default {
         alt="Article Cover"
       />
 
-      <div class="article-body p-8 h-[200px]">
-        <!-- <p class="text-sm font-bold mb-1 uppercase text-red-600">
-          {{ article.Category.name }}
-        </p> -->
-        <h1 class="text-xl font-bold mb-4">
-          {{ article.title }}
-        </h1>
-        <TruncateContent :articleContent="article.content" :maxWords="20" />
-      </div>
-
-      <div
-        class="p-8 w-full hover:translate-x-5 hover:text-red-600 transition-all"
-      >
+      <div class="article-body p-4 lg:p-8">
         <nuxt-link
-          :to="`/detail/${article.id}`"
-          class="flex items-center justify-between font-medium"
+          :to="`/detail/${encodeURIComponent(article.title)}`"
+          class="font-medium hover:text-red-600 transition-all"
         >
-          Lihat selengkapnya
-          <span class="material-icons"> arrow_right_alt </span></nuxt-link
+          <h1 class="text-xl font-bold mb-4">
+            {{ article.title }}
+          </h1></nuxt-link
         >
-      </div></client-only
-    >
+        <div class="text-gray-500">
+          {{ $utils.formatDateShort(article?.createdAt)
+          }}<span class="text-xl font-bold"> . </span>{{ article.author }}
+        </div>
+      </div>
+    </client-only>
   </div>
 </template>

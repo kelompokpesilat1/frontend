@@ -14,9 +14,9 @@ export default {
   methods: {
     async register() {
       try {
-        await this.$axios.post('/register', this.registerData)
+        const response = await this.$axios.post('/register', this.registerData)
 
-        this.$router.push('/auth/login')
+        this.$emit('onRegister')
       } catch (error) {
         this.messageErr = error.response.data.errors
       }
@@ -30,11 +30,11 @@ export default {
 
 <template>
   <div
-    class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    class="modal fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50"
   >
     <div class="modal-content bg-white p-9 w-[700px] rounded-md shadow-lg">
       <div class="flex justify-end mb-2">
-        <span class="material-icons cursor-pointer" @click="$router.go(-1)"
+        <span class="material-icons cursor-pointer" @click="$emit('onClose')"
           >close</span
         >
       </div>
@@ -54,7 +54,6 @@ export default {
             required
             placeholder="name"
             v-model="registerData.name"
-            autocomplete="off"
           />
         </div>
         <div class="mb-4">
@@ -68,7 +67,6 @@ export default {
             required
             placeholder="Email"
             v-model="registerData.email"
-            autocomplete="off"
           />
         </div>
         <div class="mb-4">
@@ -82,14 +80,11 @@ export default {
             required
             placeholder="Password"
             v-model="registerData.password"
-            autocomplete="off"
           />
         </div>
 
         <div class="flex justify-between">
-          <nuxt-link to="/auth/login" class="text-blue-700"
-            >Sudah punya akun ?</nuxt-link
-          >
+          <p class="text-blue-700">Sudah punya akun ?</p>
           <button type="submit" class="btn btn-success">Daftar</button>
         </div>
       </form>

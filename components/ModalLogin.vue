@@ -28,17 +28,17 @@ export default {
       try {
         await this.$auth.loginWith('local', {
           data: this.inputValue,
+          redirect: false,
         })
 
         // Show success notification after successful login
         this.$toast.success('Selamat, anda sukses login.')
-
-        // Redirect to homepage after login
-        this.$router.go(-1)
+        this.$emit('onClose')
       } catch (e) {
         this.messageErr = e.response.data.errors
         this.$toast.error(this.messageErr)
       }
+      //   this.$emit('onClose')
     },
 
     handleFocus() {
@@ -50,15 +50,13 @@ export default {
 
 <template>
   <div
-    class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    class="modal fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50"
   >
     <div class="modal-content bg-white p-9 w-[700px] rounded-md shadow-lg">
       <div class="flex justify-end">
-        <nuxt-link to="/">
-          <span class="material-icons cursor-pointer" @click="$router.go(-1)"
-            >close</span
-          >
-        </nuxt-link>
+        <span class="material-icons cursor-pointer" @click="$emit('onClose')"
+          >close</span
+        >
       </div>
       <h2 class="text-[32px] font-bold mb-4">Login</h2>
       <form @submit.prevent="login">

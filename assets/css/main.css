@@ -32,6 +32,10 @@ h3 {
   @apply p-2 rounded-md border font-medium text-black  hover:opacity-80 flex items-center justify-center gap-3;
 }
 
+.btn-small {
+  @apply p-1 rounded-md border font-medium text-black  hover:opacity-80 flex items-center justify-center gap-3;
+}
+
 .btn-circle {
   @apply p-2 border font-medium text-white  hover:opacity-80 flex items-center justify-center gap-3 rounded-full;
 }

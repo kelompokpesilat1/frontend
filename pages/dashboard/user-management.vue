@@ -99,7 +99,7 @@ export default {
         }
         this.$toast.success('User berhasil dihapus')
       } catch (error) {
-        this.$toast.success('User gagal dihapus')
+        this.$toast.danger('User gagal dihapus')
       }
     },
   },
@@ -144,7 +144,16 @@ export default {
                       {{ user.email }}
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
-                      {{ getRoleLabel(user.id_roles) }}
+                      <span
+                        v-if="user.id_roles == 3"
+                        class="p-1 rounded bg-slate-200"
+                        >{{ getRoleLabel(user.id_roles) }}</span
+                      >
+                      <span
+                        v-if="user.id_roles == 2"
+                        class="p-1 rounded bg-green-200"
+                        >{{ getRoleLabel(user.id_roles) }}</span
+                      >
                     </td>
                     <td
                       class="whitespace-nowrap px-6 py-4 flex items-center gap-2"
@@ -191,7 +200,6 @@ export default {
                 class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 v-model="setRoles"
               >
-                <option value="1">Admin</option>
                 <option value="2">Author</option>
                 <option value="3">User</option>
               </select>

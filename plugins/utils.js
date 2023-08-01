@@ -14,6 +14,18 @@ export default (context, inject) => {
       const date = new Date(dateString)
       return date.toLocaleString('id-ID', options)
     },
+
+    formatDateShort(dateString) {
+      const options = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      }
+
+      const date = new Date(dateString)
+      return date.toLocaleString('id-ID', options)
+    },
     // tambahkan metode reusable lainnya di sini...
   }
 

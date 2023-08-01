@@ -109,6 +109,10 @@ export default {
   auth: {
     strategies: {
       local: {
+        redirect: {
+          login: false,
+          logout: false,
+        },
         endpoints: {
           login: { url: '/login', method: 'post', propertyName: 'token' },
           user: false,
