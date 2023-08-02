@@ -78,9 +78,31 @@ export default {
         this.$toast.error('Gagal Menghapus komentar')
       }
     },
+    removeEmptyTags() {
+      const contentElement = this.$refs.articleContent
+
+      if (contentElement) {
+        const parser = new DOMParser()
+        const parsedContent = parser.parseFromString(
+          this.article.content,
+          'text/html'
+        )
+
+        // Loop through all elements in the parsed content and remove empty tags
+        const elements = parsedContent.body.querySelectorAll('*')
+        for (const element of elements) {
+          if (!element.textContent.trim() && element.childElementCount === 0) {
+            element.remove()
+          }
+        }
+
+        // Set the modified content back to the element
+        contentElement.innerHTML = parsedContent.body.innerHTML
+      }
+    },
   },
   mounted() {
-    console.log(this.title)
+    this.removeEmptyTags()
   },
 }
 </script>
@@ -123,7 +145,8 @@ export default {
         />
 
         <div
-          class="prose prose-slate text-lg text-gray-700 leading-[32px] py-5 mx-auto"
+          ref="articleContent"
+          class="prose prose-p:m-0 text-lg text-gray-700 leading-[32px] py-5 mx-auto"
           v-html="article?.content"
         ></div>
 

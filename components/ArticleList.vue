@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full h-screen overflow-y-scroll">
+  <div class="w-full">
     <Modal
       :isOpen="isModalVisible"
       :text="'Apakah anda yakin?'"
@@ -46,17 +46,16 @@ export default {
       @confirm="deleteArticle"
     >
     </Modal>
-    <div
-      v-if="articles.length > 0"
-      class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
-    >
-      <div class="overflow-hidden">
+    <div v-if="articles.length > 0" class="inline-block min-w-full py-2">
+      <div class="overflow-y-scroll h-[70vh]">
         <table class="min-w-full text-left text-sm font-light">
-          <thead class="border-b font-medium dark:border-neutral-500">
+          <thead
+            class="sticky -z-1 top-0 bg-slate-50 font-medium border-neutral-500"
+          >
             <tr>
               <th scope="col" class="px-6 py-4">No.</th>
               <th scope="col" class="px-6 py-4">Judul</th>
-              <th scope="col" class="px-6 py-4">Konten</th>
+              <th scope="col" class="px-6 py-4">Dibuat</th>
               <th scope="col" class="px-6 py-4">Kategori</th>
               <th scope="col" class="px-6 py-4">Actions</th>
             </tr>
@@ -77,10 +76,11 @@ export default {
                 />
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                <TruncateContent
+                {{ $utils.formatDateShort(article.createdAt) }}
+                <!-- <TruncateContent
                   :articleContent="article.content"
                   :maxWords="4"
-                />
+                /> -->
               </td>
               <td class="whitespace-nowrap px-6 py-4">
                 {{ article.Category.name }}
@@ -105,7 +105,7 @@ export default {
       </div>
     </div>
     <div v-else class="text-center">
-      <h1 class="text-lg">Belum ada artikel</h1>
+      <h1 class="text-lg">Tidak ada artikel</h1>
     </div>
   </div>
 </template>

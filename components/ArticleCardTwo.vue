@@ -21,13 +21,16 @@ export default {
 </script>
 
 <template>
-  <div class="bg-white border shadow-lg overflow-hidden" data-aos="fade-right">
+  <div
+    class="bg-white border rounded-md shadow-lg overflow-hidden"
+    data-aos="fade-right"
+  >
     <div class="flex flex-col lg:flex-row">
       <!-- Bagian Kiri (Gambar) -->
-      <div class="w-full lg:w-1/3">
+      <div class="w-full lg:w-1/3 h-72">
         <client-only>
           <img
-            class="h-full object-cover w-full"
+            class="h-full object-covers w-full"
             :src="coverUrl"
             alt="Article Cover"
           />
@@ -36,7 +39,7 @@ export default {
 
       <!-- Bagian Kanan (Konten) -->
       <div
-        class="p-4 lg:p-8 flex flex-col w-full lg:w-2/3 justify-between gap-10"
+        class="p-4 lg:p-8 flex flex-col w-full lg:w-2/3 justify-center gap-5"
       >
         <div class="article-body">
           <nuxt-link

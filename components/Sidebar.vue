@@ -37,35 +37,31 @@ export default {
 }
 </script>
 <template>
-  <div class="flex min-h-screen">
+  <div class="">
     <!-- sidebar -->
     <div
-      class="bg-white text-gray-700 sticky w-64 px-4 py-4 space-y-6 border-x-4 shadow"
+      class="bg-white flex h-screen sticky top-0 left-0 text-gray-700 p-4 space-y-6 shadow"
     >
-      <div class="flex justify-between">
-        <span class="material-icons cursor-pointer">dehaze</span>
-      </div>
-
-      <nav class="mt-5">
+      <nav class="w-fit">
         <ul v-if="getUserRole == 'admin'">
           <li>
             <nuxt-link
-              class="flex items-center gap-3 p-4 rounded-lg"
+              class="flex items-center gap-3 p-4 rounded-lg hover:translate-x-4 transition-all"
               to="/dashboard"
               ><span class="material-icons"> analytics </span>
-              Analytics</nuxt-link
+              Analisis</nuxt-link
             >
           </li>
           <li>
             <nuxt-link
-              class="flex items-center gap-3 p-4 rounded-lg"
+              class="flex items-center gap-3 p-4 rounded-lg hover:translate-x-4 transition-all"
               to="/dashboard/article"
               ><span class="material-icons"> article </span> Artikel</nuxt-link
             >
           </li>
           <li>
             <nuxt-link
-              class="flex items-center gap-3 p-4 rounded-lg"
+              class="flex items-center gap-3 p-4 rounded-lg hover:translate-x-4 transition-all"
               to="/dashboard/seo"
               ><span class="material-icons"> text_fields </span>Seo
               Settings</nuxt-link
@@ -73,17 +69,17 @@ export default {
           </li>
           <li>
             <nuxt-link
-              class="flex items-center gap-3 p-4 rounded-lg"
+              class="flex items-center gap-3 p-4 rounded-lg hover:translate-x-4 transition-all"
               to="/dashboard/user-management"
-              ><span class="material-icons"> manage_accounts </span> User
-              Management</nuxt-link
+              ><span class="material-icons"> manage_accounts </span> Management
+              User</nuxt-link
             >
           </li>
         </ul>
         <ul v-if="getUserRole == 'author'">
           <li>
             <nuxt-link
-              class="flex items-center gap-3 p-4 rounded-lg"
+              class="flex items-center gap-3 p-4 rounded-lg hover:translate-x-4 transition-all"
               to="/dashboard"
               ><span class="material-icons"> analytics </span>
               Analytics</nuxt-link
@@ -91,7 +87,7 @@ export default {
           </li>
           <li>
             <nuxt-link
-              class="flex items-center gap-3 p-4 rounded-lg"
+              class="flex items-center gap-3 p-4 rounded-lg hover:translate-x-4 transition-all"
               to="/dashboard/article"
               ><span class="material-icons"> article </span> Artikel</nuxt-link
             >
@@ -104,6 +100,6 @@ export default {
 
 <style scoped>
 .nuxt-link-exact-active {
-  @apply text-red-500 bg-white;
+  @apply text-red-500 bg-white border shadow-sm;
 }
 </style>

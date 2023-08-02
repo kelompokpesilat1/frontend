@@ -28,9 +28,9 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 /* Styling modal backdrop */
 :host {
   z-index: 9999;
 }
-</style>
+</style> -->

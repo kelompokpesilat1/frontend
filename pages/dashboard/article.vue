@@ -11,6 +11,9 @@ export default {
       showList: true,
       editArticleTitle: '',
       isModalVisible: false,
+      searchKeyword: '',
+      selectedCategory: '',
+      selectedSort: 'latest',
     }
   },
   watch: {
@@ -22,7 +25,42 @@ export default {
     },
   },
   computed: {
-    ...mapState(['userData']),
+    ...mapState(['userData', 'categories']),
+    searchResult() {
+      if (this.searchKeyword) {
+        const keyword = this.searchKeyword.toLowerCase().trim()
+        return this.articles.filter((article) =>
+          article.title.toLowerCase().includes(keyword)
+        )
+      } else {
+        // Jika searchKeyword kosong, kembalikan seluruh users
+        return this.articles
+      }
+    },
+    filteredArticle() {
+      let result = this.searchResult
+
+      if (this.selectedCategory) {
+        result = result.filter(
+          (article) => article.Category.name === this.selectedCategory
+        )
+        // return this.searchResult.filter(
+        //   (article) => article.Category.name === this.selectedCategory
+        // )
+      }
+
+      if (this.selectedSort === 'latest') {
+        result = result.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        )
+      } else if (this.selectedSort === 'oldest') {
+        result = result.sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        )
+      }
+
+      return result
+    },
   },
   methods: {
     toggleCreate() {
@@ -55,12 +93,40 @@ export default {
       )
     })
   },
+  mounted() {
+    console.log(this.articles)
+  },
 }
 </script>
 
 <template>
-  <div class="bg-white rounded-xl shadow-sm border m-3">
-    <div class="flex items-center justify-end border-b p-2">
+  <div class="bg-white rounded shadow-sm border m-3">
+    <div class="flex items-center justify-between border-b py-2 px-4">
+      <div class="flex items-center gap-4 w-2/3">
+        <input
+          type="text"
+          placeholder="Cari artikel..."
+          class="w-full py-2 px-4 border rounded"
+          v-model="searchKeyword"
+        />
+        <select v-model="selectedCategory" class="p-2 rounded border">
+          <option value="">Semua Kategori</option>
+          <option
+            v-for="category in categories"
+            :key="category.id"
+            :value="category.name"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+        <div>
+          <select v-model="selectedSort" class="p-2 rounded border">
+            <option value="latest">Terbaru</option>
+            <option value="oldest">Terlama</option>
+          </select>
+        </div>
+      </div>
+
       <button v-if="!isCreating" class="btn btn-success" @click="toggleCreate">
         Buat Artikel
         <span class="material-icons-outlined"> add_circle </span>
@@ -70,8 +136,8 @@ export default {
       </button>
     </div>
     <NewArticle v-show="isCreating" @onPost="refreshArticles" />
-    <div class="flex justify-end m-5">
-      <button v-if="isEdit" class="btn btn-danger" @click="toggleEdit">
+    <div v-if="isEdit" class="flex justify-end m-5">
+      <button class="btn btn-danger" @click="toggleEdit">
         <span class="material-icons-outlined"> close </span>
       </button>
     </div>
@@ -85,7 +151,7 @@ export default {
       v-show="showList"
       @onDelete="refreshArticles"
       @onEdit="setEditTitle"
-      :articles="articles"
+      :articles="filteredArticle"
     />
   </div>
 </template>

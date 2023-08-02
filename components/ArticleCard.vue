@@ -21,7 +21,10 @@ export default {
 </script>
 
 <template>
-  <div class="bg-white border shadow-lg overflow-hidden" data-aos="fade-right">
+  <div
+    class="bg-white border rounded-md shadow-lg overflow-hidden"
+    data-aos="fade-right"
+  >
     <client-only>
       <img
         class="artikel-image w-full h-48 object-cover"

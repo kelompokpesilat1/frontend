@@ -12,6 +12,8 @@ export default {
       setRoles: 1,
       modalEditOpen: false,
       modalDeleteOpen: false,
+      searchKeyword: '',
+      selectedRoles: '',
     }
   },
   computed: {
@@ -21,6 +23,26 @@ export default {
     },
     userList() {
       return this.users.filter((user) => user.id !== this.userData.id)
+    },
+    searchResult() {
+      if (this.searchKeyword) {
+        const keyword = this.searchKeyword.toLowerCase().trim()
+        return this.userList.filter((user) =>
+          user.name.toLowerCase().includes(keyword)
+        )
+      } else {
+        // Jika searchKeyword kosong, kembalikan seluruh users
+        return this.userList
+      }
+    },
+    filteredRoles() {
+      if (this.selectedRoles) {
+        return this.searchResult.filter(
+          (user) => this.getRoleLabel(user.id_roles) === this.selectedRoles
+        )
+      } else {
+        return this.searchResult
+      }
     },
   },
   methods: {
@@ -114,70 +136,81 @@ export default {
 
 <template>
   <div>
-    <div class="bg-white rounded-xl shadow-sm border p-4 m-3">
-      <h1>User Management</h1>
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full text-left text-sm font-light">
-                <thead class="border-b font-medium dark:border-neutral-500">
-                  <tr>
-                    <th scope="col" class="px-6 py-4">No.</th>
-                    <th scope="col" class="px-6 py-4">Nama</th>
-                    <th scope="col" class="px-6 py-4">Email</th>
-                    <th scope="col" class="px-6 py-4">Role</th>
-                    <th scope="col" class="px-6 py-4">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="(user, index) in userList"
-                    :key="user.id"
-                    class="border-b dark:border-neutral-500"
+    <div class="bg-white rounded shadow-sm border m-3">
+      <div class="flex items-center justify-between border-b py-2 px-4 gap-10">
+        <div class="flex items-center gap-4 w-2/3">
+          <input
+            type="text"
+            placeholder="Cari user..."
+            class="w-1/2 py-2 px-4 border rounded"
+            v-model="searchKeyword"
+          />
+          <select v-model="selectedRoles" class="p-2 rounded border">
+            <option value="">Semua Roles</option>
+            <option value="user">User</option>
+            <option value="author">Author</option>
+          </select>
+        </div>
+
+        <h1 class="text-lg font-bold">User Management</h1>
+      </div>
+
+      <div class="inline-block min-w-full py-2">
+        <div class="overflow-y-scroll h-[70vh]">
+          <table class="min-w-full text-left text-sm font-light">
+            <thead
+              class="sticky -z-1 top-0 bg-slate-50 font-medium border-neutral-500"
+            >
+              <tr>
+                <th scope="col" class="px-6 py-4">No.</th>
+                <th scope="col" class="px-6 py-4">Nama</th>
+                <th scope="col" class="px-6 py-4">Email</th>
+                <th scope="col" class="px-6 py-4">Role</th>
+                <th scope="col" class="px-6 py-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(user, index) in filteredRoles"
+                :key="user.id"
+                class="border-b dark:border-neutral-500"
+              >
+                <td class="whitespace-nowrap px-6 py-4 font-medium">
+                  {{ index + 1 }}
+                </td>
+                <td class="whitespace-nowrap px-6 py-4">{{ user.name }}</td>
+                <td class="whitespace-nowrap px-6 py-4">
+                  {{ user.email }}
+                </td>
+                <td class="whitespace-nowrap px-6 py-4">
+                  <span
+                    v-if="user.id_roles == 3"
+                    class="p-1 rounded bg-slate-200"
+                    >{{ getRoleLabel(user.id_roles) }}</span
                   >
-                    <td class="whitespace-nowrap px-6 py-4 font-medium">
-                      {{ index + 1 }}
-                    </td>
-                    <td class="whitespace-nowrap px-6 py-4">{{ user.name }}</td>
-                    <td class="whitespace-nowrap px-6 py-4">
-                      {{ user.email }}
-                    </td>
-                    <td class="whitespace-nowrap px-6 py-4">
-                      <span
-                        v-if="user.id_roles == 3"
-                        class="p-1 rounded bg-slate-200"
-                        >{{ getRoleLabel(user.id_roles) }}</span
-                      >
-                      <span
-                        v-if="user.id_roles == 2"
-                        class="p-1 rounded bg-green-200"
-                        >{{ getRoleLabel(user.id_roles) }}</span
-                      >
-                    </td>
-                    <td
-                      class="whitespace-nowrap px-6 py-4 flex items-center gap-2"
-                    >
-                      <button
-                        class="btn btn-info"
-                        @click="openModalEdit(user.id)"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        class="btn btn-danger"
-                        @click="openModalDelete(user.id)"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+                  <span
+                    v-if="user.id_roles == 2"
+                    class="p-1 rounded bg-green-200"
+                    >{{ getRoleLabel(user.id_roles) }}</span
+                  >
+                </td>
+                <td class="whitespace-nowrap px-6 py-4 flex items-center gap-2">
+                  <button class="btn btn-info" @click="openModalEdit(user.id)">
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    @click="openModalDelete(user.id)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+
       <div
         v-show="modalEditOpen"
         class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"

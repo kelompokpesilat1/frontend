@@ -7,6 +7,8 @@ export default {
   data() {
     return {
       isDropdownOpen: false,
+      searchKeyword: '',
+      showSearchBar: false,
     }
   },
   methods: {
@@ -16,7 +18,10 @@ export default {
     handleLogout() {
       this.$auth.logout()
       this.$toast.success('Anda berhasil logout.')
-      this.$router.push('/')
+      // this.$router.go(0)
+    },
+    toggleSearchBar() {
+      this.showSearchBar = !this.showSearchBar
     },
   },
 
@@ -34,9 +39,18 @@ export default {
   >
     <div class="w-full flex items-center justify-between">
       <!-- LOGO -->
-      <nuxt-link to="/" class="text-2xl font-bold text-red-600"
-        >RagamArtikel</nuxt-link
-      >
+      <div class="flex items-center gap-2">
+        <nuxt-link to="/" class="text-2xl font-bold text-red-600"
+          >RagamArtikel</nuxt-link
+        >
+        <span
+          v-show="!showSearchBar"
+          class="material-icons-outlined text-red-600 cursor-pointer"
+          @click="toggleSearchBar"
+        >
+          search
+        </span>
+      </div>
 
       <!-- Navbar Links Desktop -->
       <div class="hidden lg:flex items-center space-x-6">
@@ -121,6 +135,29 @@ export default {
           </button>
         </div>
       </div>
+    </div>
+
+    <div class="mt-5 flex items-center gap-5" v-show="showSearchBar">
+      <div class="flex items-center gap-3 w-full">
+        <input
+          type="text"
+          placeholder="Cari artikel..."
+          class="w-full py-2 px-4 border rounded"
+          v-model="searchKeyword"
+          @keyup.enter="$router.push(`/search/${searchKeyword}`)"
+        />
+        <!-- <nuxt-link :to="`/search/${searchKeyword}`">
+          <span class="material-icons-outlined text-red-600 cursor-pointer">
+            search
+          </span>
+        </nuxt-link> -->
+      </div>
+      <span
+        class="material-icons-outlined cursor-pointer text-red-600"
+        @click="toggleSearchBar"
+      >
+        close
+      </span>
     </div>
   </nav>
 </template>

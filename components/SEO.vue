@@ -51,14 +51,18 @@ export default {
         })
 
         // Optionally, you can show a success message to the user
-        alert('SEO settings updated successfully!')
+        // alert('SEO settings updated successfully!')
         // Clear the form fields
         this.title = ''
         this.desc = ''
         this.keywords = ''
         this.urlImg = ''
 
-        location.reload()
+        this.$toast.success('Berhasil Merubah SEO setting')
+
+        setTimeout(() => {
+          location.reload()
+        }, 500)
       } catch (error) {
         alert('An error occurred while updating SEO settings.')
       }

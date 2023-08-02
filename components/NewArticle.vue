@@ -34,6 +34,14 @@ export default {
         })
         this.$emit('onPost')
         this.$toast.success('Artikel berhasil dibuat')
+        this.formNewArtikel = {
+          name: this.$store.state.userData.name,
+          category: 'olahraga',
+          title: '',
+          important: 0,
+          cover: null,
+          content: '',
+        }
       } catch (error) {
         this.$toast.error('Artikel gagal dibuat')
       }
