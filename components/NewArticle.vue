@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -10,11 +10,16 @@ export default {
         important: 0,
         cover: null,
         content: '',
+        publish: '',
       },
     }
   },
   computed: {
     ...mapState(['categories', 'userData']),
+    ...mapGetters(['getUserRole']),
+    isAdmin() {
+      if (this.getUserRole === 'admin') return true
+    },
   },
   methods: {
     async postArtikel() {
@@ -26,6 +31,7 @@ export default {
       formData.append('title', this.formNewArtikel.title)
       formData.append('important', this.formNewArtikel.important)
       formData.append('content', this.formNewArtikel.content)
+      formData.append('publish', this.formNewArtikel.content)
       try {
         const response = await this.$axios.post('/articles', formData, {
           headers: {
@@ -111,6 +117,17 @@ export default {
           name="important"
           id="important"
           v-model="formNewArtikel.important"
+        />
+      </div>
+      <div class="flex items-center gap-2" v-if="isAdmin">
+        <label for="publish">
+          <h1 class="text-sm font-semibold">Publish</h1></label
+        >
+        <input
+          type="checkbox"
+          name="publish"
+          id="publish"
+          v-model="formNewArtikel.publish"
         />
       </div>
     </div>

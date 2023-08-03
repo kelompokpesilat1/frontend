@@ -16,7 +16,7 @@ export default {
 <template>
   <div
     v-if="isOpen"
-    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
   >
     <div class="bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-2xl font-bold mb-4">{{ text }}</h2>

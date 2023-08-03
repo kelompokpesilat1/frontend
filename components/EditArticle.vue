@@ -1,19 +1,35 @@
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   props: ['articleTitle'],
   data() {
     return {
+      author: '',
       formEditArtikel: {
         category: '',
         title: '',
         important: 0,
         content: '',
+        cover: '',
+        publish: 0,
       },
     }
   },
   computed: {
     ...mapState(['categories', 'userData']),
+    ...mapGetters(['getUserRole']),
+    coverUrl() {
+      if (this.cover) {
+        return 'http://localhost:8080/' + this.cover
+      }
+      return ''
+    },
+    isAdmin() {
+      if (this.getUserRole === 'admin') return true
+    },
+    isAuthorArticle() {
+      if (this.isAdmin && this.userData.name !== this.author) return true
+    },
   },
   methods: {
     async postArtikel() {
@@ -23,6 +39,7 @@ export default {
       formData.append('category', this.formEditArtikel.category)
       formData.append('title', this.formEditArtikel.title)
       formData.append('important', this.formEditArtikel.important)
+      formData.append('publish', this.formEditArtikel.publish)
 
       try {
         const encodedTitle = encodeURIComponent(this.articleTitle)
@@ -50,8 +67,13 @@ export default {
     this.formEditArtikel.important = response.data.article.important
     this.formEditArtikel.content = response.data.article.content
     this.formEditArtikel.category = response.data.category
+    this.formEditArtikel.publish = response.data.article.publish
+    this.author = response.data.article.author
+    console.log(this.author)
   },
-  mounted() {},
+  mounted() {
+    console.log(this.userData)
+  },
 }
 </script>
 
@@ -72,6 +94,7 @@ export default {
         v-model="formEditArtikel.title"
         placeholder="Tulis Judul..."
         required
+        :disabled="isAuthorArticle"
       />
     </div>
 
@@ -87,7 +110,11 @@ export default {
           id="kategori"
           class="bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
-          <option v-for="category in categories" v-bind:value="category.name">
+          <option
+            v-for="category in categories"
+            v-bind:value="category.name"
+            :disabled="isAuthorArticle"
+          >
             {{ category.name }}
           </option>
         </select>
@@ -103,10 +130,26 @@ export default {
           v-model="formEditArtikel.important"
         />
       </div>
+      <div class="flex items-center gap-2" v-if="isAdmin">
+        <label for="publish">
+          <h1 class="text-sm font-semibold">Publish</h1></label
+        >
+        <input
+          type="checkbox"
+          name="publish"
+          id="publish"
+          v-model="formEditArtikel.publish"
+        />
+      </div>
     </div>
+
     <div class="h-[300px]">
       <label> <h1 class="text-sm font-semibold mb-2">Content</h1></label>
-      <quill-editor v-model="formEditArtikel.content" class="h-2/3" />
+      <quill-editor
+        v-model="formEditArtikel.content"
+        class="h-2/3"
+        :disabled="isAuthorArticle"
+      />
     </div>
 
     <button class="py-2 px-4 border-2 w-full text-center bg-red-600 text-white">

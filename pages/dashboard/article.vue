@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   layout: 'dashboard',
@@ -14,6 +14,8 @@ export default {
       searchKeyword: '',
       selectedCategory: '',
       selectedSort: 'latest',
+      selectedRole: 'admin',
+      selectedStatus: '',
     }
   },
   watch: {
@@ -26,15 +28,30 @@ export default {
   },
   computed: {
     ...mapState(['userData', 'categories']),
+    ...mapGetters(['getUserRole']),
+    isAdmin() {
+      if (this.getUserRole === 'admin') return true
+    },
+    list() {
+      if (this.getUserRole === 'author') {
+        return this.articles.filter(
+          (article) => article.author === this.userData.name
+        )
+      }
+      return this.articles
+    },
     searchResult() {
       if (this.searchKeyword) {
         const keyword = this.searchKeyword.toLowerCase().trim()
-        return this.articles.filter((article) =>
-          article.title.toLowerCase().includes(keyword)
+        return this.list.filter(
+          (article) =>
+            article.title.toLowerCase().includes(keyword) ||
+            article.author.toLowerCase().includes(keyword) ||
+            article.Category.name.toLowerCase().includes(keyword)
         )
       } else {
         // Jika searchKeyword kosong, kembalikan seluruh users
-        return this.articles
+        return this.list
       }
     },
     filteredArticle() {
@@ -44,9 +61,6 @@ export default {
         result = result.filter(
           (article) => article.Category.name === this.selectedCategory
         )
-        // return this.searchResult.filter(
-        //   (article) => article.Category.name === this.selectedCategory
-        // )
       }
 
       if (this.selectedSort === 'latest') {
@@ -57,6 +71,22 @@ export default {
         result = result.sort(
           (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
         )
+      }
+
+      if (this.selectedRole === 'admin') {
+        result = result.filter(
+          (article) => article.author === this.userData.name
+        )
+      } else if (this.selectedRole === 'author') {
+        result = result.filter(
+          (article) => article.author !== this.userData.name
+        )
+      }
+
+      if (this.selectedStatus === 'publish') {
+        result = result.filter((article) => article.publish)
+      } else if (this.selectedStatus === 'pending') {
+        result = result.filter((article) => !article.publish)
       }
 
       return result
@@ -78,9 +108,7 @@ export default {
     },
     async refreshArticles() {
       await this.$axios.get('/articles').then((res) => {
-        this.articles = res.data.data.filter(
-          (article) => article.author === this.userData.name
-        )
+        this.articles = res.data.data
       })
       this.isEdit = false
       this.isCreating = false
@@ -88,9 +116,7 @@ export default {
   },
   async fetch() {
     await this.$axios.get('/articles').then((res) => {
-      this.articles = res.data.data.filter(
-        (article) => article.author === this.userData.name
-      )
+      this.articles = res.data.data
     })
   },
   mounted() {
@@ -123,6 +149,19 @@ export default {
           <select v-model="selectedSort" class="p-2 rounded border">
             <option value="latest">Terbaru</option>
             <option value="oldest">Terlama</option>
+          </select>
+        </div>
+        <div v-if="isAdmin">
+          <select v-model="selectedRole" class="p-2 rounded border">
+            <option value="admin">Admin</option>
+            <option value="author">Author</option>
+          </select>
+        </div>
+        <div>
+          <select v-model="selectedStatus" class="p-2 rounded border">
+            <option value="">All status</option>
+            <option value="publish">Publish</option>
+            <option value="pending">Pending</option>
           </select>
         </div>
       </div>

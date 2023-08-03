@@ -28,9 +28,9 @@ export default {
   },
 
   async fetch() {
-    await this.$axios
-      .get('/articles')
-      .then((res) => (this.articles = res.data.data))
+    const response = await this.$axios.get('/articles')
+    this.articles = response.data.data.filter((article) => article.publish)
+    console.log(response.data.data)
   },
 }
 </script>

@@ -55,8 +55,9 @@ export default {
             <tr>
               <th scope="col" class="px-6 py-4">No.</th>
               <th scope="col" class="px-6 py-4">Judul</th>
-              <th scope="col" class="px-6 py-4">Dibuat</th>
+              <th scope="col" class="px-6 py-4">Status</th>
               <th scope="col" class="px-6 py-4">Kategori</th>
+              <th scope="col" class="px-6 py-4">Penulis</th>
               <th scope="col" class="px-6 py-4">Actions</th>
             </tr>
           </thead>
@@ -76,14 +77,17 @@ export default {
                 />
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                {{ $utils.formatDateShort(article.createdAt) }}
-                <!-- <TruncateContent
-                  :articleContent="article.content"
-                  :maxWords="4"
-                /> -->
+                <span v-if="article.publish" class="p-1 rounded bg-green-200"
+                  >Publish</span
+                >
+
+                <span v-else class="p-1 rounded bg-slate-200">Pending</span>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
                 {{ article.Category.name }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
+                {{ article.author }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 flex items-center gap-2">
                 <button
